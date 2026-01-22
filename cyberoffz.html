@@ -26,6 +26,8 @@
             backdrop-filter: blur(10px);
             position: sticky; top: 0; z-index: 100; background: rgba(15, 23, 42, 0.9);
         }
+
+        
         .logo { font-size: 1.5rem; font-weight: 800; display: flex; align-items: center; gap: 10px; }
 
         .hero { text-align: center; padding: 80px 20px; max-width: 900px; margin: 0 auto; }
@@ -69,6 +71,8 @@
 
     <header>
         <div class="logo">🛡️ CyberOffz</div>
+        <div class="logo" onclick="window.location.href='index.html'" style="cursor:pointer;">🛡️ CyberOffz</div>
+    <a href="index.html" style="text-decoration:none; color:var(--muted); font-size:0.9rem;">✕ Beenden</a>
     </header>
 
     <section class="hero">
@@ -106,7 +110,9 @@
             </a>
         </div>
     </section>
-
+<a href="index.html" class="btn btn-outline" style="position:fixed; right:16px; bottom:16px; z-index:999; background: var(--bg); border: 1px solid var(--accent); color: var(--text); box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+    🏠 Hauptmenü
+</a>
     <footer>
         <p>© 2026 CyberOffz Lernplattform. <br>Wissen ist die stärkste Firewall.</p>
     </footer>
