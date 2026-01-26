@@ -219,6 +219,118 @@ const BANK = [
         e: "Ab einer voraussichtlichen Abwesenheit von mehr als 6 Wochen muss eine formale Materialübergabe erfolgen.", 
         o: ["2 Wochen", "4 Wochen", "6 Wochen", "12 Wochen"], 
         m: "MAT-ERHALT" 
+    },
+// --- DATENSCHUTZ & GRUNDLAGEN ---
+    { 
+        q: "Was unterscheidet die DSGVO (Verordnung) von einer Richtlinie?", 
+        a: "Gilt unmittelbar für alle Dienststellen", 
+        e: "Eine EU-Verordnung gilt sofort und unmittelbar als Gesetz in den Mitgliedsstaaten, während eine Richtlinie erst in nationales Recht umgesetzt werden muss.", 
+        o: ["Ist nur eine Empfehlung", "Gilt unmittelbar für alle Dienststellen", "Muss erst durch Bundestag ratifiziert werden", "Gilt nur für Privatfirmen"], 
+        m: "DATENSCHUTZ" 
+    },
+    { 
+        q: "Was versteht man unter 'Goldplating' im Kontext des BDSG?", 
+        a: "Deutsches Datenschutzgesetz ergänzt die DSGVO", 
+        e: "Goldplating bezeichnet das Übererfüllen von EU-Vorgaben durch nationale Regelungen (das BDSG sattelt auf die DSGVO auf).", 
+        o: ["Vergoldung von IT-Hardware", "Reduzierung der Standards", "Deutsches Datenschutzgesetz ergänzt die DSGVO", "Abschaffung nationaler Gesetze"], 
+        m: "DATENSCHUTZ" 
+    },
+    { 
+        q: "Welche Instanz ist für einen Eingriff in die Integrität informationstechnischer Systeme zwingend erforderlich?", 
+        a: "Richtervorbehalt", 
+        e: "Da es sich um ein überragend wichtiges Gemeingut handelt, darf ein Eingriff (z.B. Online-Durchsuchung) nur durch einen Richter angeordnet werden.", 
+        o: ["Disziplinarvorgesetzter", "IT-Sicherheitsbeauftragter", "Richtervorbehalt", "Bundeskanzler"], 
+        m: "GRUNDRECHTE" 
+    },
+    { 
+        q: "Was prüft das 'RETTER'-Prinzip?", 
+        a: "Rechtmäßigkeit einer Datenverarbeitung", 
+        e: "Das Akronym steht u.a. für Rechtmäßigkeit, Erforderlichkeit, Transparenz (Prüfschema für Datenverarbeitung).", 
+        o: ["Rechtmäßigkeit einer Datenverarbeitung", "Instandsetzung von KFZ", "Sanitätsdienstliche Versorgung", "Urheberrechtliche Schöpfungshöhe"], 
+        m: "DATENSCHUTZ" 
+    },
+    { 
+        q: "Wofür steht TOM im Datenschutz?", 
+        a: "Technisch-organisatorische Maßnahmen", 
+        e: "TOMs sind Schutzvorkehrungen (z.B. Zäune, Passwörter), um die Sicherheit der Datenverarbeitung zu gewährleisten.", 
+        o: ["Taktisch-operative Maßnahmen", "Technisch-organisatorische Maßnahmen", "Total-Optimiertes Management", "Truppen-Organisations-Modell"], 
+        m: "DATENSCHUTZ" 
+    },
+    
+    // --- PERSDAT KATEGORIEN ---
+    { 
+        q: "Welche Daten fallen unter die Kategorie 'PersDat 1'?", 
+        a: "Name, Vorname, Dienstgrad", 
+        e: "PersDat 1 umfasst die grundlegenden Identifikationsdaten ohne tiefere Verknüpfung.", 
+        o: ["Name, Vorname, Dienstgrad", "Name und Geburtsdatum", "Biometrische Daten", "Gesundheitsdaten"], 
+        m: "PERSDAT" 
+    },
+    { 
+        q: "Was kennzeichnet die Kategorie 'PersDat 2'?", 
+        a: "Verknüpfung von Name/DG mit Einheit oder Veranstaltung", 
+        e: "PersDat 2 entsteht durch die Verknüpfung von Basisdaten mit Kontextinformationen wie Einheit oder Geburtsdatum.", 
+        o: ["Rein biometrische Daten", "Verknüpfung von Name/DG mit Einheit oder Veranstaltung", "Nur der Dienstgrad", "Anonymisierte Daten"], 
+        m: "PERSDAT" 
+    },
+    { 
+        q: "Zu welcher Kategorie gehört der biometrische Dienstausweis?", 
+        a: "PersDat 3", 
+        e: "Biometrische Daten stellen eine besonders hohe Schutzstufe dar und fallen unter PersDat 3.", 
+        o: ["PersDat 1", "PersDat 2", "PersDat 3", "PersDat 4"], 
+        m: "PERSDAT" 
+    },
+
+    // --- URHEBERRECHT & MEDIEN ---
+    { 
+        q: "Wie viel Prozent eines Werkes dürfen gesetzlich (z.B. für Unterricht) meist genutzt werden?", 
+        a: "15%", 
+        e: "Als Faustregel für die gesetzliche Nutzungsbefugnis (Schrankenregelung) gilt oft: '15% gehen immer'.", 
+        o: ["50%", "15%", "100%", "3%"], 
+        m: "URHEBERRECHT" 
+    },
+    { 
+        q: "Wann entfällt das Recht am eigenen Bild (Einwilligung)?", 
+        a: "Teilnahme an einer öffentlichen Veranstaltung", 
+        e: "Wer an einer öffentlichen Versammlung/Veranstaltung teilnimmt, muss keine Einwilligung für Aufnahmen im Kontext der Veranstaltung geben.", 
+        o: ["Immer wenn man Uniform trägt", "Teilnahme an einer öffentlichen Veranstaltung", "Wenn das Bild unscharf ist", "Wenn der Fotograf Presse ist"], 
+        m: "URHEBERRECHT" 
+    },
+    { 
+        q: "Wer ist für die Musiknutzung (GEMA) in Betreuungseinrichtungen zuständig?", 
+        a: "Der Pächter", 
+        e: "Für die Anmeldung und Zahlung bei der GEMA ist in Betreuungseinrichtungen der Pächter verantwortlich.", 
+        o: ["Der Bund", "Die Truppe", "Der Pächter", "Der DJ"], 
+        m: "URHEBERRECHT" 
+    },
+
+    // --- IT-STRAFRECHT & SIGNATUREN ---
+    { 
+        q: "Gilt 'Hehler ist nicht der Stehler' bei Datenhehlerei?", 
+        a: "Nein, jeder Käufer macht sich strafbar", 
+        e: "Der erste Käufer von gestohlenen Daten macht sich der Hehlerei strafbar, und jeder weitere Käufer in der Kette ebenfalls.", 
+        o: ["Ja, nur der Hacker ist strafbar", "Nein, jeder Käufer macht sich strafbar", "Nur gewerbliche Käufer sind strafbar", "Daten können nicht gehehlt werden"], 
+        m: "IT-STRAFRECHT" 
+    },
+    { 
+        q: "Ist bereits die Vorbereitung zum Ausspähen von Daten (§ 202a) strafbar?", 
+        a: "Ja, der Vorsatz zur Vorbereitung reicht", 
+        e: "Bereits das Herstellen oder Verschaffen von 'Hacker-Tools' zur Vorbereitung der Tat ist strafbar.", 
+        o: ["Nein, erst der Erfolg zählt", "Ja, der Vorsatz zur Vorbereitung reicht", "Nur wenn Schaden > 5000€", "Nur bei Amtsträgern"], 
+        m: "IT-STRAFRECHT" 
+    },
+    { 
+        q: "Welche Art der Signatur stellt die PKI-Karte der Bundeswehr dar?", 
+        a: "Fortgeschrittene elektronische Signatur", 
+        e: "Die PKI-Karte bietet eine fortgeschrittene, aber standardmäßig meist keine qualifizierte elektronische Signatur.", 
+        o: ["Einfache Signatur", "Fortgeschrittene elektronische Signatur", "Qualifizierte elektronische Signatur", "Biometrische Unterschrift"], 
+        m: "IT-SICHERHEIT" 
+    },
+    { 
+        q: "Was ist erforderlich, wenn das Gesetz 'Schriftlich' verlangt, aber elektronisch gehandelt wird?", 
+        a: "Qualifiziert-elektronische Signatur", 
+        e: "Die gesetzliche Schriftform kann elektronisch nur durch eine qualifizierte elektronische Signatur ersetzt werden.", 
+        o: ["Eingescannte Unterschrift", "Fortgeschrittene Signatur", "Qualifiziert-elektronische Signatur", "E-Mail Bestätigung"], 
+        m: "IT-SICHERHEIT" 
     }];
 
 let activeSet = []; let retryStack = []; let currentIndex = 0; let streak = 0; let isExam = false; let examAnswers = {};
