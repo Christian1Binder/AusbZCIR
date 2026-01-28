@@ -198,9 +198,16 @@ const BANK = [{
     { 
         q: "Was ist der Unterschied zwischen einer Unfallanzeige und einem Vermerk?", 
         a: "Anzeige = Krankheitsbedingte Abwesenheit", 
-        e: "Eine Unfallanzeige ist zwingend erforderlich, wenn der Dienstunfall zu einer Arbeitsunfähigkeit führt.", 
+        e: "Eine Unfallanzeige ist zwingend erforderlich, wenn der Dienstunfall zu einer Arbeitsunfähigkeit >3 Tage führt.", 
         o: ["Es gibt keinen Unterschied", "Anzeige = Krankheitsbedingte Abwesenheit", "Vermerk ist nur für Zivilisten", "Anzeige erfolgt nur bei Sachschaden"], 
         m: "ARBEITSSCHUTZ" 
+    },
+    {
+        q: "Was karakterisiert einen Unfallvermek?",
+        a: "Dient der Dokumentation, aber erstmal kein krankheitsbedingter Ausfall.",
+        e: "Ein Unfallvermekr wird zu Dokumentationszwecken erstellt, z.B. Zeckenbiss, es wird aber von keinem krankheitsbedingtem Ausfall ausgegangen.",
+        o: ["Dient der Dokumentation, aber erstmal kein krankheitsbedingter Ausfall.", "Kommt einer Krankschreibung gleich.", "Man wird automatisch Krank geschrieben.", "Krankheitsbedingte Abwesenheit."],
+        m: "ARBEITSSCHUTZ"
     },
     { 
         q: "Wer darf während des Dienstes einen Zeckenbiss entfernen?", 
@@ -232,6 +239,13 @@ const BANK = [{
     },
 
     // --- UMWELT ---
+    {
+        q: "Kategorisieren Sie Schutzgebiete von starkem zu schwachem Schutz!",
+        a: "Naturschutzgebiet, Landschaftsschutzgebiet, Staatsforst",
+        e: "Naturschutzgebiet (stark geschützt, keine Übung möglich), Landschaftsschutzgebiet (Landschaft darf nicht nachhaltig verändert werden), Staatsforst (wirtschaftlich genutzter Wald)"
+        o: "Naturschutzgebiet, Landschaftsschutzgebiet, Staatsforst", "Landschaftsschutzgebiet, Staatsforst, Naturschutzgebiet", "Staatsforst, Naturschutzgebiet, Landschaftsschutzgebiet", "Naturschutzgebiet, Staatsforst, Landschaftsschutzgebiet",
+        m: "UMWELT"
+    },
     { 
         q: "Dürfen Übungen in Wasserschutzgebieten abgehalten werden?", 
         a: "Ja, aber nicht in Schutzzone I + II", 
