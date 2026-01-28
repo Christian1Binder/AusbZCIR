@@ -403,6 +403,246 @@ const BANK = [
     { q: "Wie wird das Gerät ELCRODAT 4-2 kategorisiert?", a: "Kryptomaterial (Kryptogerät)", e: "Hardware zur Verschlüsselung ist ein Kryptogerät (CCI).", o: ["Kryptounterlage", "Kryptomaterial (Kryptogerät)", "Zubehörteil", "Kryptovariable"], m: "KRYPTO" },
     { q: "Welcher Grundsatz gilt für Sonderkurier und Kurierbegleiter beim Betreten eines Flugzeugs?", a: "Als letzter einsteigen und als erster aussteigen.", e: "Vermeidung von Gedränge und Trennung.", o: ["Zuerst einsteigen, um das Gepäck zu verstauen.", "Als letzter einsteigen und als erster aussteigen.", "Immer mit den Piloten einsteigen.", "Zusammen mit der Priority-Gruppe einsteigen."], m: "KRYPTO" },
     { q: "Darf das Kuriergepäck im Flugzeug von den Kurieren getrennt werden (z. B. im Frachtraum)?", a: "Nein, es muss unter ständiger Aufsicht bleiben.", e: "Ständige Aufsicht ist Pflicht.", o: ["Ja, wenn es ein versiegelter Container ist.", "Ja, bei Flügen über 4 Stunden.", "Nein, es muss unter ständiger Aufsicht bleiben.", "Nur wenn der Kapitän es anordnet."], m: "KRYPTO" }
+
+    // 1) CIA-Zuordnung (6 Szenarien)
+  {
+    type: "match",
+    question: "Ordnen Sie folgende Verstöße / Szenarien den jeweils zutreffendsten Grundwerten der Informationssicherheit zu.",
+    pairs: [
+      { left: "1) OSG Müller ärgert seinen Kameraden, indem er von dessen Account den Hörsaalleiter beleidigt.", right: "Integrität" },
+      { left: "2) Während eines groß angelegten Manövers werden taktische Karten mit veralteten Informationen genutzt, da ein Fehler bei der Datenaktualisierung aufgetreten ist.", right: "Verfügbarkeit" },
+      { left: "3) Der Kdr befiehlt seinem Stab eine Lagerkarte zu empfangen, da auf seinem FuInfoSys der falsche Lizenzschlüssel eingespielt wurde.", right: "Verfügbarkeit" },
+      { left: "4) Der S4-Fw Muster schaut sich die AD-Berechtigungen der Dienststelle an.", right: "Vertraulichkeit" },
+      { left: "5) Eine Dienststelle nutzt ein System zur automatischen Datenprüfung. Es stellt fest, dass bestimmte Daten während der Übertragung manipuliert wurden.", right: "Integrität" },
+      { left: "6) Ein Soldat lädt sich VS-eingestufte Dokumente auf sein privates Endgerät. Dieses wird später gestohlen und die Daten sind frei zugänglich.", right: "Vertraulichkeit" }
+    ]
+  },
+
+  // 2) Nichtverkettung – Maßnahmen
+  {
+    type: "multi",
+    question: "Eine Dienststelle speichert sensible personenbezogene Daten in einer Datenbank. Welche Maßnahmen tragen dazu bei, das Gewährleistungsziel der Nichtverkettung zu erreichen?",
+    options: [
+      "Verwendung von starken Hashing-Algorithmen für alle personenbezogenen Daten",
+      "Einsatz von Pseudonymisierung der gespeicherten Daten",
+      "Sicherstellung, dass alle Schlüssel zur Datenverschlüsselung regelmäßig gewechselt werden",
+      "Trennung der Daten in separate, nicht miteinander verknüpfte Datenbanken",
+      "Implementierung von Anonymisierung der personenbezogenen Daten"
+    ],
+    correct: [1, 3, 4]
+  },
+
+  // 3) PersDat Schutzbereich 2 oder 3?
+  {
+    type: "single",
+    question: "Geben Sie an, ob folgende Aussage zutrifft: PersDat kann je nach personenbezogenen Daten den Schutzbereichen 2 oder 3 zugeordnet werden.",
+    options: ["Wahr", "Falsch"],
+    correct: [1]
+  },
+
+  // 4) Schwachstelle vs. Bedrohung
+  {
+    type: "single",
+    question: "Was beschreibt am besten den Unterschied zwischen einer Schwachstelle und einer Bedrohung?",
+    options: [
+      "Eine Schwachstelle ist eine bestehende Sicherheitslücke, eine Bedrohung ist ein potentieller Angreifer",
+      "Eine Schwachstelle beschreibt externe Sicherheitsrisiken, eine Bedrohung interne",
+      "Eine Schwachstelle beschreibt den Angreifer selbst, eine Bedrohung das Zielsystem",
+      "Eine Schwachstelle ist eine potentielle Gefahr, eine Bedrohung ist eine bestehende Sicherheitslücke"
+    ],
+    correct: [0]
+  },
+
+  // 5) Geheimhaltungsgrade – Definitionen zuordnen
+  {
+    type: "match",
+    question: "Ordnen Sie die Definitionen den entsprechenden Geheimhaltungsgraden zu.",
+    pairs: [
+      { left: "A) wenn die Kenntnisnahme durch Unbefugte für die Interessen der Bundesrepublik Deutschland oder eines ihrer Länder schädlich sein kann", right: "VS – Vertraulich" },
+      { left: "B) wenn die Kenntnisnahme durch Unbefugte den Bestand oder lebenswichtige Interessen der Bundesrepublik Deutschland oder eines ihrer Länder gefährden kann", right: "STRENG GEHEIM" },
+      { left: "C) wenn die Kenntnisnahme durch Unbefugte die Sicherheit der Bundesrepublik Deutschland oder eines ihrer Länder gefährden oder ihren Interessen schweren Schaden zufügen kann", right: "GEHEIM" },
+      { left: "D) wenn die Kenntnisnahme durch Unbefugte für die Interessen der Bundesrepublik Deutschland oder eines ihrer Länder nachteilig sein kann", right: "VS – Nur für den Dienstgebrauch" }
+    ]
+  },
+
+  // 6) Blacklist-Aussage
+  {
+    type: "single",
+    question: "Geben Sie an, ob folgende Aussage zutrifft: Bei einer Blacklist sind jegliche Datenströme, die nicht ausdrücklich erlaubt wurden, verboten.",
+    options: ["Wahr", "Falsch"],
+    correct: [1]
+  },
+
+  // 7) Nationale vs. NATO-Einstufungen (Wahr/Falsch je Zeile)
+  {
+    type: "match",
+    question: "Wählen Sie mit \"Wahr\" oder \"Falsch\" aus, ob es sich um nationale und vergleichbare NATO Einstufungen handelt.",
+    pairs: [
+      { left: "VS-VERTRAULICH = NATO-CONFIDENTIAL", right: "Wahr" },
+      { left: "STRENG GEHEIM = COSMIC-TOP-SECRET", right: "Wahr" },
+      { left: "OFFEN = NATO-RESTRICTED", right: "Falsch" },
+      { left: "GEHEIM = TOP SECRET", right: "Falsch" }
+    ]
+  },
+
+  // 8) Aussagen richtig? (IT-/InfoSich-Abgrenzung)
+  {
+    type: "multi",
+    question: "Geben Sie an, welche der folgenden Aussagen richtig sind!",
+    options: [
+      "Datenschutz ist kein Teilbereich aus Informationssicherheit",
+      "IT-Sicherheit ist ein Teilbereich aus Informationssicherheit",
+      "Kryptosicherheit ist ein Teilbereich aus IT-Sicherheit",
+      "IT-Relevanter Anteil aus MilSich ist ein Teilbereich der Informationssicherheit"
+    ],
+    correct: [1, 3]
+  },
+
+  // 9) USB-Stick-Szenario – Ja/Nein je Aspekt
+  {
+    type: "match",
+    question: "Ein Lehrgangsteilnehmer schließt einen privaten USB-Stick an einem dienstlichen Rechner an. Der USB-Stick wird erkannt und kann verwendet werden. Dabei wird eine, durch einen Virus infizierte Datei, übertragen. Geben Sie jeweils mit \"Ja\" oder \"Nein\" an, um was es sich hierbei handelt.",
+    pairs: [
+      { left: "A) Sicherheitsvorkommnis im Kryptowesen", right: "Nein" },
+      { left: "B) Informationssicherheitsvorkommnis", right: "Ja" },
+      { left: "C) Informationssicherheitslücke", right: "Ja" },
+      { left: "D) Informationssicherheitsverstoß", right: "Ja" }
+    ]
+  },
+
+  // 10) Kategorien personenbezogener Daten (A/B PersDat) zuordnen
+  {
+    type: "match",
+    question: "Ordnen Sie folgende Informationen den richtigen Kategorien personenbezogener Daten zu.",
+    pairs: [
+      { left: "A) Bankdaten", right: "APersDat" },
+      { left: "B) Blutgruppe", right: "BPersDat" },
+      { left: "C) Fingerabdruck zur Zugangskontrolle", right: "BPersDat" },
+      { left: "D) Sozialversicherungsnummer", right: "APersDat" },
+      { left: "E) Disziplinarakten", right: "APersDat" },
+      { left: "F) Tauglichkeitsgrad", right: "BPersDat" },
+      { left: "G) Gerichtsakten / Gerichtsbeschlüsse", right: "APersDat" }
+    ]
+  },
+
+  // 11) Gewährleistungsziele nach A-960/1 (Begriffe)
+  {
+    type: "multi",
+    question: "Welche der folgenden Begriffe zählen zu den Gewährleistungszielen nach der Vorschrift A-960/1?",
+    options: [
+      "Zurechenbarkeit",
+      "Verbindlichkeit",
+      "Datenerhebung",
+      "Transparenz",
+      "Nichtverkettung",
+      "Intervenierbarkeit",
+      "Vertraulichkeit",
+      "Authentizität"
+    ],
+    correct: [3, 5, 4] // Transparenz, Intervenierbarkeit, Nichtverkettung
+  },
+
+  // 12) Einwilligung bei Funktions­trägerdaten (Wahr/Falsch)
+  {
+    type: "single",
+    question: "Geben Sie an, ob folgende Aussage zutrifft: Die Verarbeitung von Funktionsträgerdaten, welche für die Gestaltung des Dienstbetriebs notwendig sind, erfordern innerhalb des Dienstverhältnisses keine Einwilligungserklärung der betroffenen Person.",
+    options: ["Wahr", "Falsch"],
+    correct: [0]
+  },
+
+  // 13) Besondere Kategorien personenbezogener Daten (B-PersDat) nach DSGVO
+  {
+    type: "multi",
+    question: "Welche der folgenden Daten zählen zu den besonderen Kategorien personenbezogener Daten (B-PersDat) gem. DSGVO?",
+    options: [
+      "Ein Foto, welches zur biometrischen Identifikation verarbeitet wird",
+      "Standortdaten, die regelmäßig den Aufenthaltsort einer Person überwachen",
+      "Angaben zum Gesundheitszustand einer Person",
+      "Informationen einer Person über den Glauben an eine bestimmte Religion",
+      "Die IP-Adresse einer Person, die einem Nutzerkonto zugeordnet werden kann"
+    ],
+    correct: [0, 2, 3]
+  },
+
+  // 14) Verantwortung für Informationssicherheit (Rolle)
+  {
+    type: "single",
+    question: "Wer trägt die Verantwortung für die Informationssicherheit einer Dienststelle?",
+    options: ["ADSB", "DStLtr", "ISB", "SiBe"],
+    correct: [1]
+  },
+
+  // 15) Was sind keine personenbezogenen Daten? (Mehrfach)
+  {
+    type: "multi",
+    question: "Was sind keine personenbezogenen Daten?",
+    options: [
+      "Daten die sich auf eine identifizierbare natürliche Person beziehen",
+      "Seriennummer eines Laptops",
+      "privates KFZ-Kennzeichen",
+      "Daten die sich auf eine identifizierte juristische Person beziehen"
+    ],
+    correct: [1, 3]
+  },
+
+  // 16) Schutzbereiche zuordnen
+  {
+    type: "match",
+    question: "Ordnen Sie folgende Informationen den richtigen Schutzbereichen zu.",
+    pairs: [
+      { left: "A) Personalnummer", right: "Schutzbereich 1" },
+      { left: "B) Personenkennziffer", right: "Schutzbereich 2" },
+      { left: "C) Dienststellenzugehörigkeit", right: "Schutzbereich 1" },
+      { left: "D) Disziplinarakten", right: "Schutzbereich 3" },
+      { left: "E) Beurteilung ohne Angabe zu gesundheitlichen Einschränkungen", right: "Schutzbereich 3" },
+      { left: "F) Konfession", right: "Schutzbereich 3" }
+    ]
+  },
+
+  // 17) Kryptomanagement – Aussagen treffen zu (Mehrfach)
+  {
+    type: "multi",
+    question: "Welche Aussagen zum Thema Kryptomanagement treffen zu?",
+    options: [
+      "Als national eingesetzter Kurier benötigen Sie einen Begleiter",
+      "Innerhalb eines Jahrs prüft der ISB die ordnungsgemäße Führung des Krypto-Tagebuches.",
+      "Folgende Personen (Funktionsträger) sind an der vorschriftsgemäßen Verwaltung von Kryptomitteln innerhalb einer Dienststelle beteiligt: ISB, Kryptoverwalter, Kryptobeauftragter, Nutzer.",
+      "Als Kurier eingesetzt müssen Sie zum Zugang zu Verschlusssachen ermächtigt sein.",
+      "Für den Einsatz als Kurier im Inland ist unter anderem, folgende Ausrüstung zwingend vorgeschrieben: geschlossenes Kfz, Kurierausweis, Kurierbefehl, Waffe/Munition, Truppenausweis.",
+      "Kryptovariablen sind nach Ablauf der Gültigkeit mit einem beliebigen Zeugen nachweislich zu löschen / zu vernichten.",
+      "Zum Kryptobeauftragten dürfen nur Offiziere oder Unteroffiziere mit Portepee bestellt werden.",
+      "Für Übungszwecke und Ausbildungsbetrieb dürfen Kryptovariablen durch den Nutzer erstellt werden.",
+      "Kryptovariablen können auch von zivilen Transportunternehmen, welche der Geheimschutzbetreuung des BMWi unterliegen, transportiert werden."
+    ],
+    correct: [0, 1, 2]
+  },
+
+  // 18) Public-Key-Verschlüsselung – Schlüsselzuordnung
+  {
+    type: "match",
+    question: "Dst A sendet DSt B eine Nachricht und nutzt die Public-Key-Verschlüsselung.",
+    pairs: [
+      { left: "1) Welchen Schlüssel nutzt DSt A für die Verschlüsselung?", right: "öffentlicher Schlüssel DSt B" },
+      { left: "2) Welchen Schlüssel nutzt DSt B für die Entschlüsselung?", right: "privater Schlüssel DSt B" }
+    ]
+  },
+
+  // 19) Oberkategorien zuordnen: Kryptounterlagen vs. Kryptomaterial
+  {
+    type: "match",
+    question: "Ordnen Sie den Oberkategorien die richtigen Begriffe zu.",
+    pairs: [
+      { left: "A) Schlüsseliste für PACE / ASCOT", right: "Kryptounterlagen" },
+      { left: "B) Schlüsselblöcke der NATO", right: "Kryptounterlagen" },
+      { left: "C) Zugangskarte / „Smart-Card“", right: "Kryptounterlagen" },
+      { left: "D) Schlüssellochstreifen", right: "Kryptounterlagen" },
+      { left: "E) ELcRODAT 4-2", right: "Kryptomaterial" },
+      { left: "F) Kryptovariablenspeicher", right: "Kryptomaterial" },
+      { left: "G) Kryptodatenträger", right: "Kryptounterlagen" }
+    ]
+  }
+
+
 ];
 
 /* --- LOGIC --- */
