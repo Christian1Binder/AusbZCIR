@@ -351,9 +351,9 @@ const BANK = [{
     },
     { 
         q: "Zu welcher Kategorie gehört der biometrische Dienstausweis?", 
-        a: "PersDat 3", 
+        a: "BPersDat - Schutzbereich 3", 
         e: "Biometrische Daten stellen eine besonders hohe Schutzstufe dar und fallen unter PersDat 3.", 
-        o: ["PersDat 1", "PersDat 2", "PersDat 3", "PersDat 4"], 
+        o: ["APersDat - Schutzbereich 1", "BPersDat - Schutzbereich 2"", "BPersDat - Schutzbereich 3", "APersDat - Schutzbereich 3"], 
         m: "PERSDAT" 
     },
 
@@ -587,20 +587,260 @@ const BANK = [{
     },
 
 
-{ q:"Wofür steht SATCOM im Fernmeldekontext?", a:"Satellite Communication (Satellitenkommunikation)", e:"SATCOM ist die Abkürzung für Satellitenkommunikation – also die Übertragung von Informationen über Satelliten als Relais.", o:["Secure Tactical Communication","Satellite Communication (Satellitenkommunikation)","System Access & Transmission Control","Signal Antenna Transmission Command"], m:"SATCOM" },
-{ q:"Welcher Hauptvorteil von SATCOM wird in der Ausbildung meist zuerst genannt?", a:"Weltweite Kommunikation", e:"Satelliten als Relais ermöglichen Kommunikation über sehr große Entfernungen – bis hin zu globaler Abdeckung (je nach System/Beam).", o:["Nur im Sichtbereich nutzbar","Weltweite Kommunikation","Nur innerhalb eines Feldlagers nutzbar","Benötigt keine Antennen"], m:"SATCOM" },
-{ q:"Was beschreibt der Begriff Uplink in der Satellitenkommunikation?", a:"Übertragung von der Bodenstation zum Satelliten", e:"Uplink ist die Funkstrecke „hoch“ zum Satelliten, Downlink entsprechend „runter“ zur Bodenstation.", o:["Übertragung vom Satelliten zur Bodenstation","Übertragung zwischen zwei Satelliten","Übertragung von der Bodenstation zum Satelliten","Kabelgebundene Zuleitung zum Modem"], m:"SATCOM" },
-{ q:"Was beschreibt der Begriff Downlink in der Satellitenkommunikation?", a:"Übertragung vom Satelliten zur Bodenstation", e:"Downlink ist die Funkstrecke vom Satelliten „nach unten“ zur Bodenstation/Empfangsanlage.", o:["Übertragung vom Satelliten zur Bodenstation","Übertragung von der Bodenstation zum Satelliten","Nur die interne Verbindung im GefStd","Ein Synonym für Uplink"], m:"SATCOM" },
-{ q:"Was bedeutet Einkanal im Kontext eines SATCOM-Systems?", a:"Ein Kanal auf einem Frequenzband", e:"Einkanal heißt: Es wird genau ein Kanal innerhalb eines Frequenzbandes genutzt.", o:["Ein Kanal auf einem Frequenzband","Mehrere Kanäle auf mehreren Frequenzbändern","Ein Kanal auf mehreren Frequenzbändern","Mehrere Satelliten pro Kanal"], m:"SATCOM" },
-{ q:"Was bedeutet Mehrkanal im Kontext eines SATCOM-Systems?", a:"Mehrere Kanäle auf einem Frequenzband", e:"Mehrkanal heißt: Es werden mehrere getrennte Kanäle innerhalb eines Frequenzbandes genutzt.", o:["Mehrere Kanäle auf mehreren Frequenzbändern","Mehrere Kanäle auf einem Frequenzband","Ein Kanal auf einem Frequenzband","Nur Sprachkanäle ohne Daten"], m:"SATCOM" },
-{ q:"Was bedeutet Multiband im Kontext eines SATCOM-Systems?", a:"Mehrere Kanäle auf mehreren Frequenzbändern", e:"Multiband kombiniert mehrere Frequenzbänder (und typischerweise mehrere Kanäle) zur Übertragung.", o:["Ein Kanal auf einem Frequenzband","Mehrere Kanäle auf einem Frequenzband","Mehrere Kanäle auf mehreren Frequenzbändern","Nur ein Satellit mit nur einem Beam"], m:"SATCOM" },
-{ q:"Welche Satelliten-Umlaufbahn wird typischerweise für Navigationssysteme wie GPS/Galileo genutzt?", a:"MEO (Medium Earth Orbit)", e:"Navigationssatelliten operieren typischerweise in mittleren Umlaufbahnen (MEO).", o:["LEO (Low Earth Orbit)","MEO (Medium Earth Orbit)","GEO (Geostationary Orbit)","HEO (Highly Elliptical Orbit)"], m:"UMLAUFBAHNEN" },
-{ q:"Welche Aussage beschreibt GEO-Satelliten korrekt?", a:"Sie erscheinen scheinbar stationär über dem Äquator", e:"GEO-Satelliten umlaufen die Erde synchron zur Erdrotation und stehen scheinbar fest über einem Punkt am Äquator.", o:["Sie wechseln alle 10 Minuten den Standort am Himmel","Sie erscheinen scheinbar stationär über dem Äquator","Sie fliegen ausschließlich über die Pole","Sie sind nur für Erdbeobachtung geeignet"], m:"UMLAUFBAHNEN" },
-{ q:"Warum sind GEO-Satelliten für dauerhafte Kommunikationsverbindungen besonders geeignet?", a:"Feste Ausrichtung der Bodenstation möglich", e:"Da der Satellit scheinbar stationär ist, kann die Bodenantenne dauerhaft auf ihn ausgerichtet bleiben.", o:["Weil sie immer direkt über Deutschland stehen","Weil keine Verschlüsselung möglich ist","Feste Ausrichtung der Bodenstation möglich","Weil sie nur nachts betrieben werden"], m:"SATCOM" },
-{ q:"Was ist ein typischer Nachteil von LEO-Kommunikationssatelliten gegenüber GEO?", a:"Geringere Abdeckung pro Satellit, daher mehr Satelliten nötig", e:"LEO-Satelliten sind näher und oft schneller, decken aber jeweils kleinere Flächen ab – es werden mehr Satelliten zur flächigen Abdeckung benötigt.", o:["Immer schlechtere Datenrate","Geringere Abdeckung pro Satellit, daher mehr Satelliten nötig","Sie sind grundsätzlich nicht verschlüsselbar","Sie können keine Daten übertragen"], m:"UMLAUFBAHNEN" },
-{ q:"Wie nennt man den von einem Satelliten „ausgeleuchteten“ Bereich auf der Erdoberfläche?", a:"Beam", e:"Der Ausleuchtbereich eines Satelliten wird Beam genannt. Innerhalb dieses Bereichs ist Kommunikation grundsätzlich möglich (systemabhängig).", o:["Fresnelzone","Beam","Hotspot","Shadow Area"], m:"SATCOM" },
-{ q:"Wozu dient „Conditional Access“ bei Satellitenkommunikationssystemen?", a:"Es verhindert unberechtigte Nutzung durch interne Zugangs-/Verschlüsselungsprüfung", e:"Conditional Access sorgt dafür, dass nicht jeder beliebig über den Satelliten kommunizieren kann – das System prüft Berechtigungen/Verschlüsselung.", o:["Es erhöht ausschließlich die Sendeleistung","Es verhindert unberechtigte Nutzung durch interne Zugangs-/Verschlüsselungsprüfung","Es ersetzt die Antenne durch ein Kabel","Es ist ein anderes Wort für Beam Hopping"], m:"SATCOM" },
-{ q:"Was beschreibt „Beam Hopping“?", a:"Dynamisches Umschalten zwischen Ausleuchtgebieten, um Kapazität bedarfsgerecht zu verteilen", e:"Beam Hopping bedeutet, dass der Satellit zwischen Spotbeams wechselt – zeitplan- oder bedarfsorientiert – um Kapazität effizient zu nutzen.", o:["Statisches Ausleuchten eines Gebiets ohne Wechsel","Dynamisches Umschalten zwischen Ausleuchtgebieten, um Kapazität bedarfsgerecht zu verteilen","Automatisches Wechseln der Modulation im Endgerät","Das Umgehen der Ionosphäre durch Bodenwelle"], m:"SATCOM" },
+// SATCOM – neuer Block (alles m:"SATCOM")
+
+  {
+    q: "Welche Funktion erfüllen Kommunikationssatelliten für die Bundeswehr?",
+    a: "Sie dienen als orbitales Relais für Funkverbindungen",
+    e: "Kommunikationssatelliten stellen Transponder bereit und wirken wie Relaisfunkstellen im Orbit, um große Distanzen zu überbrücken.",
+    o: [
+      "Sie ersetzen alle terrestrischen Netze dauerhaft",
+      "Sie dienen als orbitales Relais für Funkverbindungen",
+      "Sie sind ausschließlich für Navigation zuständig",
+      "Sie funktionieren nur innerhalb eines Feldlagers",
+    ],
+    m: "SATCOM",
+  },
+  {
+    q: "Was bedeutet der Begriff Uplink im Bereich der Satellitenkommunikation?",
+    a: "Senderichtung von der Erde zum Satelliten",
+    e: "Uplink ist die Funkstrecke vom bodengebundenen Terminal (Erde) zum Satelliten.",
+    o: [
+      "Senderichtung vom Satelliten zur Erde",
+      "Senderichtung von der Erde zum Satelliten",
+      "Verbindung zwischen zwei Satelliten",
+      "Interne Signalverarbeitung im Endgerät",
+    ],
+    m: "SATCOM",
+  },
+  {
+    q: "Was bedeutet der Begriff Downlink im Bereich der Satellitenkommunikation?",
+    a: "Senderichtung vom Satelliten zur Erde",
+    e: "Downlink ist die Funkstrecke vom Satelliten zurück zum bodengebundenen Terminal.",
+    o: [
+      "Senderichtung vom Satelliten zur Erde",
+      "Senderichtung von der Erde zum Satelliten",
+      "Nur ein verschlüsselter Kanal",
+      "Nur eine Antennenausrichtung",
+    ],
+    m: "SATCOM",
+  },
+  {
+    q: "Warum befinden sich bei Satellitenbetrieb Up- und Downlink in der Regel nicht im gleichen Frequenzband? Man benutzt unterschiedliche Frequenzbänder, weil ...",
+    a: "Dies eine einfache Trennung von Sende- und Empfangssignal ermöglicht und die Baugröße von Filtern auf dem Satelliten reduziert wird",
+    e: "Getrennte Frequenzbänder erleichtern die Entkopplung von Senden/Empfangen und reduzieren technische Aufwände (z.B. Filter/Isolation).",
+    o: [
+      "Damit die Antenne kürzer gebaut werden kann",
+      "Dies eine einfache Trennung von Sende- und Empfangssignal ermöglicht und die Baugröße von Filtern auf dem Satelliten reduziert wird",
+      "Damit der Satellit schneller um die Erde kreist",
+      "Weil Satelliten nur ein Band gleichzeitig nutzen dürfen",
+    ],
+    m: "SATCOM",
+  },
+  {
+    q: "Was bedeutet der Ausdruck „Auf Satellit bringen“?",
+    a: "Die Antenne auf den Satelliten ausrichten",
+    e: "Gemeint ist die korrekte Ausrichtung (Azimut/Elevation) der Richtantenne auf den gewünschten Satelliten.",
+    o: [
+      "Die Antenne auf den Satelliten ausrichten",
+      "Den Satelliten in eine andere Umlaufbahn versetzen",
+      "Den Downlink verschlüsseln",
+      "Die Frequenz automatisch wechseln lassen",
+    ],
+    m: "SATCOM",
+  },
+  {
+    q: "Was bedeutet „Einkanal“ in der Satellitenkommunikation?",
+    a: "Einkanal bedeutet, dass das Kommunikationssystem nur einen einzigen Kanal auf einem einzelnen Frequenzband für die Übertragung verwenden kann",
+    e: "Einkanal bedeutet: genau ein nutzbarer Kanal innerhalb eines Frequenzbandes.",
+    o: [
+      "Einkanal bedeutet, dass das Kommunikationssystem nur einen einzigen Kanal auf einem einzelnen Frequenzband für die Übertragung verwenden kann",
+      "Mehrkanal bedeutet, dass das Kommunikationssystem mehrere Kanäle gleichzeitig nutzen kann",
+      "Multiband bedeutet, dass mehrere Frequenzbänder gleichzeitig genutzt werden",
+      "Einkanal bedeutet, dass nur Empfang möglich ist",
+    ],
+    m: "SATCOM",
+  },
+  {
+    q: "Was bedeutet „Mehrkanal“ in der Satellitenkommunikation?",
+    a: "Mehrkanal bedeutet, dass das Kommunikationssystem mehrere Kanäle gleichzeitig nutzen kann, um parallel verschiedene Signale übertragen zu können",
+    e: "Mehrkanal: mehrere Kanäle (typisch im selben Frequenzband) ermöglichen parallele Übertragung unterschiedlicher Signale.",
+    o: [
+      "Mehrkanal bedeutet, dass das Kommunikationssystem mehrere Kanäle gleichzeitig nutzen kann, um parallel verschiedene Signale übertragen zu können",
+      "Einkanal bedeutet, dass mehrere Frequenzbänder genutzt werden",
+      "Mehrkanal bedeutet, dass nur ein einziger Kanal genutzt werden darf",
+      "Mehrkanal bedeutet, dass Up- und Downlink identisch sind",
+    ],
+    m: "SATCOM",
+  },
+  {
+    q: "Was bedeutet „Multiband“ in der Satellitenkommunikation?",
+    a: "Multiband bedeutet, dass das Kommunikationssystem mehrere Kanäle und unterschiedliche Frequenzbänder gleichzeitig nutzen kann.",
+    e: "Multiband: mehrere Frequenzbänder (und oft mehrere Kanäle) werden parallel genutzt.",
+    o: [
+      "Multiband bedeutet, dass nur ein Frequenzband genutzt werden darf",
+      "Multiband bedeutet, dass das Kommunikationssystem mehrere Kanäle und unterschiedliche Frequenzbänder gleichzeitig nutzen kann.",
+      "Multiband bedeutet, dass nur Sprachfunk möglich ist",
+      "Multiband bedeutet, dass keine Verschlüsselung verwendet wird",
+    ],
+    m: "SATCOM",
+  },
+  {
+    q: "Auf welcher Umlaufbahn befinden sich GPS-Satelliten?",
+    a: "MEO",
+    e: "GPS befindet sich typischerweise im Medium Earth Orbit (MEO).",
+    o: [
+      "LEO",
+      "MEO",
+      "GEO",
+      "HEO",
+    ],
+    m: "SATCOM",
+  },
+  {
+    q: "Auf welcher Umlaufbahn befinden sich IRIDIUM-Satelliten?",
+    a: "LEO",
+    e: "IRIDIUM ist ein Beispiel für Kommunikationssatelliten in niedrigen Umlaufbahnen (LEO).",
+    o: [
+      "LEO",
+      "MEO",
+      "GEO",
+      "HEO",
+    ],
+    m: "SATCOM",
+  },
+  {
+    q: "Auf welcher Umlaufbahn findet Satellitenkommunikation in der Bundeswehr hauptsächlich statt?",
+    a: "GEO",
+    e: "Für großflächige, kontinuierliche Abdeckung wird überwiegend der geostationäre Orbit (GEO) genutzt.",
+    o: [
+      "LEO",
+      "MEO",
+      "GEO",
+      "Polarorbit",
+    ],
+    m: "SATCOM",
+  },
+  {
+    q: "Manchmal sind Satelliten in niedrigen Umlaufbahnen mit dem bloßen Auge am Nachthimmel zu erkennen. Warum?",
+    a: "Aufgrund von Reflektionen des Sonnenlichts an den Antenneflächen",
+    e: "LEO-Satelliten können Sonnenlicht reflektieren und dadurch zeitweise sichtbar werden.",
+    o: [
+      "Weil sie eigene Scheinwerfer besitzen",
+      "Aufgrund von Reflektionen des Sonnenlichts an den Antenneflächen",
+      "Weil sie dauerhaft über einem Ort stehen",
+      "Weil sie in der Atmosphäre glühen",
+    ],
+    m: "SATCOM",
+  },
+  {
+    q: "Ein Kommunikationssatellit im GEO, der sich um 12:00 Uhr mittags über Zentralafrika befindet, befindet sich um 24:00 Uhr ...?",
+    a: "Über Zentralafrika",
+    e: "GEO-Satelliten erscheinen stationär und bleiben über derselben Region.",
+    o: [
+      "Über Zentralafrika",
+      "Über Europa",
+      "Über Südamerika",
+      "Über dem Nordpol",
+    ],
+    m: "SATCOM",
+  },
+  {
+    q: "Was ist der Vorteil von Kommunikationssatelliten auf dem LEO?",
+    a: "Eine höhere Übertragungsrate durch die Nähe zur Erdoberfläche",
+    e: "LEO ist näher an der Erde, was Latenz und Dämpfung reduziert und hohe Datenraten begünstigt.",
+    o: [
+      "Sie stehen stationär am Himmel",
+      "Eine höhere Übertragungsrate durch die Nähe zur Erdoberfläche",
+      "Sie benötigen keine Bodenstationen",
+      "Sie funktionieren ohne Antennen",
+    ],
+    m: "SATCOM",
+  },
+  {
+    q: "Wie nennt man den Ausleuchtbereich, der etwa die Größe Deutschlands abdeckt?",
+    a: "Spot Beam",
+    e: "Spotbeams leuchten kleine, fokussierte Gebiete aus und erhöhen die nutzbare Kapazität in diesem Gebiet.",
+    o: [
+      "Global Beam",
+      "Spot Beam",
+      "Zone Beam",
+      "Wide Beam",
+    ],
+    m: "SATCOM",
+  },
+  {
+    q: "Wie nennt man den Ausleuchtbereich, der etwa 1/3 der Erdoberfläche abdeckt?",
+    a: "Global Beam",
+    e: "Globalbeams decken sehr große Gebiete ab (Faustgröße: großer Teil der sichtbaren Erdoberfläche).",
+    o: [
+      "Spot Beam",
+      "Zone Beam",
+      "Global Beam",
+      "Local Beam",
+    ],
+    m: "SATCOM",
+  },
+  {
+    q: "Wie nennt man den Ausleuchtbereich, der etwa die Größe Europas abdeckt?",
+    a: "Zone Beam",
+    e: "Zonebeams liegen größenmäßig zwischen Spot- und Globalbeam und decken größere Regionen ab.",
+    o: [
+      "Spot Beam",
+      "Zone Beam",
+      "Global Beam",
+      "Micro Beam",
+    ],
+    m: "SATCOM",
+  },
+  {
+    q: "Die Nutzung des Global Beams ermöglicht ...",
+    a: "Eine gute Abdeckung auf Kosten eines niedrigen Datendurchsatzes",
+    e: "Je größer die Ausleuchtung, desto stärker wird die Kapazität verteilt; häufig sinkt der Datendurchsatz pro Nutzer.",
+    o: [
+      "Eine gute Abdeckung auf Kosten eines niedrigen Datendurchsatzes",
+      "Maximalen Datendurchsatz bei minimaler Abdeckung",
+      "Nur Sprachfunk ohne Daten",
+      "Nur unverschlüsselte Übertragung",
+    ],
+    m: "SATCOM",
+  },
+  {
+    q: "Kommunikationssatelliten ...",
+    a: "Können zwischen Beamarten wechseln",
+    e: "Moderne Satelliten können Beams dynamisch anpassen und umschalten, um Kapazität effizient zu verteilen.",
+    o: [
+      "Können zwischen Beamarten wechseln",
+      "Haben immer nur einen festen Beam",
+      "Können niemals Spotbeams verwenden",
+      "Sind nur für Navigation geeignet",
+    ],
+    m: "SATCOM",
+  },
+  {
+    q: "Warum fragen Satelliten oft eine bestimmte Verschlüsselung ab?",
+    a: "Damit nicht \"jeder\" einfach den Satelliten nutzen kann",
+    e: "Zugriffskontrollen (z.B. Conditional Access) stellen sicher, dass nur berechtigte Nutzer den Dienst verwenden können.",
+    o: [
+      "Damit die Antenne nicht ausgerichtet werden muss",
+      "Damit nicht \"jeder\" einfach den Satelliten nutzen kann",
+      "Damit Up- und Downlink im gleichen Band liegen",
+      "Damit der Satellit schneller wird",
+    ],
+    m: "SATCOM",
+  },
+  {
+    q: "Was versteht man unter Beam Hopping?",
+    a: "Die Möglichkeit, dynamisch zwischen Ausleuchtbereichen zu wechseln",
+    e: "Beam Hopping bedeutet, dass Spotbeams zeit- oder bedarfsabhängig umgeschaltet werden, um Kapazität bereitzustellen.",
+    o: [
+      "Der Satellit wechselt seine Umlaufbahn",
+      "Die Möglichkeit, dynamisch zwischen Ausleuchtbereichen zu wechseln",
+      "Manuelle Kanalwahl am Endgerät",
+      "Umschalten zwischen HF und VHF",
+    ],
+    m: "SATCOM",
+  },
 
 //--- BGAN / COMSAT / RBM
 { q:"Wofür steht BGAN im SATCOM-Umfeld (vereinfacht)?", a:"Breitband-Satellitenanbindung über Inmarsat-Systeme", e:"BGAN ist ein Dienst/Produkt für Breitbandverbindungen über Satellit (u. a. Inmarsat).", o:["Boden-gestütztes Antennen-Netz","Breitband-Satellitenanbindung über Inmarsat-Systeme","Bezeichnung für Richtfunk im VHF-Bereich","Ein reines Sprachfunknetz"], m:"BGAN" },
@@ -633,6 +873,150 @@ const BANK = [{
 { q:"Welche typische Voraussetzung ist bei terrestrischem Richtfunk entscheidend?", a:"Geeignete Sicht-/Funkstrecke und korrekte Ausrichtung (Richtwirkung)", e:"Richtfunk arbeitet mit Richtantennen – die Ausrichtung und eine geeignete Funkstrecke (u. a. Gelände) sind entscheidend.", o:["Keine Ausrichtung nötig","Geeignete Sicht-/Funkstrecke und korrekte Ausrichtung (Richtwirkung)","Nur unter Wasser möglich","Funktioniert nur in Gebäuden"], m:"RICHTFUNK" },
 { q:"Welche Nachteile im Gelände müssen bei Richtfunk beachtet werden (Grundidee)?", a:"Geländehindernisse, Abschattung und Störeinflüsse können die Strecke beeinträchtigen", e:"Gelände kann Sicht/Fresnelzone stören; Abschattung und Mehrwegeffekte verschlechtern die Verbindung.", o:["Gelände verbessert immer die Verbindung","Geländehindernisse, Abschattung und Störeinflüsse können die Strecke beeinträchtigen","Nur Regen ist relevant, Gelände nie","Richtfunk ist unabhängig von Hindernissen"], m:"RICHTFUNK" },
 
+{
+  q: "Welchen Vorteil bietet ein großer Abstrahlwinkel beim Richtfunk?",
+  a: "Es können mehrere Gegenstellen erreicht werden",
+  e: "Ein großer Abstrahlwinkel ermöglicht die Abdeckung mehrerer Gegenstellen, jedoch mit geringerer Reichweite.",
+  o: [
+    "Es können mehrere Gegenstellen erreicht werden",
+    "Die Reichweite steigt stark an",
+    "Die Verbindung wird automatisch verschlüsselt",
+    "Die Fresnelzone spielt keine Rolle mehr"
+  ],
+  m: "RICHTFUNK"
+},
+
+{
+  q: "Welchen Vorteil bietet ein geringer Abstrahlwinkel beim Richtfunk?",
+  a: "Je geringer der Winkel, desto höher die Reichweite",
+  e: "Ein geringer Abstrahlwinkel bündelt die Sendeenergie stark und erhöht dadurch die Reichweite.",
+  o: [
+    "Es können mehr Gegenstellen erreicht werden",
+    "Je geringer der Winkel, desto höher die Reichweite",
+    "Die Antenne muss nicht exakt ausgerichtet werden",
+    "Die Übertragung wird langsamer"
+  ],
+  m: "RICHTFUNK"
+},
+
+{
+  q: "Welches ist die richtige Definition von Richtfunk?",
+  a: "Eine gerichtete, drahtlose Übertragung von Sprache & Daten mittels Funkwellen zwischen Sender und Empfänger",
+  e: "Richtfunk nutzt gebündelte elektromagnetische Wellen zur gezielten Übertragung zwischen zwei Funkstellen.",
+  o: [
+    "Eine ungerichtete Funkübertragung mit Rundstrahlantennen",
+    "Eine kabelgebundene Datenübertragung",
+    "Eine gerichtete, drahtlose Übertragung von Sprache & Daten mittels Funkwellen zwischen Sender und Empfänger",
+    "Eine Übertragung ausschließlich über Satelliten"
+  ],
+  m: "RICHTFUNK"
+},
+
+{
+  q: "Was bedeutet der Begriff „Terrestrischer Richtfunk“?",
+  a: "Sender und Empfänger befinden sich auf der Erdoberfläche",
+  e: "Beim terrestrischen Richtfunk stehen sich beide Funkstellen auf der Erdoberfläche gegenüber.",
+  o: [
+    "Die Übertragung erfolgt über Satelliten",
+    "Sender und Empfänger befinden sich auf der Erdoberfläche",
+    "Die Übertragung erfolgt über die Ionosphäre",
+    "Es wird ausschließlich HF genutzt"
+  ],
+  m: "RICHTFUNK"
+},
+
+{
+  q: "Was bedeutet „Quasioptische Sichtverbindung“?",
+  a: "Beide Richtfunkstellen müssen so aufeinander gerichtet sein, als ob sie sich sehen könnten",
+  e: "Für Richtfunk ist eine nahezu freie Sicht inklusive Fresnelzone erforderlich.",
+  o: [
+    "Die Antennen müssen sich physisch berühren",
+    "Beide Richtfunkstellen müssen so aufeinander gerichtet sein, als ob sie sich sehen könnten",
+    "Die Verbindung funktioniert auch ohne Ausrichtung",
+    "Nur die Antennenhöhe ist entscheidend"
+  ],
+  m: "RICHTFUNK"
+},
+
+{
+  q: "Elektromagnetische Wellen …",
+  a: "verlieren sich mit abnehmender Frequenz und zunehmender Entfernung immer weiter im Raum",
+  e: "Mit zunehmender Entfernung verteilt sich die Energie der Welle im Raum.",
+  o: [
+    "werden mit größerer Entfernung stärker",
+    "verlieren sich mit abnehmender Frequenz und zunehmender Entfernung immer weiter im Raum",
+    "sind unabhängig von der Entfernung",
+    "verstärken sich durch Hindernisse"
+  ],
+  m: "RICHTFUNK"
+},
+
+{
+  q: "Um eine störungsfreie Richtfunkverbindung zu gewährleisten, muss sichergestellt werden, dass …",
+  a: "der Richtfunkstrahl und die erste Fresnelzone (F1) weitgehend frei von Hindernissen sind",
+  e: "Hindernisse in der Fresnelzone führen zu Dämpfung und Störungen.",
+  o: [
+    "nur die Antennen exakt ausgerichtet sind",
+    "der Richtfunkstrahl und die erste Fresnelzone (F1) weitgehend frei von Hindernissen sind",
+    "die Frequenz möglichst niedrig ist",
+    "die Verbindung verschlüsselt ist"
+  ],
+  m: "RICHTFUNK"
+},
+
+{
+  q: "Was passiert, wenn sich Objekte in den ersten Fresnelzonen (F1) befinden?",
+  a: "Die Fehlerrate der Datenübertragung steigt",
+  e: "Hindernisse verursachen Beugung und Interferenzen, was die Übertragungsqualität verschlechtert.",
+  o: [
+    "Die Reichweite steigt",
+    "Die Fehlerrate der Datenübertragung steigt",
+    "Die Verbindung wird automatisch stabiler",
+    "Es hat keinen Einfluss"
+  ],
+  m: "RICHTFUNK"
+},
+
+{
+  q: "Wovon ist die Größe der Fresnelzonen abhängig?",
+  a: "Frequenz und Reichweite",
+  e: "Fresnelzonen werden durch die Wellenlänge (Frequenz) und die Entfernung zwischen den Funkstellen bestimmt.",
+  o: [
+    "Nur von der Antennenhöhe",
+    "Frequenz und Reichweite",
+    "Nur von der Sendeleistung",
+    "Nur vom Gelände"
+  ],
+  m: "RICHTFUNK"
+},
+
+{
+  q: "Welche der folgenden Geländeformen kann für eine Richtfunkverbindung vorteilhaft sein?",
+  a: "Flaches Gelände",
+  e: "Flaches Gelände erleichtert die freie Sicht und das Einhalten der Fresnelzone.",
+  o: [
+    "Dicht bewaldetes Gelände",
+    "Städtische Bebauung",
+    "Flaches Gelände",
+    "Tiefe Täler"
+  ],
+  m: "RICHTFUNK"
+},
+
+{
+  q: "Können Berge für Richtfunkstrecken vorteilhaft sein?",
+  a: "Ja, da sie Standorte für Relaisstellen sein können",
+  e: "Erhöhte Standorte eignen sich gut zur Überbrückung großer Distanzen mittels Relaisfunk.",
+  o: [
+    "Nein, Berge stören immer",
+    "Ja, da sie Standorte für Relaisstellen sein können",
+    "Nur bei HF-Funk",
+    "Nur bei Satellitenkommunikation"
+  ],
+  m: "RICHTFUNK"
+},
+
+			  
 //--- COTS / TAM / SDR / ISP
 { q:"Wofür steht COTS?", a:"Commercial Off-The-Shelf", e:"COTS bezeichnet kommerzielle Standardprodukte, die „von der Stange“ beschafft werden.", o:["Central Operation Tactical System","Commercial Off-The-Shelf","Certified Online Transmission Service","Command-Oriented Telephony Switch"], m:"GRUNDLAGEN" },
 { q:"Wofür steht SDR im Funkkontext?", a:"Software Defined Radio", e:"SDR bedeutet, dass Funktionen wie Modulation/Demodulation weitgehend softwarebasiert realisiert werden.", o:["Signal Data Routing","Software Defined Radio","Satellite Digital Relay","Secure Dynamic Repeater"], m:"GRUNDLAGEN" },
@@ -649,28 +1033,405 @@ const BANK = [{
 { q:"Was ist die Grundidee hinter „Querschnitt zuerst“ (im Ausbildungs-/Planungssinn)?", a:"Erst die übergreifenden Grundlagen/Abhängigkeiten klären, dann Details", e:"„Querschnitt zuerst“ heißt: zuerst grundlegende, systemübergreifende Aspekte verstehen (Wellen, Netze, Sicherheit), dann system-/geräte-spezifisch.", o:["Erst Geräte kaufen, dann planen","Erst die übergreifenden Grundlagen/Abhängigkeiten klären, dann Details","Nur Querschnitt, nie Details","Querschnitt bedeutet: alles wird quer verlegt"], m:"GRUNDLAGEN" },
 { q:"Wofür steht IKT ausgeschrieben?", a:"Informations- und Kommunikationstechnik", e:"IKT ist die übliche Abkürzung für Informations- und Kommunikationstechnik.", o:["Information Kernel Technology","Informations- und Kommunikationstechnik","Interne Kryptografie-Teilmenge","Integrierte Kabeltechnik"], m:"GRUNDLAGEN" },
 
-//--- Wellen / Ausbreitung / Störungen / Interferenz
-{ q:"Welche beiden Wellenarten unterscheidest du in deinen Notizen grundsätzlich?", a:"Mechanische und elektromagnetische Wellen", e:"Mechanische Wellen benötigen ein Medium; elektromagnetische Wellen können sich im Vakuum ausbreiten.", o:["Schall- und Lichtwellen","Mechanische und elektromagnetische Wellen","Nur elektromagnetische Wellen","Nur mechanische Wellen"], m:"WELLEN" },
-{ q:"Welche Aussage beschreibt mechanische Wellen korrekt?", a:"Schwingungen von Materie, die ein Medium benötigen (z. B. Luft/Wasser)", e:"Mechanische Wellen sind Schwingungen von Materie; ohne Medium keine Ausbreitung.", o:["Sie brauchen kein Medium","Schwingungen von Materie, die ein Medium benötigen (z. B. Luft/Wasser)","Sie sind immer Funkwellen","Sie entstehen nur im All"], m:"WELLEN" },
-{ q:"Welche Aussage beschreibt elektromagnetische Wellen korrekt?", a:"Kopplungen aus elektrischem und magnetischem Feld, die sich auch ohne Medium ausbreiten", e:"Elektromagnetische Wellen benötigen kein Medium; sie sind Grundlage drahtloser Kommunikation.", o:["Sie benötigen zwingend Wasser als Medium","Kopplungen aus elektrischem und magnetischem Feld, die sich auch ohne Medium ausbreiten","Sie sind identisch mit Wasserwellen","Sie treten nur bei Unterdruck auf"], m:"WELLEN" },
-{ q:"Welche Ausbreitungsarten nennt dein Screenshot/Material zur Wellenausbreitung?", a:"Bodenwelle, Raumwelle, Direktwelle", e:"In der Ausbildung wird meist in Direkt-, Boden- und Raumwelle unterschieden.", o:["Lichtwelle, Schallwelle, Wasserwelle","Bodenwelle, Raumwelle, Direktwelle","Nur Raumwelle","Nur Direktwelle"], m:"AUSBREITUNG" },
-{ q:"Was bedeutet „Störausbreitungsdämpfung“ in deinem Text sinngemäß?", a:"Das Signal wird durch Umwelt/Einflüsse schwächer", e:"Im Material steht sinngemäß: elektromagnetische Wellen werden durch Umwelt beeinflusst/abgeschwächt – das Signal wird schwächer.", o:["Das Signal wird stärker","Das Signal wird durch Umwelt/Einflüsse schwächer","Das Signal wird nur schneller","Das Signal ändert nur die Farbe"], m:"STÖRUNGEN" },
-{ q:"Welche zwei Hauptgruppen von Störeinflüssen unterscheidest du in deinem Text?", a:"Umwelteinflüsse und elektromagnetische Störeinflüsse", e:"Im Textabschnitt wird zwischen Umwelteinflüssen und elektromagnetischen Störeinflüssen unterschieden.", o:["Nur natürliche Störungen","Umwelteinflüsse und elektromagnetische Störeinflüsse","Nur militärische Störungen","Nur digitale Störungen"], m:"STÖRUNGEN" },
-{ q:"Was ist konstruktive Interferenz?", a:"Überlagerung, bei der sich Wellen verstärken", e:"Bei konstruktiver Interferenz addieren sich die Amplituden (vereinfachend): das resultierende Signal wird stärker.", o:["Überlagerung, bei der sich Wellen vollständig löschen","Überlagerung, bei der sich Wellen verstärken","Ein Defekt am Sender","Ein anderes Wort für Modulation"], m:"INTERFERENZ" },
-{ q:"Was ist destruktive Interferenz?", a:"Überlagerung, bei der sich Wellen teilweise/komplett auslöschen", e:"Bei destruktiver Interferenz heben sich Wellenanteile gegenseitig auf – das resultierende Signal wird schwächer/verschwindet.", o:["Überlagerung, bei der sich Wellen verstärken","Überlagerung, bei der sich Wellen teilweise/komplett auslöschen","Ein Verfahren zur Verschlüsselung","Ein Satelliten-Beam"], m:"INTERFERENZ" },
 
-//--- Frequenzbereiche / Einordnung HF/VHF/UHF
-{ q:"Welcher Frequenzbereich wird klassisch als HF (High Frequency) bezeichnet?", a:"3–30 MHz", e:"HF liegt im Bereich 3–30 MHz. Dieser Bereich ist u. a. relevant für Ionosphärenausbreitung (Raumwelle).", o:["30–300 kHz","3–30 MHz","30–300 MHz","0,3–3 GHz"], m:"FREQUENZEN" },
-{ q:"Welcher Frequenzbereich wird klassisch als VHF (Very High Frequency) bezeichnet?", a:"30–300 MHz", e:"VHF liegt im Bereich 30–300 MHz.", o:["3–30 MHz","30–300 MHz","0,3–3 GHz","300–3000 GHz"], m:"FREQUENZEN" },
-{ q:"Welcher Frequenzbereich wird klassisch als UHF (Ultra High Frequency) bezeichnet?", a:"0,3–3 GHz", e:"UHF liegt im Bereich 0,3–3 GHz.", o:["30–300 MHz","0,3–3 GHz","3–30 MHz","3–30 GHz"], m:"FREQUENZEN" },
+{
+  q: "Welchen Frequenzbereich hat HF?",
+  a: "3 bis 30 MHz",
+  e: "HF (High Frequency) umfasst den Frequenzbereich von 3 bis 30 MHz.",
+  o: [
+    "300 kHz bis 3 MHz",
+    "3 bis 30 MHz",
+    "30 bis 300 MHz",
+    "300 MHz bis 3 GHz"
+  ],
+  m: "HF"
+},
 
+{
+  q: "Was sind die richtigen Bezeichnungen für den HF-Bereich?",
+  a: "High Frequency, Kurzwelle, Short Wave",
+  e: "HF wird auch als Kurzwelle oder Short Wave bezeichnet.",
+  o: [
+    "High Frequency, Langwelle, Long Wave",
+    "High Frequency, Kurzwelle, Short Wave",
+    "High Frequency, Ultrakurzwelle, VHF",
+    "High Frequency, Mikrowelle, Microwave"
+  ],
+  m: "HF"
+},
+
+{
+  q: "Welchen Vorteil hat die Übertragung im HF-Bereich?",
+  a: "Nutzung der Ionosphäre",
+  e: "HF-Funk kann über die Ionosphäre reflektiert werden und so große Entfernungen überbrücken.",
+  o: [
+    "Sehr hohe Datenraten",
+    "Nutzung der Ionosphäre",
+    "Keine Antennen notwendig",
+    "Keine Störeinflüsse"
+  ],
+  m: "HF"
+},
+
+{
+  q: "Wenn genug Leistung vorhanden ist: Wie hoch ist die maximale Reichweite von HF-Funk?",
+  a: "Weltweit",
+  e: "Durch Raumwellenausbreitung über die Ionosphäre sind weltweite Verbindungen möglich.",
+  o: [
+    "Maximal einige Kilometer",
+    "Bis 50 km",
+    "Kontinental",
+    "Weltweit"
+  ],
+  m: "HF"
+},
+
+{
+  q: "Von welchen Faktoren ist die Reichweite von HF-Funk abhängig?",
+  a: "Leistung, Abstrahlwinkel der Antenne, Frequenz und Dichte der Ionosphärenschicht",
+  e: "Diese Faktoren bestimmen, ob und wie Funkwellen an der Ionosphäre reflektiert werden.",
+  o: [
+    "Nur von der Sendeleistung",
+    "Nur von der Antennenhöhe",
+    "Leistung, Abstrahlwinkel der Antenne, Frequenz und Dichte der Ionosphärenschicht",
+    "Nur von der Tageszeit"
+  ],
+  m: "HF"
+},
+
+{
+  q: "Wie wird der Bereich genannt, der weder durch Raum- noch durch Bodenwelle abgedeckt wird?",
+  a: "Tote Zone",
+  e: "Zwischen Bodenwelle und erstem Raumwellenaufsetzpunkt entsteht die sogenannte tote Zone.",
+  o: [
+    "Fresnelzone",
+    "Schattenzone",
+    "Tote Zone",
+    "Interferenzzone"
+  ],
+  m: "HF"
+},
+
+{
+  q: "Was versteht man unter dem Begriff \"Maximum Usable Frequency\" (MUF)?",
+  a: "Die höchste für eine HF-Funkverbindung zwischen zwei Orten nutzbare Frequenz",
+  e: "Oberhalb der MUF werden Funkwellen nicht mehr an der Ionosphäre reflektiert.",
+  o: [
+    "Die niedrigste nutzbare Frequenz",
+    "Die höchste für eine HF-Funkverbindung zwischen zwei Orten nutzbare Frequenz",
+    "Die maximale Sendeleistung",
+    "Die Frequenz mit dem geringsten Rauschen"
+  ],
+  m: "HF"
+},
+
+{
+  q: "Warum kann eine hohe Ionosphärendichte Funkwellen reflektieren?",
+  a: "Durch hohe Dichte an Ionen und freien Elektronen",
+  e: "Geladene Teilchen in der Ionosphäre brechen und reflektieren HF-Wellen.",
+  o: [
+    "Durch hohe Luftfeuchtigkeit",
+    "Durch starke Erdanziehung",
+    "Durch hohe Dichte an Ionen und freien Elektronen",
+    "Durch niedrige Temperaturen"
+  ],
+  m: "HF"
+},
+
+{
+  q: "Von welchen Faktoren ist die Dichte der Ionosphäre abhängig?",
+  a: "Tageszeit, Jahreszeit und Sonnenaktivität",
+  e: "Sonnenstrahlung beeinflusst die Ionisation der Atmosphäre maßgeblich.",
+  o: [
+    "Nur von der Tageszeit",
+    "Tageszeit, Jahreszeit und Sonnenaktivität",
+    "Nur von der Temperatur",
+    "Nur von der Antennenleistung"
+  ],
+  m: "HF"
+},
+
+{
+  q: "Welche Ionosphärenschichten werden für den HF-Bereich meistens genutzt?",
+  a: "E-, F1- und F2-Schicht",
+  e: "Diese Schichten reflektieren HF-Wellen und ermöglichen Raumwellenausbreitung.",
+  o: [
+    "Troposphäre und Stratosphäre",
+    "D- und E-Schicht",
+    "E-, F1- und F2-Schicht",
+    "Nur die Exosphäre"
+  ],
+  m: "HF"
+},
+
+{
+  q: "Bei welcher Ausbreitungsart wird über stark ionisierte Bereiche gearbeitet, die sich vor allem im Sommer in etwa 100–110 km Höhe bilden?",
+  a: "Sporadic-E",
+  e: "Sporadic-E tritt unregelmäßig auf und kann ungewöhnliche Reichweiten ermöglichen.",
+  o: [
+    "Bodenwelle",
+    "Raumwelle",
+    "Sporadic-E",
+    "Troposphärische Streuung"
+  ],
+  m: "HF"
+},
+
+//-- Grundlagen Übertragungstechnik
+
+{
+  q: "Elektromagnetische Wellen breiten sich im Vakuum mit Lichtgeschwindigkeit aus.",
+  a: "Wahr",
+  e: "Elektromagnetische Wellen benötigen kein Medium.",
+  o: ["Wahr","Falsch"],
+  m: "UEBERTRAGUNG"
+},
+{
+  q: "Elektromagnetische Wellen sind Schwingungen von Materie.",
+  a: "Falsch",
+  e: "Schwingungen von Materie sind mechanische Wellen.",
+  o: ["Wahr","Falsch"],
+  m: "UEBERTRAGUNG"
+},
+{
+  q: "Elektromagnetische Wellen sind Kopplungen aus elektrischen und magnetischen Feldern.",
+  a: "Wahr",
+  e: "Elektromagnetische Wellen bestehen aus gekoppelten elektrischen und magnetischen Feldern.",
+  o: ["Wahr","Falsch"],
+  m: "UEBERTRAGUNG"
+},
+{
+  q: "Das magnetische Feld steht immer waagerecht zum elektrischen Feld.",
+  a: "Falsch",
+  e: "Elektrisches und magnetisches Feld stehen senkrecht zueinander.",
+  o: ["Wahr","Falsch"],
+  m: "UEBERTRAGUNG"
+},
+
+/* Frage 2 – Wellenausbreitung */
+{
+  q: "Welche Wellenausbreitungsart breitet sich entlang der Erdoberfläche aus?",
+  a: "Bodenwelle",
+  e: "Die Bodenwelle folgt der Erdoberfläche.",
+  o: ["Bodenwelle","Raumwelle","Direktwelle"],
+  m: "UEBERTRAGUNG"
+},
+{
+  q: "Welche Wellenausbreitungsart nutzt Reflexion an der Ionosphäre?",
+  a: "Raumwelle",
+  e: "Raumwellen werden an der Ionosphäre reflektiert.",
+  o: ["Bodenwelle","Raumwelle","Direktwelle"],
+  m: "UEBERTRAGUNG"
+},
+{
+  q: "Welche Wellenausbreitungsart benötigt eine quasioptische Sichtverbindung?",
+  a: "Direktwelle",
+  e: "Direktwellen breiten sich geradlinig aus.",
+  o: ["Bodenwelle","Raumwelle","Direktwelle"],
+  m: "UEBERTRAGUNG"
+},
+
+/* Frage 3 – Daumenregel Frequenz */
+{
+  q: "Je höher eine Frequenz ist, desto schneller ist die potenzielle Datenübertragung.",
+  a: "Wahr",
+  e: "Höhere Frequenzen ermöglichen höhere Datenraten.",
+  o: ["Wahr","Falsch"],
+  m: "UEBERTRAGUNG"
+},
+{
+  q: "Je niedriger eine Frequenz ist, desto unanfälliger ist die Übertragung für Störeinflüsse.",
+  a: "Wahr",
+  e: "Niedrige Frequenzen sind robuster gegenüber Störungen.",
+  o: ["Wahr","Falsch"],
+  m: "UEBERTRAGUNG"
+},
+
+/* Frage 4 – Frequenzbereiche */
+{
+  q: "Welcher Frequenzbereich gehört zu HF?",
+  a: "3–30 MHz",
+  e: "HF umfasst 3 bis 30 MHz.",
+  o: ["3–30 Hz","30–300 kHz","3–30 MHz","300–3000 MHz"],
+  m: "UEBERTRAGUNG"
+},
+{
+  q: "Welcher Frequenzbereich gehört zu VHF?",
+  a: "30–300 MHz",
+  e: "VHF umfasst 30 bis 300 MHz.",
+  o: ["3–30 MHz","30–300 MHz","300–3000 MHz","3–30 GHz"],
+  m: "UEBERTRAGUNG"
+},
+{
+  q: "Welcher Frequenzbereich gehört zu UHF?",
+  a: "300 MHz – 3 GHz",
+  e: "UHF liegt zwischen 300 MHz und 3 GHz.",
+  o: ["30–300 MHz","300 MHz – 3 GHz","3–30 GHz","3–30 MHz"],
+  m: "UEBERTRAGUNG"
+},
+
+/* Frage 6 – Antennen */
+{
+  q: "Welche Antenne ist eine typische Richtantenne?",
+  a: "Parabolspiegelantenne",
+  e: "Parabolantennen bündeln elektromagnetische Wellen stark.",
+  o: ["Dipolantenne","Monopolantenne","Parabolspiegelantenne","Blattantenne"],
+  m: "UEBERTRAGUNG"
+},
+{
+  q: "Welche Antenne ist eine typische Rundstrahlantenne?",
+  a: "Dipolantenne",
+  e: "Dipolantennen strahlen nahezu rundum ab.",
+  o: ["Yagi-Antenne","Parabolantenne","Dipolantenne","Cassegrainantenne"],
+  m: "UEBERTRAGUNG"
+},
+
+/* Frage 7 – Grundbegriffe */
+{
+  q: "Wie nennt man die Anzahl an Schwingungen pro Sekunde?",
+  a: "Frequenz",
+  e: "Die Frequenz wird in Hertz angegeben.",
+  o: ["Amplitude","Frequenz","Wellenlänge","Periodendauer"],
+  m: "UEBERTRAGUNG"
+},
+{
+  q: "Wie nennt man den Betrag der maximalen Auslenkung einer Schwingung?",
+  a: "Amplitude",
+  e: "Die Amplitude beschreibt die maximale Auslenkung.",
+  o: ["Amplitude","Frequenz","Wellenlänge","Periodendauer"],
+  m: "UEBERTRAGUNG"
+},
+{
+  q: "Wie nennt man die Dauer einer vollständigen Schwingung?",
+  a: "Periodendauer",
+  e: "Die Periodendauer ist die Zeit für eine komplette Schwingung.",
+  o: ["Frequenz","Wellenlänge","Amplitude","Periodendauer"],
+  m: "UEBERTRAGUNG"
+},
+{
+  q: "Wie nennt man den Abstand zweier benachbarter phasengleicher Punkte einer Welle?",
+  a: "Wellenlänge",
+  e: "Die Wellenlänge wird in Metern angegeben.",
+  o: ["Amplitude","Frequenz","Wellenlänge","Periodendauer"],
+  m: "UEBERTRAGUNG"
+},
+
+/* Frage 8 – Formel */
+{
+  q: "Mit welcher Formel wird die Wellenlänge berechnet?",
+  a: "λ = c / f",
+  e: "Die Wellenlänge ergibt sich aus Lichtgeschwindigkeit geteilt durch Frequenz.",
+  o: ["λ = f / c","λ = c / f","f = c / λ","c = λ / f"],
+  m: "UEBERTRAGUNG"
+},
+
+/* Frage 9 – Frequenzbereich vs. Frequenzband */
+{
+  q: "Wie nennt man einen neutralen technischen Ausdruck für eine beliebige Frequenzspanne?",
+  a: "Frequenzbereich",
+  e: "Ein Frequenzbereich ist nicht zweckgebunden.",
+  o: ["Frequenzband","Frequenzbereich","Kanal","Spektrum"],
+  m: "UEBERTRAGUNG"
+},
+{
+  q: "Wie nennt man einen fest definierten Bereich für bestimmte Anwendungen?",
+  a: "Frequenzband",
+  e: "Frequenzbänder sind meist reserviert.",
+  o: ["Frequenzbereich","Frequenzband","Kanal","Spektrum"],
+  m: "UEBERTRAGUNG"
+},
+
+/* Frage 10 – Interferenz */
+{
+  q: "Wie nennt man die Verstärkung zweier Signale gleicher Phase?",
+  a: "Konstruktive Interferenz",
+  e: "Gleiche Phase führt zur Verstärkung.",
+  o: ["Destruktive Interferenz","Konstruktive Interferenz","Auslöschung","Dämpfung"],
+  m: "UEBERTRAGUNG"
+},
+{
+  q: "Wie nennt man die Abschwächung zweier Signale mit unterschiedlicher Phase?",
+  a: "Destruktive Interferenz",
+  e: "Unterschiedliche Phasen schwächen sich ab.",
+  o: ["Konstruktive Interferenz","Destruktive Interferenz","Reflexion","Beugung"],
+  m: "UEBERTRAGUNG"
+},
+{
+  q: "Wie nennt man die vollständige Aufhebung zweier Signale bei 180° Phasenverschiebung?",
+  a: "Auslöschung",
+  e: "180° Phasenverschiebung führt zur vollständigen Auslöschung.",
+  o: ["Streuung","Beugung","Auslöschung","Reflexion"],
+  m: "UEBERTRAGUNG"
+},
+
+/* Frage 11 – Mechanisch / Elektromagnetisch */
+{
+  q: "Wasserwelle ist eine ...",
+  a: "Mechanische Welle",
+  e: "Wasser benötigt ein Medium.",
+  o: ["Mechanische Welle","Elektromagnetische Welle"],
+  m: "UEBERTRAGUNG"
+},
+{
+  q: "WLAN ist eine ...",
+  a: "Elektromagnetische Welle",
+  e: "WLAN nutzt Funkwellen.",
+  o: ["Mechanische Welle","Elektromagnetische Welle"],
+  m: "UEBERTRAGUNG"
+},
+
+			  {
+  q: "Beschreibt den vertikalen Winkel zwischen Horizont und Antennenrichtung.",
+  a: "Elevation",
+  e: "Der Elevationswinkel beschreibt die vertikale Ausrichtung einer Antenne relativ zum Horizont.",
+  o: ["Azimut", "Elevation", "Öffnungswinkel", "Vor-Rück-Verhältnis"],
+  m: "UEBERTRAGUNG"
+},
+{
+  q: "Beschreibt die horizontale Ausrichtung einer Antenne.",
+  a: "Azimut",
+  e: "Der Azimut beschreibt die horizontale Richtung einer Antenne.",
+  o: ["Elevation", "Azimut", "Öffnungswinkel", "Nebenkulendämpfung"],
+  m: "UEBERTRAGUNG"
+},
+{
+  q: "Beschreibt die Strahlbreite einer Antenne.",
+  a: "Öffnungswinkel",
+  e: "Der Öffnungswinkel gibt an, wie breit der abgestrahlte Funkstrahl ist.",
+  o: ["Azimut", "Öffnungswinkel", "Vor-Rück-Verhältnis", "Nebenkulendämpfung"],
+  m: "UEBERTRAGUNG"
+},
+{
+  q: "Gibt das Verhältnis zwischen dem Gewinn der Hauptkeule und dem der Rückkeule an und beschreibt damit die Bündelung der Antenne.",
+  a: "Vor-Rück-Verhältnis",
+  e: "Das Vor-Rück-Verhältnis beschreibt die Richtwirkung einer Antenne.",
+  o: ["Nebenkulendämpfung", "Öffnungswinkel", "Vor-Rück-Verhältnis", "Elevation"],
+  m: "UEBERTRAGUNG"
+},
+{
+  q: "Gibt das Verhältnis zwischen dem Gewinn der Hauptkeule und der größten Nebenkeule an.",
+  a: "Nebenkulendämpfung",
+  e: "Die Nebenkulendämpfung beschreibt, wie stark Nebenkeulen im Vergleich zur Hauptkeule unterdrückt sind.",
+  o: ["Vor-Rück-Verhältnis", "Öffnungswinkel", "Nebenkulendämpfung", "Azimut"],
+  m: "UEBERTRAGUNG"
+},
+
+{
+  q: "Wie nennt man das Zurückwerfen einer elektromagnetischen Welle an einer Grenzfläche?",
+  a: "Reflexion",
+  e: "Bei der Reflexion wird eine elektromagnetische Welle an einer Grenzfläche zurückgeworfen.",
+  o: ["Brechung", "Reflexion", "Streuung", "Beugung"],
+  m: "UEBERTRAGUNG"
+},
+
+			  
 //--- Antennen
-{ q:"In welche zwei Grobkategorien teilst du Antennen in deinen Notizen ein?", a:"Rundstrahl- und Richtantennen", e:"Du hast notiert: grob in Rundstrahl- und Richtantennen. Der Kernunterschied ist Strahlrichtung/Reichweite.", o:["Kurze und lange Antennen","Rundstrahl- und Richtantennen","HF- und UHF-Antennen","Innen- und Außenantennen"], m:"ANTENNEN" },
+{ q:"In welche zwei Grobkategorien teilst du Antennen ein?", a:"Rundstrahl- und Richtantennen", e:"Rundstrahl- und Richtantennen. Der Kernunterschied ist Strahlrichtung/Reichweite.", o:["Kurze und lange Antennen","Rundstrahl- und Richtantennen","HF- und UHF-Antennen","Innen- und Außenantennen"], m:"ANTENNEN" },
 { q:"Wofür werden Rundstrahlantennen typischerweise genutzt?", a:"Möglichst große Abdeckung in alle Richtungen (horizontal)", e:"Rundstrahlantennen strahlen (nahezu) rundum ab und sind gut für Flächenabdeckung.", o:["Nur für Satelliten","Möglichst große Abdeckung in alle Richtungen (horizontal)","Nur für Punkt-zu-Punkt","Nur für Unterwasserfunk"], m:"ANTENNEN" },
 { q:"Wofür werden Richtantennen typischerweise genutzt?", a:"Hohe Leistung in eine bestimmte Richtung (Punkt-zu-Punkt)", e:"Richtantennen bündeln Energie in eine Richtung (z. B. Richtfunk, SATCOM) und erreichen so größere Reichweiten/Linkqualität.", o:["Für Rundumabdeckung","Hohe Leistung in eine bestimmte Richtung (Punkt-zu-Punkt)","Nur für AM-Radio","Für mechanische Wellen"], m:"ANTENNEN" },
 
 //--- Modulation (ohne Rechnen)
-{ q:"Warum brauchen wir Modulation im Funk (vereinfachter Grund)?", a:"Damit Informationen effizient auf Funkträger übertragen und getrennt nutzbar werden", e:"Modulation erlaubt, Nutzinformation (Sprache/Daten) auf eine Trägerfrequenz zu „legen“ und Funkbetrieb praktikabel zu machen.", o:["Damit Antennen länger werden","Damit Informationen effizient auf Funkträger übertragen und getrennt nutzbar werden","Damit Funk ohne Energie geht","Damit Wellen mechanisch werden"], m:"MODULATION" },
+{ q:"Warum brauchen wir Modulation im Funk", a:"Damit Informationen effizient auf Funkträger übertragen und getrennt nutzbar werden", e:"Modulation erlaubt, Nutzinformation (Sprache/Daten) auf eine Trägerfrequenz zu „legen“ und Funkbetrieb praktikabel zu machen.", o:["Damit Antennen länger werden","Damit Informationen effizient auf Funkträger übertragen und getrennt nutzbar werden","Damit Funk ohne Energie geht","Damit Wellen mechanisch werden"], m:"MODULATION" },
 { q:"Welches „Problem“ beschreibst du in deinen Notizen als Einstieg zur Modulation?", a:"Praktische Antennenlängen wären sonst unhandlich und Frequenzen schnell überlastet", e:"Du argumentierst: ohne geeignete Träger/Modulation wären Antennenlängen und Frequenznutzung im Praxisbetrieb problematisch.", o:["Modulation macht alles langsamer","Praktische Antennenlängen wären sonst unhandlich und Frequenzen schnell überlastet","Ohne Modulation gibt es keine Satelliten","Modulation ist nur für Licht relevant"], m:"MODULATION" },
 
 //--- HF / Ionosphäre / Raumwelle
@@ -680,7 +1441,7 @@ const BANK = [{
 //--- Mobil / verlegefähig / stationär
 { q:"Was bedeutet „verlegefähig“ im Systemvergleich am ehesten?", a:"Mit vertretbarem Aufwand transportierbar und im Einsatzraum aufbaubar", e:"Verlegefähig bedeutet: Das System ist für Verlegung/Transport und Aufbau im Einsatz gedacht.", o:["Fest im Gebäude installiert","Mit vertretbarem Aufwand transportierbar und im Einsatzraum aufbaubar","Nur auf Satelliten montiert","Nur in Werkstätten nutzbar"], m:"GRUNDLAGEN" },
 { q:"Was bedeutet „stationär“ im Systemvergleich am ehesten?", a:"Dauerhaft am Ort installiert, nicht für regelmäßige Verlegung vorgesehen", e:"Stationär beschreibt eine feste Installation, die nicht für häufiges Verlegen vorgesehen ist.", o:["Tragbar am Mann","Dauerhaft am Ort installiert, nicht für regelmäßige Verlegung vorgesehen","Immer luftverladbar","Nur kurzfristig betreibbar"], m:"GRUNDLAGEN" },
-{ q:"Was bedeutet „mobil“ im Systemvergleich am ehesten?", a:"In/auf Fahrzeugen integriert oder schnell beweglich einsetzbar", e:"Mobil meint häufig fahrzeuggestützte oder sehr schnell verlegbare Lösungen.", o:["Nur im Gebäude","In/auf Fahrzeugen integriert oder schnell beweglich einsetzbar","Immer geostationär","Nur mit Richtantenne"], m:"GRUNDLAGEN" },
+{ q:"Was bedeutet „mobil“ im Systemvergleich am ehesten?", a:"In/auf Fahrzeugen integriert oder schnell beweglich einsetzbar", e:"Mobil meint häufig fahrzeuggestützte oder sehr schnell verlegbare Lösungen.", o:["Nur im Gebäude", "In/auf Fahrzeugen integriert oder schnell beweglich einsetzbar","Immer geostationär","Nur mit Richtantenne"], m:"GRUNDLAGEN" },
 
 //--- LVN / DSE / Nutzeranzahl
 { q:"Was limitiert im Frieden laut deiner Notiz häufig die Nutzeranzahl von DSE?", a:"Softwarelizenzen", e:"Du hast notiert: „Was limitiert im Frieden die Nutzeranzahl von DSE (Softwarelizenzen)“.", o:["Nur das Wetter","Softwarelizenzen","Nur die Antennenlänge","Nur die Farbe des Netzwerkplans"], m:"LVN/DSE" },
@@ -697,139 +1458,6 @@ const BANK = [{
 { q:"Warum werden Netze oft in „grün/schwarz/rot“ eingeteilt (Grundidee)?", a:"Zur funktionalen/Schutzbedarfs-orientierten Trennung von Kommunikationsbereichen", e:"Die Farblogik dient als Merkhilfe zur Trennung von Bereichen/Schutzbedarfen. Hier wird nur die Grundidee abgefragt.", o:["Zur Anzeige der Wellenlänge","Zur funktionalen/Schutzbedarfs-orientierten Trennung von Kommunikationsbereichen","Weil Antennen farbig sind","Damit Router schneller werden"], m:"NETZE" },
 { q:"Welche Grundregel passt zu „Netzwerkkerne sollen redundant räumlich getrennt aufgebaut werden“?", a:"Redundanz durch räumliche Trennung erhöht Ausfallsicherheit", e:"Räumliche Trennung verhindert, dass ein einzelnes Ereignis (Störung/Schaden) beide Kerne gleichzeitig trifft.", o:["Redundanz ist immer überflüssg."], m:"NETZTE"},
 
-{q: 'Was bedeutet SATCOM im militärischen Kontext?', a: 'Satellitengestützte weltweite Kommunikation', e: 'SATCOM bezeichnet die Nutzung von Kommunikationssatelliten zur weltweiten Übertragung von Sprache und Daten.', o: ['Ein terrestrisches Richtfunksystem', 'Satellitengestützte weltweite Kommunikation', 'Ein verschlüsseltes Mobilfunknetz', 'Ein internes Funkgerät ohne Außenanbindung'], m: 'SATCOM'},
-
-{q: 'Was beschreibt ein Uplink in der Satellitenkommunikation?', a: 'Übertragung vom Boden zum Satelliten', e: 'Der Uplink ist die Funkverbindung von der Bodenstation oder dem Endgerät zum Satelliten.', o: ['Übertragung vom Satelliten zum Boden', 'Interne Verarbeitung im Satelliten', 'Übertragung vom Boden zum Satelliten', 'Datenweitergabe zwischen Satelliten'], m: 'SATCOM'},
-
-{q: 'Welche Umlaufbahn nutzen geostationäre Satelliten?', a: 'GEO – über dem Äquator mit konstanter Position', e: 'Geostationäre Satelliten befinden sich über dem Äquator und erscheinen relativ zur Erde stationär.', o: ['LEO – niedrige Erdumlaufbahn', 'MEO – mittlere Erdumlaufbahn', 'GEO – über dem Äquator mit konstanter Position', 'Polarorbit über die Pole'], m: 'ORBIT'},
-
-{q: 'Welcher Orbit wird hauptsächlich für GPS genutzt?', a: 'MEO – Medium Earth Orbit', e: 'Navigationssatelliten wie GPS oder Galileo befinden sich typischerweise im MEO.', o: ['LEO – Low Earth Orbit', 'MEO – Medium Earth Orbit', 'GEO – Geostationary Orbit', 'HEO – Hochelliptischer Orbit'], m: 'ORBIT'},
-
-{q: 'Was ist ein Vorteil von HF-Funk (3–30 MHz)?', a: 'Weltweite Reichweite durch Ionosphärenreflexion', e: 'HF-Funk kann über Raumwelle an der Ionosphäre reflektiert werden und große Distanzen überbrücken.', o: ['Sehr hohe Datenrate', 'Weltweite Reichweite durch Ionosphärenreflexion', 'Unabhängigkeit von Antennen', 'Keine Störeinflüsse'], m: 'HF'},
-
-{q: 'Welche Übertragungsarten sind typisch für HF-Funk?', a: 'Bodenwelle und Raumwelle', e: 'Im HF-Bereich werden hauptsächlich Boden- und Raumwellen genutzt.', o: ['Direktwelle und Lichtwelle', 'Raumwelle und Satellitenwelle', 'Bodenwelle und Raumwelle', 'Nur Direktwelle'], m: 'HF'},
-
-{q: 'Was beschreibt das PACE-Konzept?', a: 'Priorisierung und Ausweichmöglichkeiten von Verbindungen', e: 'PACE definiert Primary, Alternate, Contingency und Emergency Kommunikationswege.', o: ['Verschlüsselungsstufen im Funk', 'Antennentypen im Einsatz', 'Priorisierung und Ausweichmöglichkeiten von Verbindungen', 'Softwarelizenzen im Netzwerk'], m: 'NETZWERK'},
-
-{q: 'Welche Antennenart bündelt die Sendeleistung in eine Richtung?', a: 'Richtantenne', e: 'Richtantennen werden verwendet, wenn gezielt hohe Reichweiten in eine Richtung benötigt werden.', o: ['Rundstrahlantenne', 'Stabantenne', 'Richtantenne', 'Dummyload'], m: 'ANTENNE'},
-
-{q: 'Was bezeichnet der Begriff COTS?', a: 'Zivil verfügbare Standardprodukte', e: 'COTS steht für Commercial Off The Shelf und beschreibt handelsübliche Produkte.', o: ['Militärische Sonderanfertigung', 'Zivil verfügbare Standardprodukte', 'Geheime NATO-Technik', 'Ausschließlich Softwarelösungen'], m: 'GRUNDLAGEN'},
-
-{q: 'Warum ist Richtfunk im Gelände eingeschränkt?', a: 'Sichtverbindung und Hindernisse beeinflussen die Übertragung', e: 'Richtfunk benötigt freie Sicht, Gelände und Bebauung können die Verbindung stören.', o: ['Zu hohe Frequenzen', 'Fehlende Verschlüsselung', 'Sichtverbindung und Hindernisse beeinflussen die Übertragung', 'Geringe Sendeleistung'], m: 'RICHTFUNK'},
-
-{q: 'Was bedeutet SATCOM im militärischen Kontext?', a: 'Satellitengestützte weltweite Kommunikation', e: 'SATCOM bezeichnet die Nutzung von Kommunikationssatelliten zur weltweiten Übertragung von Sprache und Daten.', o: ['Ein terrestrisches Richtfunksystem', 'Satellitengestützte weltweite Kommunikation', 'Ein internes Funknetz ohne Außenanbindung', 'Ein reines Navigationssystem'], m: 'SATCOM'},
-
-{q: 'Was beschreibt ein Downlink?', a: 'Übertragung vom Satelliten zur Bodenstation', e: 'Der Downlink ist die Funkverbindung vom Satelliten zurück zur Bodenstation oder zum Endgerät.', o: ['Übertragung vom Boden zum Satelliten', 'Übertragung vom Satelliten zur Bodenstation', 'Kommunikation zwischen Satelliten', 'Interne Signalverarbeitung'], m: 'SATCOM'},
-
-{q: 'Welche Satellitenumlaufbahn wird hauptsächlich von der Bundeswehr für Kommunikation genutzt?', a: 'Geostationärer Orbit (GEO)', e: 'Die Bundeswehr nutzt überwiegend geostationäre Satelliten wie COMSATBw für eine konstante Abdeckung.', o: ['Low Earth Orbit (LEO)', 'Medium Earth Orbit (MEO)', 'Geostationärer Orbit (GEO)', 'Polarorbit'], m: 'SATCOM'},
-
-{q: 'Warum befinden sich GEO-Satelliten über dem Äquator?', a: 'Damit sie scheinbar stationär zur Erdoberfläche bleiben', e: 'Nur über dem Äquator kann ein Satellit die Erdrotation exakt ausgleichen.', o: ['Wegen besserer Funkleistung', 'Zur besseren Kühlung', 'Damit sie scheinbar stationär zur Erdoberfläche bleiben', 'Weil dort weniger Weltraumschrott ist'], m: 'ORBIT'},
-
-{q: 'Wann wird BGAN im Einsatz verwendet?', a: 'Zur schnellen weltweiten Anbindung ohne vorhandene Infrastruktur', e: 'BGAN ermöglicht eine rasche SATCOM-Anbindung, insbesondere in der Initialphase eines Einsatzes.', o: ['Nur bei Richtfunk', 'Zur schnellen weltweiten Anbindung ohne vorhandene Infrastruktur', 'Ausschließlich im Inland', 'Nur für Sprachfunk'], m: 'BGAN'},
-
-{q: 'Welche maximale Geheimhaltungsstufe ist mit BGAN möglich?', a: 'Bis NATO SECRET', e: 'BGAN kann in der Bundeswehr bis zur Einstufung NATO SECRET genutzt werden.', o: ['VS-NfD', 'NATO CONFIDENTIAL', 'Bis NATO SECRET', 'Keine Einstufung möglich'], m: 'BGAN'},
-
-{q: 'Was beschreibt das PACE-Konzept?', a: 'Priorisierte Ausweichmöglichkeiten für Kommunikationsverbindungen', e: 'PACE steht für Primary, Alternate, Contingency und Emergency.', o: ['Ein Verschlüsselungsverfahren', 'Antennenklassifizierung', 'Priorisierte Ausweichmöglichkeiten für Kommunikationsverbindungen', 'Netzwerksicherheitszonen'], m: 'NETZWERK'},
-
-{q: 'Welche Verbindung ist im PACE-Konzept als Primary vorgesehen?', a: 'Landline', e: 'Die Primärverbindung ist nach Möglichkeit eine kabelgebundene Verbindung.', o: ['HF-Funk', 'Satellitenkommunikation', 'Landline', 'VHF-Funk'], m: 'NETZWERK'},
-
-{q: 'Was kennzeichnet HF-Funk im militärischen Einsatz?', a: 'Große Reichweite durch Nutzung der Ionosphäre', e: 'HF-Funk nutzt Raumwellen, die an der Ionosphäre reflektiert werden können.', o: ['Sehr hohe Datenraten', 'Ausschließlich Sichtverbindung', 'Große Reichweite durch Nutzung der Ionosphäre', 'Keine Abhängigkeit von Antennen'], m: 'HF'},
-
-{q: 'Welche Übertragungsarten werden im HF-Bereich genutzt?', a: 'Bodenwelle und Raumwelle', e: 'HF-Funk nutzt Bodenwellen für kurze und Raumwellen für große Entfernungen.', o: ['Direktwelle und Lichtwelle', 'Raumwelle und Satellitenwelle', 'Bodenwelle und Raumwelle', 'Nur Direktwelle'], m: 'HF'},
-
-{q: 'Was ist eine tote Zone im HF-Funk?', a: 'Ein Bereich ohne Empfang zwischen Boden- und Raumwelle', e: 'Zwischen Boden- und erstem Raumwellenaufsetzpunkt kann eine Empfangslücke entstehen.', o: ['Ein gestörter Frequenzbereich', 'Ein Bereich ohne Empfang zwischen Boden- und Raumwelle', 'Ein verschlüsselter Bereich', 'Ein Schutzraum'], m: 'HF'},
-
-{q: 'Was beschreibt eine Richtantenne?', a: 'Bündelt Sendeleistung in eine bestimmte Richtung', e: 'Richtantennen erhöhen Reichweite und Signalqualität in eine Richtung.', o: ['Strahlt gleichmäßig in alle Richtungen', 'Bündelt Sendeleistung in eine bestimmte Richtung', 'Benötigt keine Ausrichtung', 'Ist ausschließlich mobil nutzbar'], m: 'ANTENNE'},
-
-{q: 'Warum ist Richtfunk im Gelände störanfällig?', a: 'Sichtverbindung und Fresnelzone müssen frei sein', e: 'Hindernisse im Gelände können die Sichtverbindung und Fresnelzone beeinträchtigen.', o: ['Zu geringe Verschlüsselung', 'Wetter hat keinen Einfluss', 'Sichtverbindung und Fresnelzone müssen frei sein', 'Zu hohe Frequenzstabilität'], m: 'RICHTFUNK'},
-
-{q: 'Was bedeutet COTS?', a: 'Zivil verfügbare Standardprodukte', e: 'COTS beschreibt kommerziell verfügbare Produkte ohne militärische Sonderanfertigung.', o: ['Militärische Spezialanfertigung', 'Zivil verfügbare Standardprodukte', 'Ausschließlich Softwarelösungen', 'Geheimhaltungsstufe'], m: 'GRUNDLAGEN'},
-
-{q: 'Welche Netzfarbe beschreibt unklassifizierte Netze?', a: 'Schwarz', e: 'Grüne Netze sind unklassifiziert und offen.', o: ['Rot', 'Schwarz', 'Grün', 'Gelb'], m: 'NETZKLASSEN'},
-
-{q: 'Welche Netzfarbe beschreibt klassifizierte Führungsnetze?', a: 'Rot', e: 'Rote Netze dienen der Führung und sind hoch eingestuft.', o: ['Grün', 'Schwarz', 'Rot', 'Weiß'], m: 'NETZKLASSEN'},
-
-{q: 'Welche Hauptaufgabe hat das Funkgerät PRC-117G?', a: 'Multibandfähige Sprach- und Datenkommunikation', e: 'Das PRC-117G ist ein SDR-Funkgerät für HF, VHF und UHF zur Sprach- und Datenübertragung.', o: ['Reiner HF-Sprachfunk', 'Multibandfähige Sprach- und Datenkommunikation', 'Ausschließlich Satellitenkommunikation', 'Nur verschlüsselte Kurznachrichten'], m: 'PRC-117G'},
-
-{q: 'Was ist ein wesentliches Merkmal von SDR (Software Defined Radio)?', a: 'Funktionen werden softwareseitig realisiert', e: 'Bei SDR-Geräten werden Modulation und Signalverarbeitung überwiegend durch Software umgesetzt.', o: ['Feste hardwarebasierte Modulation', 'Keine Verschlüsselungsmöglichkeit', 'Funktionen werden softwareseitig realisiert', 'Nur analoge Übertragung'], m: 'SDR'},
-
-{q: 'Wofür wird Tetrapol hauptsächlich eingesetzt?', a: 'Bündelfunk im Feldlager', e: 'Tetrapol dient als digitales Bündelfunksystem mit begrenzter Reichweite.', o: ['Satellitenkommunikation', 'HF-Langstreckenfunk', 'Bündelfunk im Feldlager', 'Richtfunk über große Distanzen'], m: 'TETRAPOL'},
-
-{q: 'Welche Reichweite ist typisch für Tetrapol?', a: 'Bis etwa 2 km innerhalb der Funkzelle', e: 'Tetrapol ist auf kurze Reichweiten innerhalb einer Bündelfunkzelle ausgelegt.', o: ['Weltweite Reichweite', 'Bis etwa 2 km innerhalb der Funkzelle', '20–50 km', 'Abhängig von der Ionosphäre'], m: 'TETRAPOL'},
-
-{q: 'Was beschreibt das System TüTrSys?', a: 'Verlegefähiges, luftverladbares Richtfunksystem', e: 'TüTrSys ist ein taktisches Übertragungssystem für Richtfunkverbindungen.', o: ['Mobiles Satellitensystem', 'Verlegefähiges, luftverladbares Richtfunksystem', 'Stationäres Glasfasernetz', 'Ziviles Mobilfunknetz'], m: 'TÜTRSYS'},
-
-{q: 'Welche Einschränkung gilt für TüTrSys im Frieden?', a: 'Nationale Freigabe bis VS-NfD', e: 'Im Friedensbetrieb ist die Nutzung auf VS-NfD beschränkt.', o: ['Keine Einschränkung', 'Nationale Freigabe bis VS-NfD', 'Nur NATO SECRET', 'Nur unklassifiziert'], m: 'TÜTRSYS'},
-
-{q: 'Warum sind Netzwerkkerne räumlich redundant aufzubauen?', a: 'Erhöhung der Ausfallsicherheit', e: 'Räumliche Trennung reduziert das Risiko eines Gesamtausfalls.', o: ['Bessere Verschlüsselung', 'Höhere Datenrate', 'Erhöhung der Ausfallsicherheit', 'Geringerer Energieverbrauch'], m: 'NETZWERK'},
-
-{q: 'Was begrenzt die Bandbreite bei militärischer Satellitenkommunikation?', a: 'Zuweisung, Wetter und Hardware', e: 'Bandbreite wird durch Satellitenressourcen, Wettereinflüsse und Endgeräte limitiert.', o: ['Nur die Antennenlänge', 'Zuweisung, Wetter und Hardware', 'Ausschließlich Software', 'Nur die Entfernung'], m: 'SATCOM'},
-
-{q: 'Welche Aufgabe hat die SINA-Box im MobKommSys?', a: 'Sichere Verschlüsselung der Kommunikation', e: 'Die SINA-Box stellt die kryptographische Absicherung sicher.', o: ['Erhöhung der Sendeleistung', 'Sichere Verschlüsselung der Kommunikation', 'Netzwerkswitching', 'Antennenausrichtung'], m: 'MOBKOMMSYS'},
-
-{q: 'Warum ist HRM leicht aufklärbar?', a: 'Kurzer Geräteabstand und starke Abstrahlung', e: 'Geringe Abstände und Abstrahlung erleichtern feindliche ELOKA.', o: ['Zu geringe Leistung', 'Kurzer Geräteabstand und starke Abstrahlung', 'Ausschließlich zivile Nutzung', 'Fehlende Antennen'], m: 'HRM'},
-
-{q: 'Was bezeichnet der Begriff Spotbeam in der Satellitenkommunikation?', a: 'Gezielte Ausleuchtung eines begrenzten Gebietes', e: 'Spotbeams fokussieren die Sendeleistung auf ein kleines Gebiet zur besseren Bandbreitennutzung.', o: ['Weltweite gleichmäßige Ausleuchtung', 'Gezielte Ausleuchtung eines begrenzten Gebietes', 'Verbindung zwischen Satelliten', 'Verschlüsselungsverfahren'], m: 'SATCOM'},
-
-{q: 'Was versteht man unter Beam Hopping?', a: 'Zeitweises Umschalten der Ausleuchtbereiche', e: 'Der Satellit wechselt dynamisch zwischen verschiedenen Spotbeams je nach Bedarf.', o: ['Wechsel des Satellitenorbits', 'Zeitweises Umschalten der Ausleuchtbereiche', 'Frequenzwechsel am Endgerät', 'Manuelle Antennenausrichtung'], m: 'SATCOM'},
-
-{q: 'Welche Bilder zeigen natürliche Störeinflüsse auf Funkwellen?', a: 'Gebirge, Wald und Wetterphänomene', e: 'Geländeformen und Vegetation wirken dämpfend oder abschattend auf Funkwellen.', o: ['Mobilfunkmasten und Stromleitungen', 'Gebirge, Wald und Wetterphänomene', 'Funkfahrzeuge', 'Gefechtsstände'], m: 'STOEREINFLUESSE'},
-
-{q: 'Was verursacht elektromagnetische Störeinflüsse?', a: 'Technische Anlagen und elektrische Systeme', e: 'Elektrische Geräte, Leitungen und Sendeanlagen erzeugen elektromagnetische Störungen.', o: ['Berge und Täler', 'Wetterumschwünge', 'Technische Anlagen und elektrische Systeme', 'Erdkrümmung'], m: 'STOEREINFLUESSE'},
-
-{q: 'Welche Ionosphärenschichten sind für HF-Raumwelle relevant?', a: 'F1- und F2-Schicht', e: 'Die F-Schichten reflektieren HF-Wellen und ermöglichen große Reichweiten.', o: ['Troposphäre und Stratosphäre', 'E- und D-Schicht', 'F1- und F2-Schicht', 'Exosphäre'], m: 'HF'},
-
-{q: 'Warum unterscheidet sich HF-Ausbreitung bei Tag und Nacht?', a: 'Ionosphärenschichten verändern sich durch Sonneneinstrahlung', e: 'Die Ionisation der Schichten ist tagsüber stärker als nachts.', o: ['Unterschiedliche Antennen', 'Ionosphärenschichten verändern sich durch Sonneneinstrahlung', 'Andere Funkgeräte', 'Geänderte Erdrotation'], m: 'HF'},
-
-{q: 'Ab welcher Verbandsebene wird TüTrSys eingesetzt?', a: 'Ab Brigadeebene', e: 'TüTrSys dient der übergeordneten Führungsunterstützung ab Brigade.', o: ['Zug', 'Kompanie', 'Bataillon', 'Ab Brigadeebene'], m: 'VERBAND'},
-
-{q: 'Welche Aufgabe erfüllt der Gefechtsstand (GefStd)?', a: 'Führung und Koordination von Kräften', e: 'Im Gefechtsstand laufen Informationen zusammen und werden Befehle erteilt.', o: ['Ausschließlich Funkbetrieb', 'Lagerung von Material', 'Führung und Koordination von Kräften', 'Ausbildung von Personal'], m: 'GEFSTD'},
-
-{q: 'Warum ist der Querschnitt im GefStd zuerst sicherzustellen?', a: 'Er ermöglicht erst die Führungsfähigkeit', e: 'Ohne funktionierende IKT ist Führung nicht möglich.', o: ['Er ist gesetzlich vorgeschrieben', 'Er ermöglicht erst die Führungsfähigkeit', 'Er benötigt die meiste Energie', 'Er ist leicht aufzubauen'], m: 'GEFSTD'},
-
-{q: 'Was ist der Unterschied zwischen automatischer und manueller Kanalwahl (SEM)?', a: 'Automatisch wählt selbstständig freie Kanäle', e: 'Die automatische Kanalwahl reagiert auf Störungen ohne manuelles Eingreifen.', o: ['Manuell ist immer verschlüsselt', 'Automatisch wählt selbstständig freie Kanäle', 'Manuell benötigt keine Antenne', 'Automatisch ist nur im Frieden erlaubt'], m: 'SEM'},
-
-{q: 'Welche Netzfarbe beschreibt unklassifizierte Informationsnetze?', a: 'Grün', e: 'Grüne Netze sind unklassifiziert und dienen der offenen Informationsverarbeitung.', o: ['Rot', 'Schwarz', 'Grün', 'Blau'], m: 'NETZARTEN'},
-
-{q: 'Welche Netzfarbe wird für klassifizierte Führungsnetze genutzt?', a: 'Rot', e: 'Rote Netze sind für Führungsinformationen mit hoher Schutzbedürftigkeit vorgesehen.', o: ['Grün', 'Schwarz', 'Rot', 'Gelb'], m: 'NETZARTEN'},
-
-{q: 'Was beschreibt ein schwarzes Netz?', a: 'Transportnetz ohne inhaltliche Entschlüsselung', e: 'Schwarze Netze transportieren verschlüsselte Daten ohne Kenntnis des Inhalts.', o: ['Unklassifiziertes Netz', 'Transportnetz ohne inhaltliche Entschlüsselung', 'Offenes Internet', 'Führungsnetz'], m: 'NETZARTEN'},
-
-{q: 'Welche Dienste sind typisch im Brigade-Gefechtsstand?', a: 'Führungs-, Lage-, Sprach- und Datenservices', e: 'Diese Dienste sichern die Führungsfähigkeit des Großverbandes.', o: ['Nur Sprachfunk', 'Ausschließlich E-Mail', 'Führungs-, Lage-, Sprach- und Datenservices', 'Nur Videokonferenzen'], m: 'GEFSTD'},
-
-{q: 'Was ist ein Teilnehmernetzwerk?', a: 'Verlegefähiges Netz zur Anbindung von Endgeräten', e: 'Teilnehmernetzwerke verbinden Nutzer mit dem Netzwerkern.', o: ['Reines Transportnetz', 'Verlegefähiges Netz zur Anbindung von Endgeräten', 'Satellitennetz', 'Mobilfunkzelle'], m: 'NETZWERK'},
-
-{q: 'Warum müssen Netzwerkkerne räumlich getrennt aufgebaut werden?', a: 'Zur Erhöhung der Redundanz', e: 'Räumliche Trennung schützt vor gleichzeitigen Ausfällen.', o: ['Wegen besserer Kühlung', 'Zur Erhöhung der Redundanz', 'Zur Leistungssteigerung', 'Aus rechtlichen Gründen'], m: 'NETZWERK'},
-
-{q: 'Welche Rolle spielt MobKommSys im LVN?', a: 'Mobile Anbindung an das Führungsnetz', e: 'MobKommSys stellt die mobile Einbindung in das LVN sicher.', o: ['Stationäres Glasfasernetz', 'Mobile Anbindung an das Führungsnetz', 'Ziviles Mobilfunknetz', 'Reines HF-System'], m: 'MOBKOMMSYS'},
-
-{q: 'Was bezeichnet DSE im LVN-Kontext?', a: 'Digitale Systemelemente zur Netzverarbeitung', e: 'DSE stellen zentrale Funktionen innerhalb des Führungsnetzes bereit.', o: ['Digitale Systemelemente zur Netzverarbeitung', 'Endgeräte der Nutzer', 'Satellitenstationen', 'Antennensysteme'], m: 'LVN'},
-
-{q: 'Welche Einschränkung hat RBM im Einsatz?', a: 'Nur zivile Satellitenkommunikation nutzbar', e: 'RBM kann keine militärischen SATCOM-Systeme nutzen.', o: ['Keine Verschlüsselung möglich', 'Nur zivile Satellitenkommunikation nutzbar', 'Nur HF-Funk', 'Keine Datenübertragung'], m: 'RBM'},
-
-{q: 'Welche Wellenarten nutzt HRM?', a: 'Direktwellen im VHF/UHF-Bereich', e: 'HRM arbeitet überwiegend mit Direktwellen.', o: ['Raumwellen', 'Bodenwellen', 'Direktwellen im VHF/UHF-Bereich', 'Satellitenwellen'], m: 'HRM'},
-
-{q: 'Warum entstehen beim HRM tote Zonen?', a: 'Zu geringer Abstand zwischen den Geräten', e: 'Interferenzen bei geringem Abstand führen zu Empfangsausfällen.', o: ['Zu große Antennen', 'Zu geringer Abstand zwischen den Geräten', 'Falsche Verschlüsselung', 'Ionosphärische Effekte'], m: 'HRM'},
-
-{q: 'Welche Satelliten betreibt die Bundeswehr selbst?', a: 'COMSATBw 1 und 2', e: 'COMSATBw 1 und 2 sind eigene militärische Kommunikationssatelliten der Bundeswehr.', o: ['Inmarsat', 'Intelsat', 'COMSATBw 1 und 2', 'Galileo'], m: 'SATCOM'},
-
-{q: 'Welche Satellitenbetreiber werden zusätzlich von der Bundeswehr mitgenutzt?', a: 'Inmarsat und Intelsat', e: 'Neben eigenen Satelliten nutzt die Bundeswehr auch zivile Betreiber zur Erweiterung der Abdeckung.', o: ['Starlink und OneWeb', 'Inmarsat und Intelsat', 'Galileo und GPS', 'EUMETSAT'], m: 'SATCOM'},
-
-{q: 'Was bedeutet Conditional Access in der Satellitenkommunikation?', a: 'Zugriff nur nach kryptographischer Freigabe', e: 'Conditional Access stellt sicher, dass nur berechtigte Teilnehmer den Satelliten nutzen können.', o: ['Freier Zugang für alle Nutzer', 'Zugriff nur nach kryptographischer Freigabe', 'Manuelle Kanalzuweisung', 'Physische Zugangskontrolle'], m: 'SATCOM'},
-
-{q: 'Was beschreibt die Initialbefähigung im Einsatz?', a: 'Erste Herstellung der Führungs- und Kommunikationsfähigkeit', e: 'Initialbefähigung bedeutet, schnell grundlegende IKT-Fähigkeiten bereitzustellen.', o: ['Vollausbau aller Netze', 'Erste Herstellung der Führungs- und Kommunikationsfähigkeit', 'Ausschließlich Sprachfunk', 'Nur Ausbildung des Personals'], m: 'EINSATZ'},
-
-{q: 'Welches System eignet sich besonders zur Initialbefähigung?', a: 'BGAN', e: 'BGAN ermöglicht eine schnelle, ortsunabhängige SATCOM-Anbindung.', o: ['TüTrSys', 'HRM', 'BGAN', 'Glasfaser'], m: 'EINSATZ'},
-
-{q: 'Was ist ein Grundsatz bei der Erstellung eines Netzplans?', a: 'Logische und strukturierte Herangehensweise', e: 'Netzpläne dienen der Übersicht und müssen logisch aufgebaut sein.', o: ['Möglichst viele Details', 'Logische und strukturierte Herangehensweise', 'Nur grafische Darstellung', 'Keine Symbole verwenden'], m: 'NETZPLAN'},
-
-{q: 'Warum sind Netzplansymbole wichtig?', a: 'Einheitliches Verständnis unabhängig vom Ersteller', e: 'Standardisierte Symbole erleichtern das Lesen und Verstehen von Netzplänen.', o: ['Sie sehen professionell aus', 'Einheitliches Verständnis unabhängig vom Ersteller', 'Sie sind vorgeschrieben', 'Sie erhöhen die Bandbreite'], m: 'NETZPLAN'},
-
-{q: 'Was ist eine typische Prüfungsfalle im Bereich SATCOM?', a: 'Verwechslung von Orbitarten', e: 'LEO, MEO und GEO werden häufig durcheinandergebracht.', o: ['Zu viele Antennenarten', 'Verwechslung von Orbitarten', 'Fehlende Verschlüsselung', 'Unklare Netzfarben'], m: 'PRUEFUNG'},
-
-{q: 'Welche Aussage zu COMSATBw ist korrekt?', a: 'Befindet sich im geostationären Orbit über dem Äquator', e: 'COMSATBw-Satelliten befinden sich im GEO-Orbit.', o: ['Befindet sich im LEO', 'Befindet sich im MEO', 'Befindet sich im geostationären Orbit über dem Äquator', 'Befindet sich im Polarorbit'], m: 'SATCOM'},
-
-{q: 'Warum ist weltweite Anbindung militärisch relevant?', a: 'Einsatzkräfte müssen unabhängig vom Standort geführt werden können', e: 'Globale Kommunikation ist Voraussetzung moderner Einsatzführung.', o: ['Zur Kostensenkung', 'Einsatzkräfte müssen unabhängig vom Standort geführt werden können', 'Nur für Ausbildung relevant', 'Ausschließlich für Logistik'], m: 'EINSATZ'}
 
 
              ];
