@@ -105,20 +105,151 @@ body { margin:0; font-family:-apple-system, system-ui, sans-serif; background:va
 
 <script>
 const BANK = [
-    { 
-        q: "Was ist der primäre Zweck eines Gefechtsstandes (GfStd)?", 
-        a: "Die Führung von unterstellten Kräften im Einsatz.", 
-        e: "Ein Gefechtsstand dient der Aufnahme und Auswertung von Meldungen sowie der Befehlsgebung.", 
-        o: ["Die Unterbringung von Reservekräften.", "Die Führung von unterstellten Kräften im Einsatz.", "Die Lagerung von Munition.", "Die Koordination der Feldpost."], 
-        m: "GRUNDLAGEN" 
-    },
-    { 
-        q: "Welches Element gehört typischerweise zur inneren Sicherung eines GfStd?", 
-        a: "Wachen und Zutrittskontrollen.", 
-        e: "Die innere Sicherung schützt den unmittelbaren Arbeitsbereich vor unbefugtem Zutritt.", 
-        o: ["Artillerie-Unterstützung.", "Wachen und Zutrittskontrollen.", "Aufklärungsdrohnen.", "Pioniersperren."], 
-        m: "AUFBAU" 
-    }
+    {
+  q: "Welche Hauptbereiche umfasst das Merkwort KEVUÄ bei den Betriebseinrichtungen eines Gefechtsstands?",
+  a: "Kern, Einrichtungen, Versorgung, Unterbringung, Äußere Organisation",
+  e: "KEVUÄ steht für Gefechtsstandkern, Gefechtsstandeinrichtungen, Gefechtsstandversorgung, Gefechtsstandunterbringung und äußere Organisation.",
+  o: [
+    "Kommando, Einsatz, Versorgung, Übergang, Äußere Sicherung",
+    "Kern, Einrichtungen, Versorgung, Unterbringung, Äußere Organisation",
+    "Kommunikation, Energie, Verpflegung, Unterkunft, Alarmierung",
+    "Kernführung, Einsatzführung, Versorgung, Unterkunft, Absicherung"
+  ],
+  m: "GEFSTD"
+},
+{
+  q: "Was gehört zum Gefechtsstandkern?",
+  a: "Zentralen und Zellen",
+  e: "Der Gefechtsstandkern besteht aus den für die Führung notwendigen Zentralen und Zellen.",
+  o: [
+    "Feldküche und Sanitätsbereich",
+    "Zentralen und Zellen",
+    "KFZ-Abstellplätze und Sammelräume",
+    "Meldekopf und Alarmsteuerung"
+  ],
+  m: "GEFSTD"
+},
+{
+  q: "Welche Einrichtungen zählen zu den Gefechtsstandeinrichtungen?",
+  a: "Fernmeldeeinrichtungen",
+  e: "Gefechtsstandeinrichtungen umfassen insbesondere die fernmeldetechnischen Einrichtungen.",
+  o: [
+    "Unterkünfte und Feldpost",
+    "Fernmeldeeinrichtungen",
+    "Energie- und Klimaanlagen",
+    "Sammelplätze und Hubschrauberlandeplätze"
+  ],
+  m: "GEFSTD"
+},
+{
+  q: "Welche Bereiche gehören zur Gefechtsstandversorgung?",
+  a: "Energie- und Klimaversorgung, Materialbewirtschaftung, Materialerhalt und Sanitätsversorgung",
+  e: "Die Versorgung stellt den Betrieb des Gefechtsstands sicher, u. a. durch Energie, Klima, Material und Sanitätsdienst.",
+  o: [
+    "Fernmelde- und IT-Dienste",
+    "Unterkunft und Betreuung",
+    "Energie- und Klimaversorgung, Materialbewirtschaftung, Materialerhalt und Sanitätsversorgung",
+    "Meldekopf und Alarmsteuerung"
+  ],
+  m: "GEFSTD"
+},
+{
+  q: "Was zählt zur Gefechtsstandunterbringung?",
+  a: "Unterkunft, Feldküche, Betreuung und Feldpost",
+  e: "Die Unterbringung umfasst alle Bereiche, die den täglichen Betrieb und die Versorgung des Personals sicherstellen.",
+  o: [
+    "Zentralen und Zellen",
+    "Unterkunft, Feldküche, Betreuung und Feldpost",
+    "Energieversorgung und Klimatisierung",
+    "Fernmelde- und IT-Einrichtungen"
+  ],
+  m: "GEFSTD"
+},
+{
+  q: "Welche Einrichtungen gehören zur äußeren Organisation eines Gefechtsstands?",
+  a: "Meldekopf, Alarmsteuerung, Sammelplätze, KFZ-Abstellplatz und Hubschrauberlandeplatz",
+  e: "Die äußere Organisation regelt Zuführung, Alarmierung und äußere Infrastruktur des Gefechtsstands.",
+  o: [
+    "Zentralen, Zellen und Führungsstellen",
+    "Meldekopf, Alarmsteuerung, Sammelplätze, KFZ-Abstellplatz und Hubschrauberlandeplatz",
+    "Unterkunft, Feldküche und Betreuung",
+    "Energieversorgung und Materialerhalt"
+  ],
+  m: "GEFSTD"
+},
+{
+  q: "Was bedeutet Kernführungsfähigkeit eines Gefechtsstands auf Großverbandsebene?",
+  a: "Sicherstellung der Führungsfähigkeit auch unter eingeschränkten Bedingungen",
+  e: "Die Kernführungsfähigkeit gewährleistet, dass ein Großverband auch bei Einschränkungen geführt werden kann.",
+  o: [
+    "Führung nur im Friedensbetrieb",
+    "Sicherstellung der Führungsfähigkeit auch unter eingeschränkten Bedingungen",
+    "Ausschließliche Nutzung stationärer Einrichtungen",
+    "Reduzierung der Führungsaufgaben"
+  ],
+  m: "GEFSTD"
+},
+{
+  q: "Welche Aufgabe hat der vorgeschobene Gefechtsstand (VGefStd) im Rahmen der Kernführungsfähigkeit?",
+  a: "Operationsführung",
+  e: "Der vorgeschobene Gefechtsstand dient der unmittelbaren Operationsführung.",
+  o: [
+    "Operationsplanung",
+    "Operationsführung",
+    "Logistische Versorgung",
+    "Ausbildung des Personals"
+  ],
+  m: "GEFSTD"
+},
+{
+  q: "Welche Führungseinrichtung übernimmt im geschlossenen Gefechtsstand die Operationsplanung?",
+  a: "BGefStd",
+  e: "Der Basisgefechtsstand (BGefStd) ist für die Operationsplanung zuständig.",
+  o: [
+    "VGefStd",
+    "BwglBefSt",
+    "BGefStd",
+    "Meldekopf"
+  ],
+  m: "GEFSTD"
+},
+{
+  q: "Welche Führungseinrichtung ist für die Operationsführung im geschlossenen Gefechtsstand zuständig?",
+  a: "VGefStd",
+  e: "Der vorgeschobene Gefechtsstand übernimmt die Operationsführung.",
+  o: [
+    "BGefStd",
+    "VGefStd",
+    "BwglBefSt",
+    "Zentralen"
+  ],
+  m: "GEFSTD"
+},
+{
+  q: "Welche Aufgabe hat die bewegliche Befehlsstelle (BwglBefSt)?",
+  a: "Operationsführung vor Ort",
+  e: "Die bewegliche Befehlsstelle dient der unmittelbaren Führung vor Ort.",
+  o: [
+    "Operationsplanung",
+    "Operationsführung vor Ort",
+    "Logistische Versorgung",
+    "Fernmeldebetrieb"
+  ],
+  m: "GEFSTD"
+},
+{
+  q: "Wie setzt sich ein Divisionsgefechtsstand (DivGefStd) zusammen?",
+  a: "Wechsel von Abteilungen in Zellen und Zentralen",
+  e: "Im Gefecht wird die Friedensgliederung (Abteilungen) in eine Gefechtsstandgliederung mit Zellen und Zentralen überführt.",
+  o: [
+    "Beibehaltung der Friedensgliederung",
+    "Wechsel von Abteilungen in Zellen und Zentralen",
+    "Ausschließliche Nutzung von Stäben",
+    "Reduzierung auf eine Zentrale"
+  ],
+  m: "GEFSTD"
+}
+
 ];
 
 let activeSet = []; let retryStack = []; let currentIndex = 0; let streak = 0; let isExam = false; let examAnswers = {};
