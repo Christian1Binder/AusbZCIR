@@ -62,6 +62,130 @@
         <div class="img-placeholder">Hier: Vergleichspfeile (Großer Pfeil nach vorn, winziger Pfeil nach hinten)</div>
     </div>
 
+    <div class="card full-width" style="border-top: 6px solid #e67e22;">
+    <h2>🧠 Das Frequenz-Quiz</h2>
+    <p>Ordne die Frequenzen und Wellenlängen den richtigen Bereichen zu! Ziehe die Kacheln in die leeren Felder der Tabelle.</p>
+
+    <div id="quiz-container">
+        <div id="drag-items" style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; padding: 15px; background: #fdf2e9; border-radius: 8px;">
+            <div class="drag-item" draggable="true" id="f1" data-target="c1">3 – 30 Hz</div>
+            <div class="drag-item" draggable="true" id="f2" data-target="c2">30 – 300 Hz</div>
+            <div class="drag-item" draggable="true" id="f3" data-target="c3">0,3 – 3 kHz</div>
+            <div class="drag-item" draggable="true" id="f4" data-target="c4">3 – 30 kHz</div>
+            <div class="drag-item" draggable="true" id="f5" data-target="c5">30 – 300 kHz</div>
+            <div class="drag-item" draggable="true" id="f6" data-target="c6">0,3 – 3 MHz</div>
+            <div class="drag-item" draggable="true" id="f7" data-target="c7">3 – 30 MHz</div>
+            <div class="drag-item" draggable="true" id="f8" data-target="c8">30 – 300 MHz</div>
+            <div class="drag-item" draggable="true" id="f9" data-target="c9">0,3 – 3 GHz</div>
+            <div class="drag-item" draggable="true" id="w1" data-target="c1w">10Mm-100Mm</div>
+            <div class="drag-item" draggable="true" id="w2" data-target="c2w">1Mm-10Mm</div>
+            <div class="drag-item" draggable="true" id="w3" data-target="c3w">100km-1000km</div>
+            <div class="drag-item" draggable="true" id="w4" data-target="c4w">10km-100km</div>
+            <div class="drag-item" draggable="true" id="w5" data-target="c5w">1km-10km</div>
+            <div class="drag-item" draggable="true" id="w6" data-target="c6w">100m-1000m</div>
+            <div class="drag-item" draggable="true" id="w7" data-target="c7w">10m-100m</div>
+            <div class="drag-item" draggable="true" id="w8" data-target="c8w">1m-10m</div>
+            <div class="drag-item" draggable="true" id="w9" data-target="c9w">10cm-1m</div>
+        </div>
+
+        <div style="overflow-x: auto;">
+            <table id="quiz-table" style="width: 100%; border-collapse: collapse; text-align: center; font-size: 0.85em;">
+                <tr style="background: #2c3e50; color: white;">
+                    <th>Abk. Int</th><th>ELF</th><th>SLF</th><th>ULF</th><th>VLF</th><th>LF</th><th>MF</th><th>HF</th><th>VHF</th><th>UHF</th>
+                </tr>
+                <tr>
+                    <td><strong>Abk. DEU</strong></td><td>NF</td><td>NF</td><td>NF</td><td>SLW</td><td>LW</td><td>MW</td><td>KW</td><td>UKW</td><td>µW</td>
+                </tr>
+                <tr style="background: #f9f9f9;">
+                    <td><strong>Frequenz</strong></td>
+                    <td class="drop-zone" id="c1"></td><td class="drop-zone" id="c2"></td><td class="drop-zone" id="c3"></td>
+                    <td class="drop-zone" id="c4"></td><td class="drop-zone" id="c5"></td><td class="drop-zone" id="c6"></td>
+                    <td class="drop-zone" id="c7"></td><td class="drop-zone" id="c8"></td><td class="drop-zone" id="c9"></td>
+                </tr>
+                <tr style="background: #f9f9f9;">
+                    <td><strong>Wellenlänge</strong></td>
+                    <td class="drop-zone" id="c1w"></td><td class="drop-zone" id="c2w"></td><td class="drop-zone" id="c3w"></td>
+                    <td class="drop-zone" id="c4w"></td><td class="drop-zone" id="c5w"></td><td class="drop-zone" id="c6w"></td>
+                    <td class="drop-zone" id="c7w"></td><td class="drop-zone" id="c8w"></td><td class="drop-zone" id="c9w"></td>
+                </tr>
+            </table>
+        </div>
+
+        <button onclick="checkQuiz()" style="margin-top: 20px; padding: 10px 25px; background: #27ae60; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">Ergebnis prüfen</button>
+        <button onclick="resetQuiz()" style="margin-top: 20px; padding: 10px 25px; background: #95a5a6; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">Reset</button>
+        <p id="feedback" style="font-weight: bold; margin-top: 15px;"></p>
+    </div>
+</div>
+
+<style>
+    .drag-item { padding: 6px 10px; background: #3498db; color: white; border-radius: 4px; cursor: grab; font-size: 0.8em; user-select: none; transition: transform 0.2s; }
+    .drag-item:active { cursor: grabbing; transform: scale(1.1); }
+    .drop-zone { border: 2px dashed #bdc3c7; height: 50px; min-width: 80px; transition: background 0.3s; }
+    .drop-zone.hover { background: #dff9fb; border-color: #3498db; }
+    .correct { background: #2ecc71 !important; color: white; border: none; }
+    .wrong { background: #e74c3c !important; color: white; border: none; }
+    #quiz-table td, #quiz-table th { border: 1px solid #ddd; padding: 8px; }
+</style>
+
+<script>
+    const draggables = document.querySelectorAll('.drag-item');
+    const dropZones = document.querySelectorAll('.drop-zone');
+
+    draggables.forEach(draggable => {
+        draggable.addEventListener('dragstart', () => draggable.classList.add('dragging'));
+        draggable.addEventListener('dragend', () => draggable.classList.remove('dragging'));
+    });
+
+    dropZones.forEach(zone => {
+        zone.addEventListener('dragover', e => {
+            e.preventDefault();
+            zone.classList.add('hover');
+        });
+        zone.addEventListener('dragleave', () => zone.classList.remove('hover'));
+        zone.addEventListener('drop', e => {
+            e.preventDefault();
+            zone.classList.remove('hover');
+            const dragging = document.querySelector('.dragging');
+            if (zone.children.length === 0) {
+                zone.appendChild(dragging);
+            }
+        });
+    });
+
+    function checkQuiz() {
+        let correctCount = 0;
+        dropZones.forEach(zone => {
+            if (zone.children.length > 0) {
+                const item = zone.firstChild;
+                if (item.getAttribute('data-target') === zone.id) {
+                    zone.classList.add('correct');
+                    zone.classList.remove('wrong');
+                    correctCount++;
+                } else {
+                    zone.classList.add('wrong');
+                    zone.classList.remove('correct');
+                }
+            }
+        });
+        document.getElementById('feedback').innerText = `Du hast ${correctCount} von 18 Feldern richtig zugeordnet!`;
+    }
+
+    function resetQuiz() {
+        const pool = document.getElementById('drag-items');
+        dropZones.forEach(zone => {
+            if (zone.children.length > 0) {
+                pool.appendChild(zone.firstChild);
+            }
+            zone.classList.remove('correct', 'wrong');
+        });
+        document.getElementById('feedback').innerText = "";
+        // Zufälliges Mischen der Kacheln im Pool
+        for (let i = pool.children.length; i >= 0; i--) {
+            pool.appendChild(pool.children[Math.random() * i | 0]);
+        }
+    }
+</script>
+    
 </div>
 
 </body>
