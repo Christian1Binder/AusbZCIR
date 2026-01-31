@@ -64,7 +64,7 @@
 
     <div class="card full-width" style="border-top: 6px solid #e67e22; overflow: hidden;">
     <h2>🧠 Das große Frequenz-Quiz</h2>
-    <p>Kannst du die Frequenzen und Wellenlängen richtig zuordnen? Ziehe die blauen Kacheln in die passenden grauen Felder der Tabelle.</p>
+    <p>Ordne Frequenzen und Wellenlängen richtig zu! Die Kacheln sind jedes Mal neu gemischt.</p>
 
     <div id="drag-items" style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; padding: 15px; background: #fdf2e9; border: 2px solid #fab1a0; border-radius: 8px;">
         <div class="drag-item" draggable="true" id="f1" data-target="c1">3 – 30 Hz</div>
@@ -88,7 +88,7 @@
     </div>
 
     <div style="overflow-x: auto;">
-        <table id="quiz-table" style="width: 100%; border-collapse: collapse; min-width: 850px; background: white; font-size: 0.85em;">
+        <table id="quiz-table" style="width: 100%; border-collapse: collapse; min-width: 850px; background: white; font-size: 0.85em; border: 1px solid #ddd;">
             <thead>
                 <tr style="background: #2c3e50; color: white;">
                     <th style="padding: 10px;">Abk. Int</th><th>ELF</th><th>SLF</th><th>ULF</th><th>VLF</th><th>LF</th><th>MF</th><th>HF</th><th>VHF</th><th>UHF</th>
@@ -116,7 +116,7 @@
                 </tr>
                 <tr>
                     <td style="background: #ecf0f1; font-weight: bold;">Anwendung</td>
-                    <td></td><td colspan="3" style="text-align: center;">Sprache &approx; 80 Hz - 12 kHz</td><td>Rundfunk</td><td>MW-Rundf., LVS-Geräte</td><td>Sprechfunk</td><td>Sprechf., Flugf., TV, DAB</td><td>Sprechf., WLAN, BT</td>
+                    <td></td><td colspan="3" style="text-align: center;">Sprache &approx; 80 Hz - 12 kHz</td><td>Rundfunk</td><td>MW-Rundf., LVS-Geräte</td><td>Sprechfunk</td><td>Sprechf., Flugf., TV, DAB</td><td>Sprechf., WLAN, Bluetooth</td>
                 </tr>
             </tbody>
         </table>
@@ -124,25 +124,33 @@
 
     <div style="margin-top: 20px;">
         <button onclick="checkQuiz()" style="padding: 12px 20px; background: #27ae60; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold;">Ergebnis prüfen</button>
-        <button onclick="resetQuiz()" style="padding: 12px 20px; background: #95a5a6; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; margin-left: 10px;">Reset</button>
-        <span id="feedback" style="font-weight: bold; margin-left: 20px;"></span>
+        <button onclick="resetQuiz()" style="padding: 12px 20px; background: #95a5a6; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; margin-left: 10px;">Reset & Mischen</button>
+        <span id="feedback" style="font-weight: bold; margin-left: 20px; color: #2c3e50;"></span>
     </div>
 </div>
 
 <style>
     .drag-item { padding: 6px 12px; background: #3498db; color: white; border-radius: 4px; cursor: grab; font-weight: bold; font-size: 0.8em; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
-    .drag-item:active { cursor: grabbing; }
+    .drag-item.dragging { opacity: 0.5; }
     .drop-zone { border: 2px dashed #bdc3c7; height: 60px; min-width: 90px; }
-    .drop-zone.hover { background: #dff9fb; }
-    .correct { background: #2ecc71 !important; transition: 0.5s; }
-    .wrong { background: #e74c3c !important; transition: 0.5s; }
+    .drop-zone.hover { background: #dff9fb; border-color: #3498db; }
+    .correct { background: #2ecc71 !important; border: none !important; }
+    .wrong { background: #e74c3c !important; border: none !important; }
     #quiz-table td { border: 1px solid #ddd; padding: 10px; text-align: center; }
 </style>
 
 <script>
-    // Logik bleibt gleich, sorgt für das Ziehen und die Prüfung
     const items = document.querySelectorAll('.drag-item');
     const zones = document.querySelectorAll('.drop-zone');
+    const pool = document.getElementById('drag-items');
+
+    function shuffleItems() {
+        for (let i = pool.children.length; i >= 0; i--) {
+            pool.appendChild(pool.children[Math.random() * i | 0]);
+        }
+    }
+
+    window.onload = shuffleItems;
 
     items.forEach(item => {
         item.addEventListener('dragstart', () => item.classList.add('dragging'));
@@ -163,20 +171,24 @@
     function checkQuiz() {
         let count = 0;
         zones.forEach(z => {
+            z.classList.remove('correct', 'wrong');
             if (z.firstChild && z.firstChild.getAttribute('data-target') === z.id) {
-                z.className = "drop-zone correct";
+                z.classList.add('correct');
                 count++;
             } else if (z.firstChild) {
-                z.className = "drop-zone wrong";
+                z.classList.add('wrong');
             }
         });
-        document.getElementById('feedback').innerText = count === 18 ? "Perfekt! Alles richtig! 🏆" : `Punkte: ${count} / 18`;
+        document.getElementById('feedback').innerText = count === 18 ? "Perfekt! Alles richtig! 🏆" : `Punkte: ${count} von 18 richtig.`;
     }
 
     function resetQuiz() {
-        const p = document.getElementById('drag-items');
-        zones.forEach(z => { if (z.firstChild) p.appendChild(z.firstChild); z.className = "drop-zone"; });
+        zones.forEach(z => { 
+            if (z.firstChild) pool.appendChild(z.firstChild); 
+            z.classList.remove('correct', 'wrong');
+        });
         document.getElementById('feedback').innerText = "";
+        shuffleItems();
     }
 </script>
     
