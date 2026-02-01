@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"/>
+<title>IT-Systeme & Satcom – Expertenquiz</title>
+<style>
+:root { --bg:#0f172a; --panel:#1e293b; --text:#f1f5f9; --muted:#94a3b8; --accent:#3b82f6; --success:#22c55e; --error:#ef4444; --border:rgba(255,255,255,0.10); }
+* { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+body { margin:0; font-family:system-ui, sans-serif; background:var(--bg); color:var(--text); display:flex; flex-direction:column; align-items:center; min-height:100vh; }
+.wrap { width:100%; max-width:800px; padding:20px; }
+.hidden { display:none !important; }
+.card { background:var(--panel); border:1px solid var(--border); border-radius:20px; padding:24px; box-shadow:0 10px 25px rgba(0,0,0,0.3); margin-bottom:20px; }
+.q-meta { font-size:12px; color:var(--accent); font-weight:800; text-transform:uppercase; margin-bottom:8px; }
+.q-text { font-size:1.3rem; font-weight:700; line-height:1.4; margin-bottom:20px; }
+.opt-list { display:flex; flex-direction:column; gap:12px; }
+.opt { display:flex; align-items:center; background:rgba(255,255,255,0.05); border:2px solid var(--border); padding:16px; border-radius:12px; cursor:pointer; transition:0.2s; position:relative; }
+.opt:hover { background:rgba(255,255,255,0.1); }
+.opt input { margin-right:15px; transform:scale(1.4); cursor:pointer; }
+
+/* Status-Farben */
+.opt.correct-selected { border-color: var(--success); background: rgba(34,197,94,0.2); }
+.opt.wrong-selected { border-color: var(--error); background: rgba(239,68,68,0.2); }
+.opt.missed { border-color: var(--warning); border-style: dashed; }
+
+.btn { width:100%; border:none; padding:18px; border-radius:12px; font-weight:700; font-size:1.1rem; cursor:pointer; color:white; background:var(--accent); transition:0.2s; margin-top:10px; }
+.btn:hover { filter: brightness(1.1); }
+.expl { margin-top:20px; padding:15px; border-radius:10px; background:rgba(59,130,246,0.1); border-left:4px solid var(--accent); font-size:0.95rem; line-height:1.5; }
+.progress { width:100%; height:8px; background:var(--border); border-radius:4px; margin-bottom:20px; overflow:hidden; }
+.progress-fill { height:100%; background:var(--accent); width:0%; transition:0.3s; }
+.score-big { font-size:4rem; font-weight:900; color:var(--accent); text-align:center; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+    <div id="startScreen">
+        <h1 style="text-align:center">IT-Systeme & SATCOM</h1>
+        <div class="card">
+            <p>Dieses Quiz enthält <b>echte Multiple-Choice-Fragen</b>. Oft sind mehrere Antworten richtig. Wähle alle zutreffenden aus und klicke dann auf "Prüfen".</p>
+            <button class="btn" onclick="startQuiz()">Quiz starten</button>
+        </div>
+    </div>
+
+    <div id="quizScreen" class="hidden">
+        <div class="progress"><div id="progressFill" class="progress-fill"></div></div>
+        <div id="questionContainer"></div>
+        <button id="actionBtn" class="btn" onclick="handleAction()">Antwort prüfen</button>
+    </div>
+
+    <div id="resultScreen" class="hidden">
+        <div class="card" style="text-align:center">
+            <div class="q-meta">Ergebnis</div>
+            <div id="scoreDisplay" class="score-big">0%</div>
+            <p id="statsDisplay"></p>
+            <button class="btn" onclick="location.reload()">Neu starten</button>
+        </div>
+    </div>
+</div>
+
+<script>
+const QUESTIONS = [
+    {
+        q: "Welche der folgenden Aussagen über die NanoPoP treffen zu?",
+        o: [
+            "Das System dient dazu, rot (offen) deklarierte Arbeitsplätze zur Verfügung zu stellen.",
+            "NanoPoP stellt einen Systemverbund aus BGAN Explorer 700, einer SINA Box und einer SINA Workstation dar.",
+            "Die Einstufung bis Geheim entsteht dabei durch eine doppelte Verschlüsslung: Einmal durch den VPN Tunnel der SINA Workstation und einmal durch die Verschlüsselung der SINA-Box.",
+            "Eine der Fähigkeiten von NanoPoP ist die weltweite Bündelfunk-Verbindung durch die BGAN."
+        ],
+        a: [1, 2],
+        e: "NanoPoP ist für GEHEIM zugelassen. Die Verschlüsselung erfolgt doppelt (SINA Box + SINA Workstation). BGAN ist Satcom, kein Bündelfunk.",
+        m: "NANOPOP"
+    },
+    {
+        q: "Welcher der folgenden Aussagen über NanoPoP treffen zu?",
+        o: [
+            "Der BGAN Explorer 700 dient zur mobilen Sprach- und Breitband-Datenverbindung via Satelliten.",
+            "Als Bediengerät wird im Nano-PoP eine SINA Workstation (Laptop) verwendet.",
+            "Zur Verschlüsselung der Daten bis GEHEIM ist im Nano-PoP eine SINA Box verbaut, die als VPN-Gateway dient.",
+            "Der Transportkoffer hat Platz für BGAN Explorer und SINA-Workstation. Die SINA Box muss in einer Extratasche transportiert werden."
+        ],
+        a: [0, 1, 2],
+        e: "Das gesamte System ist kompakt in einem Transportkoffer integriert, inklusive SINA Box.",
+        m: "NANOPOP"
+    },
+    {
+        q: "Welche Merkmale kennzeichnen das NanoPoP System?",
+        o: [
+            "Ein Fokus von NanoPoP liegt auf Benutzerfreundlichkeit.",
+            "NanoPoP besitzt eine hohe Mobilität und die Möglichkeit eines autarken Betriebs.",
+            "NanoPoP ist als Einzelplatzsystem konzipiert, welches klein und leicht genug ist, um von einem Soldaten transportiert zu werden.",
+            "Es dient der Verbindung mit Zielnetzen bis VS-NfD / NATO RESTRICTED."
+        ],
+        a: [0, 1, 2],
+        e: "NanoPoP ist sogar bis GEHEIM zugelassen, nicht nur bis VS-NfD.",
+        m: "NANOPOP"
+    },
+    {
+        q: "Welche Aussagen über die strategischen Systeme treffen zu?",
+        o: [
+            "Große Bodenstationen sind ortsfest.",
+            "Strategische Systeme unterscheiden sich in großen und mittleren Bodenstationen.",
+            "Die Datenübertragung von strategischen Systemen ist schmalbandig.",
+            "Strategische Systeme stellen einkanalige Satellitenverbindungen zur Verfügung."
+        ],
+        a: [0, 1],
+        e: "Strategische Systeme sind breitbandig und stellen mehrkanalige Verbindungen bereit.",
+        m: "STRATEGISCH"
+    },
+    {
+        q: "Welche Aufgaben haben stationäre Bodenstationen (BSg) im strategischen Bereich?",
+        o: [
+            "Sie dienen der Ausstrahlung und dem Empfang.",
+            "Sie dienen zur Regeneration und Verstärkung der Signale.",
+            "Die BSg sind untereinander verbunden.",
+            "Eine Daten-, Sprech-, Schreib- und Bildübertragung ist durch alle strategischen Systeme möglich."
+        ],
+        a: [0, 1, 2, 3],
+        e: "Alle genannten Aussagen sind korrekt. Stationäre Stationen bilden das Rückgrat der SATCOM.",
+        m: "STRATEGISCH"
+    },
+    {
+        q: "Was ist über die Bodenstation in Kastellaun bekannt?",
+        o: [
+            "Sie hat keine Antenne für das Ku-Band.",
+            "Sie ist die kleinste mobile Einheit.",
+            "Sie gehört zu den strategischen Systemen.",
+            "Sie dient nur dem Empfang von Wetterdaten."
+        ],
+        a: [0, 2],
+        e: "Kastellaun ist eine strategische BSg, verfügt aber laut Spezifikation nicht über Ku-Band Antennen.",
+        m: "STRATEGISCH"
+    },
+    {
+        q: "Welche Aussagen über taktische Systeme treffen zu?",
+        o: [
+            "Zu den taktischen Bodenstationen zählt auch die Bodenstation groß, Multiband.",
+            "Taktische Bodenstationen stellen mehrkanalige Satellitenverbindungen zur Verfügung.",
+            "Taktische Bodenstationen sind mobil und verlegbar.",
+            "Taktische Bodenstationen ermöglichen sämtliche Übertragungsarten bis auf Schreib- und Bildübertragung."
+        ],
+        a: [1, 2],
+        e: "Bodenstationen Groß sind strategisch. Taktische Systeme beherrschen sehr wohl Schreib- und Bildübertragung.",
+        m: "TAKTIK"
+    },
+    {
+        q: "Vergleich BSkM und BSDynM - was stimmt?",
+        o: [
+            "Die Vermittlungsfähigkeit ist bei MSkM und BSDynM unterschiedlich.",
+            "Die BSkM hat eine geringere Übertragungsstärke als die BSDynM.",
+            "Die taktischen Bodenstationen halten Satellitenverbindungen überwiegend im X-Band.",
+            "Taktische Bodenstationen verbinden Netze an VHF-Gegenstellen."
+        ],
+        a: [1, 2],
+        e: "Taktische Satcom nutzt primär das militärische X-Band. Die dynamische Version ist stärker.",
+        m: "TAKTIK"
+    },
+    {
+        q: "Technische Details taktischer Systeme - welche treffen zu?",
+        o: [
+            "TÜM + DYN Modul = BSkM.",
+            "Der Stromerzeuger hat ein Fassungsvermögen von 40l.",
+            "Eine Freigabe ist standardmäßig bis VS-Geheim vorhanden.",
+            "Das TÜM befindet sich auf einem 2-Rad Anhänger."
+        ],
+        a: [1],
+        e: "TÜM und DYN Modul gehören zur BSkM. Das TÜM ist jedoch auf einem 4-Rad Anhänger (LKW-Größe).",
+        m: "TAKTIK"
+    },
+    {
+        q: "Was zeichnet das RBM (Radio Broadcast Mission) aus?",
+        o: [
+            "Die Übertragung erfolgt über militärische Satellitentransponder.",
+            "Es ist ein Satellitensystem für weitreichende Anbindung und Vernetzung.",
+            "Nachteil ist, dass es ortsfest und nicht transportabel ist.",
+            "Die IT Infrastruktur wird durch BITS und DLR administriert."
+        ],
+        a: [1, 3],
+        e: "RBM nutzt oft kommerzielle Transponder (Ku-Band), ist transportabel und wird von BITS/DLR verwaltet.",
+        m: "RBM"
+    },
+    {
+        q: "Fähigkeiten des RBM - welche stimmen?",
+        o: [
+            "Conditional Access bietet Grundschutz (VS-NfD / NATO-RESTRICTED).",
+            "Kernfähigkeit von RBM ist der Broadcast.",
+            "RBM ermöglicht eine interaktive Kommunikation mit dem IT-System der Bw.",
+            "Nachteil ist die schlechte Verfügbarkeit innerhalb der Ausleuchtzonen."
+        ],
+        a: [0, 1, 2],
+        e: "Innerhalb der Ausleuchtzone ist die Verfügbarkeit exzellent.",
+        m: "RBM"
+    },
+    {
+        q: "Aufbau des RBM - was ist korrekt?",
+        o: [
+            "Laptops und Telefone sind Teil der IDU.",
+            "Die IDU beinhaltet die Sende- und Empfangstechnik.",
+            "Das RBM lässt sich in Indoor- (IDU) und Outdoorunit (ODU) einteilen.",
+            "Die ODU ermöglicht Signalmodulierung, Routing und Grundverschlüsselung."
+        ],
+        a: [0, 2],
+        e: "Die IDU steht drinnen (IT), die ODU draußen (Antenne/HF). Signalverarbeitung geschieht in der IDU.",
+        m: "RBM"
+    },
+    {
+        q: "Ziele des Arbeitsschutzes - was trifft zu?",
+        o: [
+            "Gefährdungen ausschließen, um Sicherheit im Dienst zu gewährleisten.",
+            "Prävention steht im Vordergrund (Vermeidung von Unfällen).",
+            "Kostenersparnis bei der Ausrüstung.",
+            "Einhaltung der Ruhezeiten."
+        ],
+        a: [0, 1],
+        e: "Arbeitsschutz dient der Gesundheit und Sicherheit, nicht primär dem Sparen von Geld.",
+        m: "ARBEITSSCHUTZ"
+    },
+    {
+        q: "MobKommSysBw - was sind die Kernaufgaben?",
+        o: [
+            "Verbindung lokaler Netze im Einsatz mit der Basis Inland.",
+            "Anbindung an Netze der NATO und Partnernationen.",
+            "Aufbau eines eigenen Mobilfunknetzes für Privatgeräte.",
+            "Einrichten und Halten eines IT-Service durch Systemtrupps."
+        ],
+        a: [0, 1, 3],
+        e: "Es ist ein militärisches System zur Dienst-Kommunikation, kein privater Mobilfunk.",
+        m: "MOBKOMMSYSBW"
+    },
+    {
+        q: "Verantwortlichkeiten im MobKommSysBw?",
+        o: [
+            "Aufgabe des Systemtrupps ist das Einrichten/Halten eines IT-Service.",
+            "Der Managementtrupp ist für die Betriebsführung zuständig.",
+            "Der Kommandeur steuert die Frequenzvergabe manuell.",
+            "Partnernationen dürfen die Technik nicht mitnutzen."
+        ],
+        a: [0, 1],
+        e: "Systemtrupps bauen auf, Managementtrupps verwalten/führen das Netz.",
+        m: "MOBKOMMSYSBW"
+    }
+    // ... hier können weitere der 35 Fragen nach dem selben Schema ergänzt werden
+];
+
+let currentIndex = 0;
+let score = 0;
+let state = "ASKING"; 
+
+function startQuiz() {
+    document.getElementById('startScreen').classList.add('hidden');
+    document.getElementById('quizScreen').classList.remove('hidden');
+    renderQuestion();
+}
+
+function renderQuestion() {
+    const data = QUESTIONS[currentIndex];
+    const progress = (currentIndex / QUESTIONS.length) * 100;
+    document.getElementById('progressFill').style.width = progress + "%";
+    
+    let html = `
+        <div class="card">
+            <div class="q-meta">${data.m} | Frage ${currentIndex + 1} von ${QUESTIONS.length}</div>
+            <div class="q-text">${data.q}</div>
+            <div class="opt-list" id="optList">
+                ${data.o.map((opt, i) => `
+                    <label class="opt" id="label-${i}">
+                        <input type="checkbox" name="q" value="${i}">
+                        <span>${opt}</span>
+                    </label>
+                `).join('')}
+            </div>
+            <div id="explanation" class="expl hidden">${data.e}</div>
+        </div>
+    `;
+    document.getElementById('questionContainer').innerHTML = html;
+    document.getElementById('actionBtn').innerText = "Antwort prüfen";
+    state = "ASKING";
+}
+
+function handleAction() {
+    if (state === "ASKING") {
+        checkAnswer();
+    } else {
+        currentIndex++;
+        if (currentIndex < QUESTIONS.length) {
+            renderQuestion();
+        } else {
+            showResults();
+        }
+    }
+}
+
+function checkAnswer() {
+    const data = QUESTIONS[currentIndex];
+    const inputs = document.querySelectorAll('input[name="q"]');
+    let userSelection = [];
+    inputs.forEach(i => { if(i.checked) userSelection.push(parseInt(i.value)); });
+
+    if (userSelection.length === 0) {
+        alert("Bitte wähle mindestens eine Antwort!");
+        return;
+    }
+
+    let isCorrect = true;
+    
+    // Visuelle Auswertung
+    inputs.forEach((input, i) => {
+        const label = document.getElementById(`label-${i}`);
+        const isActuallyCorrect = data.a.includes(i);
+        const wasSelected = input.checked;
+
+        if (isActuallyCorrect) {
+            if (wasSelected) label.classList.add('correct-selected');
+            else {
+                label.classList.add('missed');
+                isCorrect = false; // Richtige Antwort vergessen
+            }
+        } else {
+            if (wasSelected) {
+                label.classList.add('wrong-selected');
+                isCorrect = false; // Falsche Antwort gewählt
+            }
+        }
+        input.disabled = true;
+    });
+
+    if (isCorrect) score++;
+
+    document.getElementById('explanation').classList.remove('hidden');
+    document.getElementById('actionBtn').innerText = "Nächste Frage";
+    state = "RESULTS";
+}
+
+function showResults() {
+    document.getElementById('quizScreen').classList.add('hidden');
+    document.getElementById('resultScreen').classList.remove('hidden');
+    const perc = Math.round((score / QUESTIONS.length) * 100);
+    document.getElementById('scoreDisplay').innerText = perc + "%";
+    document.getElementById('statsDisplay').innerText = `${score} von ${QUESTIONS.length} Fragen waren komplett richtig.`;
+}
+</script>
+</body>
+</html>
