@@ -186,49 +186,56 @@ const BANK = [{
         a: "BMVg ArbSchGAnwV", 
         e: "Die Verordnung über die Anwendung des Arbeitsschutzgesetzes im Geschäftsbereich des BMVg regelt spezifische Ausnahmen für die Streitkräfte.", 
         o: ["Soldatengesetz", "BMVg ArbSchGAnwV", "Strafgesetzbuch", "Grundgesetz"], 
-        m: "ARBEITSSCHUTZ" 
+        m: "ARBEITSSCHUTZ",
+        t: "single"
     },
     { 
         q: "Wie lautet das Ziel von Arbeitsschutz?", 
         a: "Gefährdungen ausschließen, um die Sicherheit im Dienst zu gewährleisten", 
         e: "Prävention steht im Vordergrund, um Unfälle und Gesundheitsschäden vorab zu vermeiden.", 
         o: ["Kostenersparnis bei der Ausrüstung", "Vermeidung von Schreibarbeit", "Gefährdungen ausschließen, um die Sicherheit im Dienst zu gewährleisten", "Einhaltung der Ruhezeiten"], 
-        m: "ARBEITSSCHUTZ" 
+        m: "ARBEITSSCHUTZ",
+        t: "single"
     },
     { 
         q: "Was ist der Unterschied zwischen einer Unfallanzeige und einem Vermerk?", 
         a: "Anzeige = Krankheitsbedingte Abwesenheit", 
         e: "Eine Unfallanzeige ist zwingend erforderlich, wenn der Dienstunfall zu einer Arbeitsunfähigkeit führt.", 
         o: ["Es gibt keinen Unterschied", "Anzeige = Krankheitsbedingte Abwesenheit", "Vermerk ist nur für Zivilisten", "Anzeige erfolgt nur bei Sachschaden"], 
-        m: "ARBEITSSCHUTZ" 
+        m: "ARBEITSSCHUTZ",
+        t: "single"
     },
     { 
         q: "Wer darf während des Dienstes einen Zeckenbiss entfernen?", 
         a: "SanPers während des Dienstes, außerhalb sie selbst", 
         e: "Im Dienst ist medizinisches Fachpersonal (SanPers) aufzusuchen; privat ist Eigenhilfe zulässig.", 
         o: ["Nur der Disziplinarvorgesetzte", "Jeder Kamerad mit einem Taschenmesser", "SanPers während des Dienstes, außerhalb sie selbst", "Ausschließlich ein ziviler Notarzt"], 
-        m: "ARBEITSSCHUTZ" 
+        m: "ARBEITSSCHUTZ",
+        t: "single"
     },
     { 
         q: "Wann besteht bei einem Wegeunfall KEIN Versicherungsschutz?", 
         a: "Semmel kaufen auf direktem Weg", 
         e: "Private Unterbrechungen (wie Einkaufen), die nicht unmittelbar mit dem Weg zur/von der Dienststelle zusammenhängen, heben den Schutz auf.", 
         o: ["Semmel kaufen auf direktem Weg", "Direkter Weg von der Wohnung", "Fahrt mit einer Fahrgemeinschaft", "Umweg wegen einer Baustelle"], 
-        m: "ARBEITSSCHUTZ" 
+        m: "ARBEITSSCHUTZ",
+        t: "single"
     },
     { 
         q: "Welche Nutzungsbedingungen gelten für elektr. Kleingeräte innerhalb mil. Liegenschaften?", 
         a: "Namentliche Zuordnung, CE-Zeichen, max. 1500 Watt", 
         e: "Private Geräte müssen geprüft sein, eine CE-Kennzeichnung besitzen und dürfen die Lastgrenze nicht überschreiten.", 
         o: ["Nur Geräte von Markenherstellern", "Namentliche Zuordnung, CE-Zeichen, max. 1500 Watt", "Keine Einschränkungen", "Nur batteriebetriebene Geräte"], 
-        m: "ARBEITSSCHUTZ" 
+        m: "ARBEITSSCHUTZ",
+        t: "single"
     },
     { 
         q: "Was bedeutet der Schallwert 100.000?", 
         a: "Lärmbelastungskonto, was nicht leer werden darf", 
         e: "Dies beschreibt ein Kontingent für Lärmexposition, um Gehörschäden bei Soldaten vorzubeugen.", 
         o: ["Maximale Lautstärke in Dezibel", "Lärmbelastungskonto, was nicht leer werden darf", "Anzahl der Schuss pro Jahr", "Frequenzbereich des Funkgeräts"], 
-        m: "ARBEITSSCHUTZ" 
+        m: "ARBEITSSCHUTZ",
+        t: "single"
     },
 
     // --- UMWELT ---
@@ -237,21 +244,24 @@ const BANK = [{
         a: "Ja, aber nicht in Schutzzone I + II", 
         e: "Wasserschutzgebiete haben verschiedene Zonen; I und II sind aufgrund der Trinkwassergefahr für Übungen gesperrt.", 
         o: ["Ja, uneingeschränkt", "Nein, niemals", "Ja, aber nicht in Schutzzone I + II", "Nur nach Genehmigung durch das Umweltbundesamt"], 
-        m: "UMWELT" 
+        m: "UMWELT",
+        t: "single"
     },
     { 
         q: "Wo dürfen Übungen abgehalten werden?", 
         a: "Staatsforst", 
         e: "Im Gegensatz zu Nationalparks oder Wohngebieten ist der Staatsforst (unter Auflagen) für militärische Übungen nutzbar.", 
         o: ["Nationalpark", "Staatsforst", "Wohngebiet", "Naturschutzgebiet"], 
-        m: "UMWELT" 
+        m: "UMWELT",
+        t: "single"
     },
     { 
         q: "Worauf deutet ein weiß markierter Deckel bei einem Kanister hin?", 
         a: "Wasser", 
         e: "Die weiße Kennzeichnung dient der eindeutigen Unterscheidung von Trinkwasserbehältern zu Kraftstoffkanistern.", 
         o: ["Benzin", "Diesel", "Wasser", "Altöl"], 
-        m: "UMWELT" 
+        m: "UMWELT",
+        t: "single"
     },
 
     // --- MATERIELLERHALT / ÜBERGABE ---
@@ -260,42 +270,48 @@ const BANK = [{
         a: "Bis die TE erneut übergeben wird", 
         e: "Die Dokumentation muss bis zur nächsten formellen Verantwortungsänderung nachvollziehbar bleiben.", 
         o: ["2 Jahre", "10 Jahre", "Bis die TE erneut übergeben wird", "Nur 6 Monate"], 
-        m: "MAT-ERHALT" 
+        m: "MAT-ERHALT",
+        t: "single"
     },
     { 
         q: "Wie lange ist eine Materialausgabeliste (MAL) maximal gültig?", 
         a: "4 Wochen", 
         e: "Nach 4 Wochen muss die MAL in der Regel abgerechnet oder erneuert werden.", 
         o: ["1 Woche", "4 Wochen", "6 Monate", "1 Jahr"], 
-        m: "MAT-ERHALT" 
+        m: "MAT-ERHALT",
+        t: "single"
     },
     { 
         q: "Was beschreibt Einsatzfähigkeit?", 
         a: "Erfüllung Soll-Zustands", 
         e: "Einsatzfähigkeit ist gegeben, wenn Personal und Material den festgelegten Soll-Vorgaben entsprechen.", 
         o: ["Dass alle Soldaten wach sind", "Erfüllung Soll-Zustands", "Nur der technische Zustand von Panzern", "Die Anwesenheit beim Appell"], 
-        m: "MAT-ERHALT" 
+        m: "MAT-ERHALT",
+        t: "single"
     },
     { 
         q: "Ab wann ist eine Übergabeverhandlung durchzuführen?", 
         a: "DP-Wechsel ab TE-Führer", 
         e: "Bei einem Wechsel der personellen Verantwortung auf Ebene der Teileinheitsführung ist eine formale Übergabe Pflicht.", 
         o: ["Bei jedem Urlaub", "DP-Wechsel ab TE-Führer", "Nur bei Beförderungen", "Täglich beim Dienstantritt"], 
-        m: "MAT-ERHALT" 
+        m: "MAT-ERHALT",
+        t: "single"
     },
     { 
         q: "Wer bestimmt den Umfang der Übergabe?", 
         a: "Übernehmender", 
         e: "Derjenige, der die Verantwortung übernimmt, legt fest, wie detailliert die Prüfung des Materials erfolgen muss.", 
         o: ["Abgebender", "Übernehmender", "Der Spieß", "Das Logistikzentrum"], 
-        m: "MAT-ERHALT" 
+        m: "MAT-ERHALT",
+        t: "single"
     },
     { 
         q: "Bei einer Abwesenheit von über wie vielen Wochen ist das Material zu übergeben?", 
         a: "6 Wochen", 
         e: "Ab einer voraussichtlichen Abwesenheit von mehr als 6 Wochen muss eine formale Materialübergabe erfolgen.", 
         o: ["2 Wochen", "4 Wochen", "6 Wochen", "12 Wochen"], 
-        m: "MAT-ERHALT" 
+        m: "MAT-ERHALT",
+        t: "single"
     },
 // --- DATENSCHUTZ & GRUNDLAGEN ---
     { 
@@ -303,35 +319,40 @@ const BANK = [{
         a: "Gilt unmittelbar für alle Dienststellen", 
         e: "Eine EU-Verordnung gilt sofort und unmittelbar als Gesetz in den Mitgliedsstaaten, während eine Richtlinie erst in nationales Recht umgesetzt werden muss.", 
         o: ["Ist nur eine Empfehlung", "Gilt unmittelbar für alle Dienststellen", "Muss erst durch Bundestag ratifiziert werden", "Gilt nur für Privatfirmen"], 
-        m: "DATENSCHUTZ" 
+        m: "DATENSCHUTZ",
+        t: "single"
     },
     { 
         q: "Was versteht man unter 'Goldplating' im Kontext des BDSG?", 
         a: "Deutsches Datenschutzgesetz ergänzt die DSGVO", 
         e: "Goldplating bezeichnet das Übererfüllen von EU-Vorgaben durch nationale Regelungen (das BDSG sattelt auf die DSGVO auf).", 
         o: ["Vergoldung von IT-Hardware", "Reduzierung der Standards", "Deutsches Datenschutzgesetz ergänzt die DSGVO", "Abschaffung nationaler Gesetze"], 
-        m: "DATENSCHUTZ" 
+        m: "DATENSCHUTZ",
+        t: "single"
     },
     { 
         q: "Welche Instanz ist für einen Eingriff in die Integrität informationstechnischer Systeme zwingend erforderlich?", 
         a: "Richtervorbehalt", 
         e: "Da es sich um ein überragend wichtiges Gemeingut handelt, darf ein Eingriff (z.B. Online-Durchsuchung) nur durch einen Richter angeordnet werden.", 
         o: ["Disziplinarvorgesetzter", "IT-Sicherheitsbeauftragter", "Richtervorbehalt", "Bundeskanzler"], 
-        m: "GRUNDRECHTE" 
+        m: "GRUNDRECHTE",
+        t: "single"
     },
     { 
         q: "Was prüft das 'RETTER'-Prinzip?", 
         a: "Rechtmäßigkeit einer Datenverarbeitung", 
         e: "Das Akronym steht u.a. für Rechtmäßigkeit, Erforderlichkeit, Transparenz (Prüfschema für Datenverarbeitung).", 
         o: ["Rechtmäßigkeit einer Datenverarbeitung", "Instandsetzung von KFZ", "Sanitätsdienstliche Versorgung", "Urheberrechtliche Schöpfungshöhe"], 
-        m: "DATENSCHUTZ" 
+        m: "DATENSCHUTZ",
+        t: "single"
     },
     { 
         q: "Wofür steht TOM im Datenschutz?", 
         a: "Technisch-organisatorische Maßnahmen", 
         e: "TOMs sind Schutzvorkehrungen (z.B. Zäune, Passwörter), um die Sicherheit der Datenverarbeitung zu gewährleisten.", 
         o: ["Taktisch-operative Maßnahmen", "Technisch-organisatorische Maßnahmen", "Total-Optimiertes Management", "Truppen-Organisations-Modell"], 
-        m: "DATENSCHUTZ" 
+        m: "DATENSCHUTZ",
+        t: "single"
     },
     
     // --- PERSDAT KATEGORIEN ---
@@ -340,21 +361,24 @@ const BANK = [{
         a: "Name, Vorname, Dienstgrad", 
         e: "PersDat 1 umfasst die grundlegenden Identifikationsdaten ohne tiefere Verknüpfung.", 
         o: ["Name, Vorname, Dienstgrad", "Name und Geburtsdatum", "Biometrische Daten", "Gesundheitsdaten"], 
-        m: "PERSDAT" 
+        m: "PERSDAT",
+        t: "single"
     },
     { 
         q: "Was kennzeichnet die Kategorie 'PersDat 2'?", 
         a: "Verknüpfung von Name/DG mit Einheit oder Veranstaltung", 
         e: "PersDat 2 entsteht durch die Verknüpfung von Basisdaten mit Kontextinformationen wie Einheit oder Geburtsdatum.", 
         o: ["Rein biometrische Daten", "Verknüpfung von Name/DG mit Einheit oder Veranstaltung", "Nur der Dienstgrad", "Anonymisierte Daten"], 
-        m: "PERSDAT" 
+        m: "PERSDAT",
+        t: "single"
     },
     { 
         q: "Zu welcher Kategorie gehört der biometrische Dienstausweis?", 
         a: "BPersDat - Schutzbereich 3", 
         e: "Biometrische Daten stellen eine besonders hohe Schutzstufe dar und fallen unter PersDat 3.", 
         o: ["APersDat - Schutzbereich 1", "BPersDat - Schutzbereich 2", "BPersDat - Schutzbereich 3", "APersDat - Schutzbereich 3"], 
-        m: "PERSDAT" 
+        m: "PERSDAT",
+        t: "single"
     },
 
     // --- URHEBERRECHT & MEDIEN ---
@@ -363,21 +387,24 @@ const BANK = [{
         a: "15%", 
         e: "Als Faustregel für die gesetzliche Nutzungsbefugnis (Schrankenregelung) gilt oft: '15% gehen immer'.", 
         o: ["50%", "15%", "100%", "3%"], 
-        m: "URHEBERRECHT" 
+        m: "URHEBERRECHT",
+        t: "single"
     },
     { 
         q: "Wann entfällt das Recht am eigenen Bild (Einwilligung)?", 
         a: "Teilnahme an einer öffentlichen Veranstaltung", 
         e: "Wer an einer öffentlichen Versammlung/Veranstaltung teilnimmt, muss keine Einwilligung für Aufnahmen im Kontext der Veranstaltung geben.", 
         o: ["Immer wenn man Uniform trägt", "Teilnahme an einer öffentlichen Veranstaltung", "Wenn das Bild unscharf ist", "Wenn der Fotograf Presse ist"], 
-        m: "URHEBERRECHT" 
+        m: "URHEBERRECHT",
+        t: "single"
     },
     { 
         q: "Wer ist für die Musiknutzung (GEMA) in Betreuungseinrichtungen zuständig?", 
         a: "Der Pächter", 
         e: "Für die Anmeldung und Zahlung bei der GEMA ist in Betreuungseinrichtungen der Pächter verantwortlich.", 
         o: ["Der Bund", "Die Truppe", "Der Pächter", "Der DJ"], 
-        m: "URHEBERRECHT" 
+        m: "URHEBERRECHT",
+        t: "single"
     },
 
     // --- IT-STRAFRECHT & SIGNATUREN ---
@@ -386,28 +413,32 @@ const BANK = [{
         a: "Nein, jeder Käufer macht sich strafbar", 
         e: "Der erste Käufer von gestohlenen Daten macht sich der Hehlerei strafbar, und jeder weitere Käufer in der Kette ebenfalls.", 
         o: ["Ja, nur der Hacker ist strafbar", "Nein, jeder Käufer macht sich strafbar", "Nur gewerbliche Käufe sind strafbar", "Daten können nicht gehehlt werden"], 
-        m: "IT-STRAFRECHT" 
+        m: "IT-STRAFRECHT",
+        t: "single"
     },
     { 
         q: "Ist bereits die Vorbereitung zum Ausspähen von Daten (§ 202a) strafbar?", 
         a: "Ja, der Vorsatz zur Vorbereitung reicht", 
         e: "Bereits das Herstellen oder Verschaffen von 'Hacker-Tools' zur Vorbereitung der Tat ist strafbar.", 
         o: ["Nein, erst der Erfolg zählt", "Ja, der Vorsatz zur Vorbereitung reicht", "Nur wenn Schaden > 5000€", "Nur bei Amtsträgern"], 
-        m: "IT-STRAFRECHT" 
+        m: "IT-STRAFRECHT",
+        t: "single"
     },
     { 
         q: "Welche Art der Signatur stellt die PKI-Karte der Bundeswehr dar?", 
         a: "Fortgeschrittene elektronische Signatur", 
         e: "Die PKI-Karte bietet eine fortgeschrittene, aber standardmäßig meist keine qualifizierte elektronische Signatur.", 
         o: ["Einfache Signatur", "Fortgeschrittene elektronische Signatur", "Qualifizierte elektronische Signatur", "Biometrische Unterschrift"], 
-        m: "IT-SICHERHEIT" 
+        m: "IT-SICHERHEIT",
+        t: "single"
     },
     { 
         q: "Was ist erforderlich, wenn das Gesetz 'Schriftlich' verlangt, aber elektronisch gehandelt wird?", 
         a: "Qualifiziert-elektronische Signatur", 
         e: "Die gesetzliche Schriftform kann elektronisch nur durch eine qualifizierte elektronische Signatur ersetzt werden.", 
         o: ["Eingescannte Unterschrift", "Fortgeschrittene Signatur", "Qualifiziert-elektronische Signatur", "E-Mail Bestätigung"], 
-        m: "IT-SICHERHEIT" 
+        m: "IT-SICHERHEIT",
+        t: "single"
     },
     // --- VÖLKERRECHT / IHL / CYBER ---
     { 
@@ -1468,6 +1499,261 @@ const BANK = [{
   ],
   m: "NETZE"
 },
+
+// ===== BANK EXTENSION (Fragen 25–42) =====
+
+/* Frage 25 */
+{
+  q: "Vervollständigen Sie die Definitionen zu Einsatzbereitschaft und Einsatzfähigkeit.",
+  t: "multiple",
+  a: [
+    "Einsatzbereitschaft",
+    "Personal und Material",
+    "Einsatzfähigkeit",
+    "Material"
+  ],
+  o: [
+    "Einsatzbereitschaft",
+    "Einsatzfähigkeit",
+    "Personal und Material",
+    "Material"
+  ],
+  e: "Einsatzbereitschaft: Fähigkeit eines Truppenteils bzw. einer Dienststelle, in Einsatzgliederung mit voller Stärke an Personal und Material einen Auftrag zu erfüllen. Einsatzfähigkeit: Tauglichkeit von Material für den Einsatz.",
+  m: "Arbeitsschutz / Grundlagen"
+},
+
+/* Frage 26 */
+{
+  q: "Was wird unter dem „Schallwert 100.000“ verstanden?",
+  t: "single",
+  a: "Das Lärmbelastungs-Konto, welches nicht leer werden darf",
+  o: [
+    "Das Lärmbelastungs-Konto, welches nicht leer werden darf",
+    "Grenze ab der die Lärmbelastung eine Gefahr für die Gesundheit darstellt",
+    "Die maximale Lärmbelastung für eine Arbeitswoche",
+    "Die maximal mögliche Lautstärke"
+  ],
+  e: "Der Schallwert beschreibt ein Belastungskonto.",
+  m: "Arbeitsschutz"
+},
+
+/* Frage 27 */
+{
+  q: "Was ist bei Übertragungssystemen im Bezug auf Abstrahlsicherheit zu beachten?",
+  t: "single",
+  a: "Je höher die Frequenz und je höher die Sendeleistung, desto größer der Abstrahlbereich",
+  o: [
+    "Je höher die Frequenz und je höher die Sendeleistung, desto größer der Abstrahlbereich",
+    "Je niedriger die Frequenz, desto kleiner der Abstrahlbereich",
+    "Sendeleistung hat keinen Einfluss",
+    "Nur die Antenne beeinflusst den Abstrahlbereich"
+  ],
+  e: "Frequenz und Leistung bestimmen den Abstrahlbereich.",
+  m: "Funktechnik"
+},
+
+/* Frage 28 */
+{
+  q: "Sie wurden von einer Zecke gebissen, wer entfernt diese?",
+  t: "single",
+  a: "Das SanPersonal im Dienst, außerhalb sie selbst",
+  o: [
+    "Sie selbst oder Kameraden im und außerhalb des Dienstes",
+    "Ausschließlich das SanPersonal, da eine Aufnahme in die G-Akte erforderlich ist",
+    "Das SanPersonal im Dienst, außerhalb sie selbst",
+    "Ausschließlich der Arzt"
+  ],
+  e: "Im Dienst ist das SanPersonal zuständig.",
+  m: "Arbeitsschutz"
+},
+
+/* Frage 29 */
+{
+  q: "An welchen der folgenden Orten dürfen im Allgemeinen Übungen abgehalten werden?",
+  t: "multiple",
+  a: ["Staatsforst", "Wohngebiet"],
+  o: [
+    "Naturschutzgebiet",
+    "Staatsforst",
+    "Wohngebiet",
+    "Nationalpark"
+  ],
+  e: "Übungen sind u. a. im Staatsforst und Wohngebiet möglich.",
+  m: "Recht / Übung"
+},
+
+/* Frage 30 */
+{
+  q: "Was sind die Nutzungsbedingungen für privates elektrisches Gerät in der Liegenschaft?",
+  t: "single",
+  a: "Namentliche Zuordnung, 1500 Watt, CE Zeichen",
+  o: [
+    "1500 Watt, feuerfeste Unterlage, CE Zeichen",
+    "Namentliche Zuordnung, 1200 Watt, CE Zeichen",
+    "Namentliche Zuordnung, 1500 Watt, CE Zeichen",
+    "DGUVV3, 1500 Watt, feuerfeste Unterlage"
+  ],
+  e: "Private Geräte benötigen namentliche Zuordnung, CE-Kennzeichnung und max. 1500 W.",
+  m: "Arbeitsschutz"
+},
+
+/* Frage 31 */
+{
+  q: "Wer legt den Umfang der Übergabeprüfung fest?",
+  t: "single",
+  a: "Der Übernehmende",
+  o: [
+    "Der Kommandeur",
+    "Der S4 StOffz",
+    "Der Kompaniechef",
+    "Der Übernehmende"
+  ],
+  e: "Der Übernehmende definiert den Umfang.",
+  m: "Organisation"
+},
+
+/* Frage 32 */
+{
+  q: "Wie lautet die übergeordnete Zielsetzung des Arbeitsschutzes?",
+  t: "single",
+  a: "Gefährdungen ausschließen um die Sicherheit im Dienst und bei der Arbeit zu gewährleisten",
+  o: [
+    "Gefährdungen ausschließen um die Sicherheit im Dienst und bei der Arbeit zu gewährleisten",
+    "Arbeitsschutz zur Vermeidung von Ausfällen",
+    "Unfälle vermeiden und vollständige Sicherheit herstellen",
+    "Gefährdungen verringern"
+  ],
+  e: "Primäres Ziel ist das Ausschließen von Gefährdungen.",
+  m: "Arbeitsschutz"
+},
+
+/* Frage 33 */
+{
+  q: "Auf was deutet ein weiß markierter Deckel bei einem Kanister hin?",
+  t: "single",
+  a: "Trinkwasser",
+  o: ["Diesel", "Petroleum", "Trinkwasser", "Heizöl"],
+  e: "Weiß kennzeichnet Trinkwasser.",
+  m: "Materialkunde"
+},
+
+/* Frage 34 */
+{
+  q: "Zu welchem verbrauchsbezogenen Wehrmaterial gehören Zubehör und Vorratsteile?",
+  t: "single",
+  a: "Einzelverbrauchsgut",
+  o: [
+    "Nichtverbrauchsgut in der TBÜ",
+    "Einzelverbrauchsgut",
+    "Allg. Nichtverbrauchsgut",
+    "Mengenverbrauchsgut"
+  ],
+  e: "Zubehör und Vorratsteile sind Einzelverbrauchsgut.",
+  m: "Materialwirtschaft"
+},
+
+/* Frage 35 */
+{
+  q: "Welche Aussage zur Raumwelle ist richtig?",
+  t: "single",
+  a: "Die Nutzung der Raumwelle ist abhängig von Sonnenaktivität und Tageszeit",
+  o: [
+    "Raumwellen können nur schwer gestört werden",
+    "Hindernisse in Fresnelzonen führen zu Paketverlust",
+    "Raumwellen breiten sich im trockenen Boden besser aus",
+    "Die Nutzung der Raumwelle ist abhängig von Sonnenaktivität und Tageszeit"
+  ],
+  e: "Raumwellen hängen stark von ionosphärischen Bedingungen ab.",
+  m: "Funktechnik"
+},
+
+/* Frage 36 */
+{
+  q: "Welchen Störeinfluss stellt das gezeigte Bild dar?",
+  t: "single",
+  a: "Brechung",
+  o: ["Reflexion", "Streuung", "Brechung", "Beugung"],
+  e: "Das Bild zeigt die Brechung eines Signals.",
+  m: "Funktechnik"
+},
+
+/* Frage 37 */
+{
+  q: "Welche Ausbreitungsart stellt das gezeigte Bild dar?",
+  t: "single",
+  a: "Raumwelle",
+  o: ["Keine der genannten", "Direktwelle", "Raumwelle", "Bodenwelle"],
+  e: "Das Schema zeigt eine Raumwellen-Ausbreitung.",
+  m: "Funktechnik"
+},
+
+/* Frage 38 */
+{
+  q: "Definition von konstruktiver und destruktiver Interferenz.",
+  t: "multiple",
+  a: ["Konstruktive Interferenz", "verstärken", "Destruktive Interferenz", "schwächen"],
+  o: [
+    "Konstruktive Interferenz",
+    "Destruktive Interferenz",
+    "verstärken",
+    "schwächen"
+  ],
+  e: "Gleiche Phasenlage verstärkt, unterschiedliche schwächt.",
+  m: "Funktechnik"
+},
+
+/* Frage 39 */
+{
+  q: "Benennung der dargestellten Antennen.",
+  t: "multiple",
+  a: ["Offsetantenne", "Yagiantenne"],
+  o: ["Offsetantenne", "Yagiantenne", "Dipol", "Richtantenne"],
+  e: "Links Offset-, rechts Yagiantenne.",
+  m: "Antennentechnik"
+},
+
+/* Frage 40 */
+{
+  q: "Ordnen Sie die richtigen Frequenzbereiche zu.",
+  t: "multiple",
+  a: ["ELF", "VLF", "LF", "MF", "HF", "VHF", "UHF"],
+  o: ["ELF", "SLF", "ULF", "VLF", "LF", "MF", "HF", "VHF", "UHF"],
+  e: "Zuordnung gemäß internationaler Funkfrequenzbereiche.",
+  m: "Funktechnik"
+},
+
+/* Frage 41 */
+{
+  q: "Welche Maßnahmen unterstützen die digitale Souveränität der Bundeswehr?",
+  t: "multiple",
+  a: ["Second Source Strategien", "Risikobewertung von Lieferanten"],
+  o: [
+    "Verzicht auf Open-Source",
+    "Software Defined Defense",
+    "Risikobewertung von Lieferanten",
+    "Second Source Strategien"
+  ],
+  e: "Souveränität erfordert Lieferanten- und Risikokontrolle.",
+  m: "CIR Grundlagen"
+},
+
+/* Frage 42 */
+{
+  q: "Was versteht man unter dem durchgängigen Informations- und Kommunikationsverbund?",
+  t: "multiple",
+  a: [
+    "Die durchgängige Vernetzung vom Heimatland zu Einsatzgebieten bis hin zu Einsatzräumen",
+    "Die Vernetzung militärischer Dimensionen miteinander"
+  ],
+  o: [
+    "Führungsprozesse mit IT-Mitteln",
+    "Durchgängige Vernetzung vom Heimatland bis Einsatzraum",
+    "Vernetzung militärischer Dimensionen",
+    "Informationsgewinnung und -verteilung"
+  ],
+  e: "Durchgängiger IuK-Verbund verbindet Räume und Dimensionen.",
+  m: "CIR Grundlagen"
+}
 
 
              ];
