@@ -122,110 +122,235 @@ const BANK = [
 
 ];
 
-/* --- LOGIC --- */
-let activeSet = []; let retryStack = []; let currentIndex = 0; let streak = 0; let isExam = false; let examAnswers = {};
+/* =========================
+   GLOBALS
+   ========================= */
+let activeSet = [];
+let retryStack = [];
+let currentIndex = 0;
+let streak = 0;
+let isExam = false;
+let examAnswers = {};
 
-function shuffle(arr) { for(let i=arr.length-1; i>0; i--){ const j = Math.floor(Math.random()*(i+1)); [arr[i], arr[j]] = [arr[j], arr[i]]; } return arr; }
+/* =========================
+   HELPERS
+   ========================= */
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
 
+/* =========================
+   TRAINER
+   ========================= */
 function initTrainer(filter) {
-    isExam = false; document.getElementById('start-screen').classList.add('hidden'); document.getElementById('trainer-screen').classList.remove('hidden');
-    activeSet = (filter === 'ALL') ? [...BANK] : BANK.filter(x => x.m === filter);
-    shuffle(activeSet); currentIndex = 0; streak = 0; retryStack = []; updateStreak(); loadCard();
+  isExam = false;
+  document.getElementById('start-screen').classList.add('hidden');
+  document.getElementById('trainer-screen').classList.remove('hidden');
+
+  activeSet = filter === "ALL" ? [...BANK] : BANK.filter(q => q.m === filter);
+  shuffle(activeSet);
+
+  currentIndex = 0;
+  retryStack = [];
+  streak = 0;
+  updateStreak();
+  loadTrainerCard();
 }
 
+function loadTrainerCard() {
+  document.getElementById('next-btn').style.display = 'none';
+
+  if (currentIndex >= activeSet.length) {
+    if (retryStack.length) {
+      activeSet = [...retryStack];
+      retryStack = [];
+      currentIndex = 0;
+      shuffle(activeSet);
+    } else {
+      window.location.href = "index.html";
+      return;
+    }
+  }
+
+  const item = activeSet[currentIndex];
+  document.getElementById('t-mod').innerText = item.m;
+  document.getElementById('t-idx').innerText = `${currentIndex + 1}/${activeSet.length}`;
+  document.getElementById('t-question').innerText = item.q;
+  document.getElementById('t-progress').style.width = `${(currentIndex / activeSet.length) * 100}%`;
+
+  const optBox = document.getElementById('t-options');
+  optBox.innerHTML = '';
+  optBox.classList.remove('locked');
+
+  document.getElementById('t-expl').style.display = 'none';
+
+  shuffle([...item.o]).forEach((txt, i) => {
+    const btn = document.createElement('div');
+    btn.className = 'opt-btn';
+    btn.innerHTML = `<strong>${i + 1}</strong>&nbsp;${txt}`;
+    btn.onclick = () => trainerSelect(btn, txt, item);
+    optBox.appendChild(btn);
+  });
+
+  if (item.t === "multiple") {
+    const checkBtn = document.createElement("button");
+    checkBtn.className = "btn btn-primary btn-block";
+    checkBtn.innerText = "Antwort prüfen";
+    checkBtn.onclick = () => {
+      const selected = [...document.querySelectorAll(".opt-btn.selected")].map(b => b.innerText.replace(/^\d+\s*/, ""));
+      evaluateTrainer(selected, item);
+    };
+    optBox.after(checkBtn);
+  }
+}
+
+function trainerSelect(btn, value, item) {
+  if (item.t === "single") {
+    evaluateTrainer([value], item);
+  } else {
+    btn.classList.toggle("selected");
+  }
+}
+
+function evaluateTrainer(selected, item) {
+  document.getElementById('t-options').classList.add('locked');
+
+  const correct = item.a;
+  const ok =
+    selected.length === correct.length &&
+    selected.every(v => correct.includes(v));
+
+  document.querySelectorAll(".opt-btn").forEach(b => {
+    const txt = b.innerText.replace(/^\d+\s*/, "");
+    if (correct.includes(txt)) b.classList.add("correct");
+    else if (selected.includes(txt)) b.classList.add("wrong");
+  });
+
+  const expl = document.getElementById('t-expl');
+  expl.style.display = 'block';
+  document.getElementById('t-expl-title').innerText = ok ? "✓ Korrekt" : "✗ Falsch";
+  document.getElementById('t-expl-text').innerText = item.e;
+
+  streak = ok ? streak + 1 : 0;
+  if (!ok) retryStack.push(item);
+  updateStreak();
+
+  document.getElementById('next-btn').style.display = 'block';
+}
+
+function nextCard() {
+  currentIndex++;
+  loadTrainerCard();
+}
+
+function updateStreak() {
+  document.getElementById('t-streak').innerText = streak;
+}
+
+/* =========================
+   LEARN MODE
+   ========================= */
 function initLearnMode() {
-    document.getElementById('start-screen').classList.add('hidden');
-    document.getElementById('learn-screen').classList.remove('hidden');
-    const container = document.getElementById('learn-list');
-    container.innerHTML = '';
-    BANK.forEach((item, idx) => {
-        const div = document.createElement('div');
-        div.className = 'exam-item';
-        div.innerHTML = `
-            <div class="q-meta">${item.m}</div>
-            <div class="exam-q">${idx+1}. ${item.q}</div>
-            <div class="learn-a">Antwort: ${item.a}</div>
-            <div style="color:var(--muted); font-size:0.9rem; border-top:1px solid var(--border); padding-top:5px; margin-top:5px;">${item.e}</div>
-        `;
-        container.appendChild(div);
-    });
+  document.getElementById('start-screen').classList.add('hidden');
+  document.getElementById('learn-screen').classList.remove('hidden');
+
+  const c = document.getElementById('learn-list');
+  c.innerHTML = '';
+
+  BANK.forEach((q, i) => {
+    const d = document.createElement('div');
+    d.className = 'exam-item';
+    d.innerHTML = `
+      <div class="q-meta">${q.m}</div>
+      <div class="exam-q">${i + 1}. ${q.q}</div>
+      <div class="learn-a">Antwort: ${q.a.join(", ")}</div>
+      <div>${q.e}</div>
+    `;
+    c.appendChild(d);
+  });
 }
 
-function loadCard() {
-    const nextBtn = document.getElementById('next-btn');
-    nextBtn.style.display = 'none';
-    if(currentIndex >= activeSet.length) {
-        if(retryStack.length > 0) { alert(`${retryStack.length} Fehler werden wiederholt.`); activeSet = [...retryStack]; retryStack = []; currentIndex = 0; shuffle(activeSet); } 
-        else { alert("Fertig!"); window.location.href='index.html'; return; }
-    }
-    const item = activeSet[currentIndex];
-    document.getElementById('t-mod').innerText = item.m;
-    document.getElementById('t-idx').innerText = `${currentIndex+1} / ${activeSet.length}`;
-    document.getElementById('t-question').innerText = item.q;
-    document.getElementById('t-progress').style.width = `${(currentIndex/activeSet.length)*100}%`;
-    const c = document.getElementById('t-options');
-    c.innerHTML = ''; c.classList.remove('locked');
-    document.getElementById('t-expl').style.display = 'none';
-    let opts = item.o.map(o => ({ txt:o, isCorrect: o===item.a }));
-    shuffle(opts);
-    opts.forEach((o, i) => {
-        const btn = document.createElement('div');
-        btn.className = 'opt-btn';
-        btn.innerHTML = `<div style="background:rgba(0,0,0,0.3); width:28px; height:28px; display:flex; align-items:center; justify-content:center; border-radius:6px; margin-right:15px;">${i+1}</div> <div>${o.txt}</div>`;
-        btn.onclick = () => checkTrainerAnswer(btn, o.isCorrect, item);
-        c.appendChild(btn);
-    });
-}
-
-function checkTrainerAnswer(btn, isCorrect, item) {
-    if(btn.parentElement.classList.contains('locked')) return;
-    btn.parentElement.classList.add('locked');
-    const ex = document.getElementById('t-expl');
-    ex.style.display = 'block';
-    ex.className = 'expl-box ' + (isCorrect ? 'is-correct' : 'is-wrong');
-    document.getElementById('t-expl-title').innerText = isCorrect ? "✓ Korrekt" : "✗ Falsch";
-    document.getElementById('t-expl-text').innerText = item.e;
-    if(navigator.vibrate) navigator.vibrate(isCorrect ? 50 : 200);
-    if(isCorrect) { btn.classList.add('correct'); streak++; }
-    else { btn.classList.add('wrong'); streak = 0; retryStack.push(item);
-           Array.from(document.querySelectorAll('.opt-btn')).forEach(b => { if(b.innerText.includes(item.a)) b.classList.add('correct'); });
-    }
-    updateStreak();
-    const nb = document.getElementById('next-btn'); nb.style.display = 'block';
-    setTimeout(() => { nb.scrollIntoView({behavior: "smooth", block: "center"}); }, 100);
-}
-
-function nextCard() { currentIndex++; loadCard(); }
-function updateStreak() { document.getElementById('t-streak').innerText = streak; }
-
+/* =========================
+   EXAM MODE
+   ========================= */
 function initExam() {
-    isExam = true; document.getElementById('start-screen').classList.add('hidden'); document.getElementById('exam-screen').classList.remove('hidden');
-    activeSet = shuffle([...BANK]).slice(0, 45);
-    const container = document.getElementById('exam-list'); container.innerHTML = '';
-    activeSet.forEach((item, idx) => {
-        let opts = shuffle([...item.o]);
-        const div = document.createElement('div'); div.className = 'exam-item';
-        div.innerHTML = `<div class="exam-q">${idx+1}. ${item.q}</div>` + 
-            opts.map(o => `<label class="exam-opt"><input type="radio" name="q${idx}" value="${o}" onchange="examAnswers[${idx}]='${o}'"> ${o}</label>`).join('');
-        container.appendChild(div);
+  isExam = true;
+  examAnswers = {};
+
+  document.getElementById('start-screen').classList.add('hidden');
+  document.getElementById('exam-screen').classList.remove('hidden');
+
+  activeSet = shuffle([...BANK]).slice(0, 45);
+  const c = document.getElementById('exam-list');
+  c.innerHTML = '';
+
+  activeSet.forEach((item, idx) => {
+    const d = document.createElement('div');
+    d.className = 'exam-item';
+    d.innerHTML = `<div class="exam-q">${idx + 1}. ${item.q}</div>`;
+
+    shuffle([...item.o]).forEach(o => {
+      const type = item.t === "single" ? "radio" : "checkbox";
+      d.innerHTML += `
+        <label>
+          <input type="${type}" name="q${idx}" value="${o}"
+            onchange="handleExamSelect(${idx}, '${o}', '${item.t}')">
+          ${o}
+        </label><br>
+      `;
     });
+
+    c.appendChild(d);
+  });
+}
+
+function handleExamSelect(idx, value, type) {
+  if (!examAnswers[idx]) examAnswers[idx] = [];
+
+  if (type === "multiple") {
+    if (examAnswers[idx].includes(value))
+      examAnswers[idx] = examAnswers[idx].filter(v => v !== value);
+    else
+      examAnswers[idx].push(value);
+  } else {
+    examAnswers[idx] = [value];
+  }
 }
 
 function submitExam() {
-    let score = 0; activeSet.forEach((item, idx) => { if(examAnswers[idx] === item.a) score++; });
-    const perc = Math.round((score/activeSet.length)*100);
-    const header = document.getElementById('exam-result-header');
-    header.innerHTML = `<div style="background:var(--panel); padding:20px; border-radius:15px; text-align:center; margin-bottom:20px; border:1px solid var(--border)"><h2>${perc}%</h2><p>${score} von ${activeSet.length} richtig</p></div>`;
-    header.classList.remove('hidden'); window.scrollTo(0,0);
+  let score = 0;
+
+  activeSet.forEach((q, i) => {
+    const given = examAnswers[i] || [];
+    const correct = q.a;
+
+    if (
+      given.length === correct.length &&
+      given.every(v => correct.includes(v))
+    ) score++;
+  });
+
+  alert(`Ergebnis: ${score} / ${activeSet.length}`);
 }
 
-const modules = [...new Set(BANK.map(x=>x.m))];
-const modContainer = document.getElementById('module-list');
-modules.forEach(m => {
-    const btn = document.createElement('div'); btn.className = 'mode-card'; 
-    btn.innerHTML = `<span style="font-weight:bold; font-size:0.9rem;">${m}</span>`;
-    btn.onclick = () => initTrainer(m); modContainer.appendChild(btn);
+/* =========================
+   MODULE FILTER
+   ========================= */
+const mods = [...new Set(BANK.map(q => q.m))];
+const mBox = document.getElementById('module-list');
+
+mods.forEach(m => {
+  const b = document.createElement('div');
+  b.className = 'mode-card';
+  b.innerText = m;
+  b.onclick = () => initTrainer(m);
+  mBox.appendChild(b);
 });
+
 </script>
 <a href="index.html" class="btn btn-outline" style="position:fixed; right:16px; bottom:16px; z-index:999; background: var(--bg);">Zurück</a>
 </body>
