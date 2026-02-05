@@ -1,0 +1,1179 @@
+const BANK = [
+/* Frage 1 */
+{
+  q: 'Was ist ein IT-Service gemäß ITIL?',
+  t: 'single',
+  a: ['Ein Mittel zur Wertschöpfung für Kunden durch das Ermöglichen der gewünschten Ergebnisse ohne Übernahme spezifischer Kosten und Risiken'],
+  o: [
+    'Eine IT-Anwendung',
+    'Ein Mittel zur Wertschöpfung für Kunden durch das Ermöglichen der gewünschten Ergebnisse ohne Übernahme spezifischer Kosten und Risiken',
+    'Eine technische Infrastruktur',
+    'Ein Supportvertrag'
+  ],
+  e: 'ITIL definiert einen Service als Mittel zur Wertschöpfung ohne Übertragung von Kosten und Risiken auf den Kunden.',
+  m: 'ITIL – Grundlagen'
+},
+
+/* Frage 2 */
+{
+  q: 'Welche zwei Elemente beschreiben den Wert eines Services?',
+  t: 'multiple',
+  a: [
+    'Nutzen (Utility)',
+    'Gewährleistung (Warranty)'
+  ],
+  o: [
+    'Nutzen (Utility)',
+    'Gewährleistung (Warranty)',
+    'Kosten',
+    'Ressourcen'
+  ],
+  e: 'Der Wert eines Services ergibt sich aus Utility und Warranty.',
+  m: 'ITIL – Service Value'
+},
+
+/* Frage 3 */
+{
+  q: 'Was beschreibt der Begriff „Utility“ im IT Service Management?',
+  t: 'single',
+  a: ['Was der Service tut und welchen Nutzen er bietet'],
+  o: [
+    'Wie der Service bereitgestellt wird',
+    'Was der Service tut und welchen Nutzen er bietet',
+    'Die Kosten eines Services',
+    'Die Verfügbarkeit eines Services'
+  ],
+  e: 'Utility beschreibt den funktionalen Nutzen eines Services.',
+  m: 'ITIL – Service Value'
+},
+
+/* Frage 4 */
+{
+  q: 'Was beschreibt der Begriff „Warranty“?',
+  t: 'single',
+  a: ['Wie zuverlässig und sicher ein Service bereitgestellt wird'],
+  o: [
+    'Welche Funktionen ein Service besitzt',
+    'Wie zuverlässig und sicher ein Service bereitgestellt wird',
+    'Welche Kosten entstehen',
+    'Welche Risiken der Kunde trägt'
+  ],
+  e: 'Warranty beschreibt die Qualität der Servicebereitstellung.',
+  m: 'ITIL – Service Value'
+},
+
+/* Frage 5 */
+{
+  q: 'Welche Aussage beschreibt einen Kunden im ITIL-Kontext?',
+  t: 'single',
+  a: ['Der Empfänger eines Services'],
+  o: [
+    'Der Betreiber eines IT-Services',
+    'Der Empfänger eines Services',
+    'Der Lieferant eines Services',
+    'Der Eigentümer der Infrastruktur'
+  ],
+  e: 'Der Kunde ist der Empfänger eines Services.',
+  m: 'ITIL – Grundlagen'
+},
+
+/* Frage 6 */
+{
+  q: 'Welche Rolle ist für das Erreichen der Geschäftsergebnisse eines Services verantwortlich?',
+  t: 'single',
+  a: ['Service Owner'],
+  o: [
+    'Incident Manager',
+    'Service Owner',
+    'Change Manager',
+    'Problem Manager'
+  ],
+  e: 'Der Service Owner trägt die Gesamtverantwortung für einen Service.',
+  m: 'ITIL – Rollen'
+},
+
+/* Frage 7 */
+{
+  q: 'Welche Aussage beschreibt einen Prozess am BESTEN?',
+  t: 'single',
+  a: ['Eine strukturierte Reihe von Aktivitäten zur Erreichung eines definierten Ziels'],
+  o: [
+    'Eine Organisationseinheit',
+    'Eine technische Komponente',
+    'Eine strukturierte Reihe von Aktivitäten zur Erreichung eines definierten Ziels',
+    'Ein einzelner Arbeitsschritt'
+  ],
+  e: 'Prozesse bestehen aus strukturierten Aktivitäten mit klaren Zielen.',
+  m: 'ITIL – Prozesse'
+},
+
+/* Frage 8 */
+{
+  q: 'Welche Aussage trifft auf eine Funktion im IT Service Management zu?',
+  t: 'single',
+  a: ['Eine Gruppe von Personen oder Tools zur Durchführung bestimmter Aktivitäten'],
+  o: [
+    'Eine Abfolge von Prozessschritten',
+    'Eine Gruppe von Personen oder Tools zur Durchführung bestimmter Aktivitäten',
+    'Ein Vertrag mit Kunden',
+    'Ein Service Level'
+  ],
+  e: 'Funktionen bündeln Ressourcen für bestimmte Aufgaben.',
+  m: 'ITIL – Funktionen'
+},
+
+/* Frage 9 */
+{
+  q: 'Welche der folgenden sind typische ITIL-Funktionen?',
+  t: 'multiple',
+  a: [
+    'Service Desk',
+    'IT Operations Management'
+  ],
+  o: [
+    'Service Desk',
+    'IT Operations Management',
+    'Supplier Management',
+    'Change Advisory Board'
+  ],
+  e: 'Service Desk und IT Operations Management sind klassische ITIL-Funktionen.',
+  m: 'ITIL – Funktionen'
+},
+
+/* Frage 10 */
+{
+  q: 'Welche Aufgabe hat der Service Desk?',
+  t: 'single',
+  a: ['Single Point of Contact für Anwender'],
+  o: [
+    'Genehmigung von Changes',
+    'Single Point of Contact für Anwender',
+    'Analyse von Problemen',
+    'Verhandlung von SLAs'
+  ],
+  e: 'Der Service Desk ist die zentrale Anlaufstelle für Anwender.',
+  m: 'ITIL – Service Desk'
+},
+
+/* Frage 11 */
+{
+  q: 'Welche Aussage beschreibt den Zweck des Servicekatalogs?',
+  t: 'single',
+  a: ['Bereitstellung einer Übersicht aller verfügbaren Services'],
+  o: [
+    'Dokumentation aller Incidents',
+    'Bereitstellung einer Übersicht aller verfügbaren Services',
+    'Auflistung aller CIs',
+    'Dokumentation von Changes'
+  ],
+  e: 'Der Servicekatalog beschreibt alle verfügbaren IT-Services.',
+  m: 'ITIL – Service Catalogue Management'
+},
+
+/* Frage 12 */
+{
+  q: 'Welche Aussage beschreibt ein Service Level Agreement (SLA)?',
+  t: 'single',
+  a: ['Eine Vereinbarung zwischen Service Provider und Kunde über Servicequalität'],
+  o: [
+    'Eine interne Arbeitsanweisung',
+    'Eine Vereinbarung zwischen Service Provider und Kunde über Servicequalität',
+    'Ein Vertrag mit Lieferanten',
+    'Ein technisches Design-Dokument'
+  ],
+  e: 'SLAs definieren die vereinbarte Servicequalität.',
+  m: 'ITIL – Service Level Management'
+},
+
+/* Frage 13 */
+{
+  q: 'Welche Dokumente unterstützen ein SLA?',
+  t: 'multiple',
+  a: [
+    'Operational Level Agreements (OLAs)',
+    'Underpinning Contracts (UCs)'
+  ],
+  o: [
+    'Operational Level Agreements (OLAs)',
+    'Underpinning Contracts (UCs)',
+    'Change Requests',
+    'Incident Records'
+  ],
+  e: 'OLAs und UCs unterstützen die Erfüllung von SLAs.',
+  m: 'ITIL – Service Level Management'
+},
+
+/* Frage 14 */
+{
+  q: 'Welche Aussage beschreibt den Zweck der Service Strategy?',
+  t: 'single',
+  a: ['Festlegung, welche Services angeboten werden und welchen Wert sie liefern'],
+  o: [
+    'Betrieb von IT-Services',
+    'Festlegung, welche Services angeboten werden und welchen Wert sie liefern',
+    'Überführung von Services in den Betrieb',
+    'Überwachung von Services'
+  ],
+  e: 'Service Strategy definiert das Serviceangebot und dessen Nutzen.',
+  m: 'ITIL – Service Strategy'
+},
+
+/* Frage 15 */
+{
+  q: 'Welche Phase des Servicelebenszyklus folgt auf die Service Strategy?',
+  t: 'single',
+  a: ['Service Design'],
+  o: [
+    'Service Operation',
+    'Service Transition',
+    'Service Design',
+    'Continual Service Improvement'
+  ],
+  e: 'Nach der Strategie folgt die Designphase.',
+  m: 'ITIL – Service Lifecycle'
+},
+
+/* Frage 16 */
+{
+  q: 'Welche Aussage beschreibt den Zweck der Service Transition?',
+  t: 'single',
+  a: ['Sicherstellung, dass neue oder geänderte Services erfolgreich in den Betrieb überführt werden'],
+  o: [
+    'Entwicklung neuer Services',
+    'Sicherstellung, dass neue oder geänderte Services erfolgreich in den Betrieb überführt werden',
+    'Überwachung von Services',
+    'Optimierung bestehender Services'
+  ],
+  e: 'Service Transition sorgt für einen kontrollierten Übergang in den Betrieb.',
+  m: 'ITIL – Service Transition'
+},
+
+/* Frage 17 */
+{
+  q: 'Welche Phase befasst sich mit dem täglichen Betrieb der IT-Services?',
+  t: 'single',
+  a: ['Service Operation'],
+  o: [
+    'Service Strategy',
+    'Service Design',
+    'Service Transition',
+    'Service Operation'
+  ],
+  e: 'Service Operation verantwortet den laufenden Betrieb.',
+  m: 'ITIL – Service Operation'
+},
+
+/* Frage 18 */
+{
+  q: 'Welche Aussage beschreibt Continual Service Improvement (CSI)?',
+  t: 'single',
+  a: ['Kontinuierliche Verbesserung von Services und Prozessen'],
+  o: [
+    'Einmalige Optimierung von Services',
+    'Kontinuierliche Verbesserung von Services und Prozessen',
+    'Überwachung von Incidents',
+    'Einführung neuer Services'
+  ],
+  e: 'CSI ist ein fortlaufender Verbesserungsprozess.',
+  m: 'ITIL – Continual Service Improvement'
+},
+
+/* Frage 19 */
+{
+  q: 'Welche Methode wird im CSI-Ansatz verwendet?',
+  t: 'single',
+  a: ['PDCA-Zyklus'],
+  o: [
+    'SWOT-Analyse',
+    'PDCA-Zyklus',
+    'Brainstorming',
+    'Waterfall-Modell'
+  ],
+  e: 'CSI nutzt u. a. den Plan-Do-Check-Act-Zyklus.',
+  m: 'ITIL – Continual Service Improvement'
+},
+
+/* Frage 20 */
+{
+  q: 'Was ist ein Configuration Item (CI)?',
+  t: 'single',
+  a: ['Jede Komponente, die zur Bereitstellung eines IT-Services beiträgt'],
+  o: [
+    'Ein Vertrag mit einem Kunden',
+    'Jede Komponente, die zur Bereitstellung eines IT-Services beiträgt',
+    'Ein Incident',
+    'Ein Service Level'
+  ],
+  e: 'CIs sind Bestandteile von IT-Services.',
+  m: 'ITIL – Service Asset & Configuration Management'
+},
+
+/* Frage 21 */
+{
+  q: 'Wo werden Informationen über Configuration Items gespeichert?',
+  t: 'single',
+  a: ['Configuration Management System (CMS)'],
+  o: [
+    'Service Catalogue',
+    'Incident Database',
+    'Configuration Management System (CMS)',
+    'Definitive Media Library'
+  ],
+  e: 'Das CMS enthält Informationen über alle CIs.',
+  m: 'ITIL – Service Asset & Configuration Management'
+},
+
+/* Frage 22 */
+{
+  q: 'Welche Aussage beschreibt den Zweck des Change Advisory Boards (CAB)?',
+  t: 'single',
+  a: ['Bewertung und Empfehlung von Changes'],
+  o: [
+    'Umsetzung von Changes',
+    'Bewertung und Empfehlung von Changes',
+    'Überwachung von Services',
+    'Analyse von Problemen'
+  ],
+  e: 'Das CAB unterstützt das Change Management durch fachliche Bewertung.',
+  m: 'ITIL – Change Management'
+},
+
+/* Frage 23 */
+{
+  q: 'Welche Aussage ist KEIN Ziel des Change Management Prozesses?',
+  t: 'single',
+  a: ['IT Services zu den vereinbarten Leveln für Geschäftsanwender bereitstellen und managen'],
+  o: [
+    'Sicherstellen, dass Changes aufgezeichnet und evaluiert werden',
+    'Sicherstellen, dass Change-Auswirkungen verstanden werden',
+    'Sicherstellen, dass alle Changes an Configuration Items (CIs) im Configuration Management System aufgezeichnet werden',
+    'IT Services zu den vereinbarten Leveln für Geschäftsanwender bereitstellen und managen'
+  ],
+  e: 'Das Bereitstellen und Managen von IT-Services zu vereinbarten Service Levels ist Aufgabe des Service Level Managements, nicht des Change Managements.',
+  m: 'ITIL – Change Management'
+},
+
+/* Frage 24 */
+{
+  q: 'Welche der folgenden Aussagen definiert den Begriff „Service Management“ am BESTEN?',
+  t: 'single',
+  a: ['Eine Reihe spezialisierter organisatorischer Fähigkeiten für die Generierung eines Mehrwerts für Kunden in Form von Services'],
+  o: [
+    'Organisationseinheiten, die Rollen verwenden, um bestimmte Aktivitäten durchzuführen',
+    'Eine Reihe interagierender, zusammenhängender oder unabhängiger Komponenten, die als „Ganzes“ einem gemeinsamen Zweck dienen',
+    'Das Management von Funktionen innerhalb einer Organisation, um bestimmte Aktivitäten durchzuführen',
+    'Eine Reihe spezialisierter organisatorischer Fähigkeiten für die Generierung eines Mehrwerts für Kunden in Form von Services'
+  ],
+  e: 'ITIL definiert Service Management als organisatorische Fähigkeiten zur Wertschöpfung für Kunden durch Services.',
+  m: 'ITIL – Grundlagen'
+},
+
+/* Frage 25 */
+{
+  q: 'Wofür ist das Supplier Management verantwortlich?',
+  t: 'single',
+  a: ['Verhandlung und Abschluss von Verträgen mit Dritten'],
+  o: [
+    'Verhandlung und Abschluss von Operational Level Agreements (OLAs)',
+    'Verhandlung und Abschluss von Verträgen mit Dritten',
+    'Verhandlung und Abschluss von Service Level Agreements (SLAs)',
+    'Verhandlung und Abschluss des Serviceportfolios'
+  ],
+  e: 'Supplier Management ist für Verträge mit externen Lieferanten verantwortlich.',
+  m: 'ITIL – Supplier Management'
+},
+
+/* Frage 26 */
+{
+  q: 'Welche Phase des Servicelebenszyklus befasst sich am EHSTEN mit der Definition von Richtlinien und Zielen?',
+  t: 'single',
+  a: ['Service Design'],
+  o: [
+    'Service Transition',
+    'Continual Service Improvement',
+    'Service Design',
+    'Service Operation'
+  ],
+  e: 'In der Phase Service Design werden Richtlinien, Ziele und Designs für Services festgelegt.',
+  m: 'ITIL – Service Lifecycle'
+},
+
+/* Frage 27 */
+{
+  q: 'Welcher Prozess befasst sich mit dem Monitoring eines IT Service und mit dem Erkennen, wann die Leistung unter ein akzeptables Limit fällt?',
+  t: 'single',
+  a: ['Event Management'],
+  o: [
+    'Problem Management',
+    'Event Management',
+    'Service Catalogue Management',
+    'Service Asset and Configuration Management'
+  ],
+  e: 'Event Management überwacht Services und erkennt Abweichungen von definierten Schwellenwerten.',
+  m: 'ITIL – Event Management'
+},
+
+/* Frage 28 */
+{
+  q: 'Welcher Begriff beschäftigt sich mit Richtlinien und Führung?',
+  t: 'single',
+  a: ['Governance'],
+  o: [
+    'Service Level Management',
+    'Capacity Management',
+    'Governance',
+    'Service Design'
+  ],
+  e: 'Governance umfasst Richtlinien, Steuerung und Führung von Organisationen.',
+  m: 'ITIL – Governance'
+},
+
+/* Frage 29 */
+{
+  q: 'Welche Aussage beschreibt am BESTEN den Begriff „Service Design“?',
+  t: 'single',
+  a: ['Gestaltung neuer oder geänderter Services zur Erfüllung geschäftlicher Anforderungen'],
+  o: [
+    'Betrieb und Überwachung von IT-Services',
+    'Gestaltung neuer oder geänderter Services zur Erfüllung geschäftlicher Anforderungen',
+    'Überführung von Services in den operativen Betrieb',
+    'Kontinuierliche Verbesserung bestehender Services'
+  ],
+  e: 'Service Design befasst sich mit der Konzeption neuer oder geänderter Services.',
+  m: 'ITIL – Service Design'
+},
+
+/* Frage 30 */
+{
+  q: 'Geben Sie an, welche Aufgaben üblicherweise Informationssicherheitsbeauftragte haben.',
+  t: 'multiple',
+  a: [
+    'Die Entwicklung von Sicherheitskonzepten zu koordinieren',
+    'Der Führungsebene über den Stand der Informationssicherheit zu berichten'
+  ],
+  o: [
+    'Der Führungsebene über den Stand der Informationssicherheit zu berichten',
+    'Die eingesetzte Sicherheitstechnik zu konfigurieren',
+    'Externe Anfragen zum Stand der Informationssicherheit innerhalb der Dst zu beantworten',
+    'Die Entwicklung von Sicherheitskonzepten zu koordinieren'
+  ],
+  e: 'Informationssicherheitsbeauftragte haben koordinierende und berichtende Aufgaben, nicht die operative Technikverantwortung.',
+  m: 'Informationssicherheit'
+},
+
+/* Frage 31 */
+{
+  q: 'Geben Sie an, was die Aufgaben des CISOBw sind.',
+  t: 'multiple',
+  a: [
+    'Herausgeben eines Jahresberichts zur InfoSich',
+    'Steuerung des Incidentmanagement bei InfoSichVork von besonderer Bedeutung',
+    'Steuerung aller operativen Aufgaben der InfoSich'
+  ],
+  o: [
+    'Durchführung von computerforensischen Untersuchungen',
+    'Herausgeben eines Jahresberichts zur InfoSich',
+    'Steuerung des Incidentmanagement bei InfoSichVork von besonderer Bedeutung',
+    'Steuerung aller operativen Aufgaben der InfoSich'
+  ],
+  e: 'Der CISOBw hat eine steuernde und berichtende Rolle auf strategischer Ebene.',
+  m: 'Informationssicherheit'
+},
+
+/* Frage 32 */
+{
+  q: 'Nach welchem Ablauf wird die Risikoanalyse durchgeführt?',
+  t: 'single',
+  a: ['Identifikation von Risiken, Analyse von Risiken, Evaluation oder Bewertung von Risiken, Behandlung von Risiken'],
+  o: [
+    'Identifikation von Risiken, Analyse von Risiken, Evaluation oder Bewertung von Risiken, Behandlung von Risiken',
+    'Identifizieren von Risiken, Identifikation von Maßnahmen zur Behebung, Anwenden der Maßnahmen, Peer-Review der Systeme',
+    'Identifikation von Risiken, Durchführen einer Nutzerbefragung, Anpassen der Risikoidentifikation, Bewertung der neuen Lage',
+    'Feststellen der Schwachstellen, Beheben der Schwachstellen, Hinzufügen von Risikobehandlungsmethoden'
+  ],
+  e: 'Die Risikoanalyse folgt einem strukturierten Ablauf von Identifikation bis Behandlung der Risiken.',
+  m: 'Risikomanagement'
+},
+
+/* Frage 33 */
+{
+  q: 'Welche Aussage beschreibt die Definitive Media Library (DML) am BESTEN?',
+  t: 'single',
+  a: ['Eine sichere Bibliothek, in der alle endgültigen und autorisierten Versionen der Medien-Configuration Items (Medien-CIs) gespeichert und gesichert werden'],
+  o: [
+    'Eine Datenbank, in der die Definitionen aller Medien-CIs enthalten sind',
+    'Eine sichere Bibliothek, in der alle endgültigen und autorisierten Versionen der Medien-Configuration Items (Medien-CIs) gespeichert und gesichert werden',
+    'Ein sicherer Ort, an dem kritischer Hardware-Ersatz gelagert wird',
+    'Eine sichere Bibliothek, in der alle maßgeblichen und genehmigten Softwareversionen und Backups gespeichert und gesichert werden'
+  ],
+  e: 'Die DML enthält ausschließlich autorisierte und finale Versionen von Medien-CIs.',
+  m: 'ITIL – Service Asset & Configuration Management'
+},
+
+/* Frage 34 */
+{
+  q: 'Wozu leisten Kundenwahrnehmung und Geschäftsergebnisse einen Beitrag?',
+  t: 'single',
+  a: ['Zur Definition der Wertschöpfung eines Service'],
+  o: [
+    'Zur Definition von Key Performance Indicators (KPIs)',
+    'Zur Definition der Wertschöpfung eines Service',
+    'Zur Definition von Total Cost of Ownership (TCO)',
+    'Zur Definition von Governance'
+  ],
+  e: 'Wertschöpfung ergibt sich aus Kundennutzen und Geschäftsergebnissen.',
+  m: 'ITIL – Service Value'
+},
+
+/* Frage 35 */
+{
+  q: 'Welche Aussage ist die BESTE Definition von Zuverlässigkeit?',
+  t: 'single',
+  a: ['Wie lange ein Service oder ein Configuration Item (CI) seine Funktion ohne Ausfall erfüllen kann'],
+  o: [
+    'Die Geschwindigkeit, in der ein Service oder eine Komponente wiederhergestellt werden kann',
+    'Wie lange ein Service oder ein Configuration Item (CI) seine Funktion ohne Ausfall erfüllen kann',
+    'Der Risikograd, der einen Service oder einen Prozess beeinflusst',
+    'Die Verfügbarkeit eines Service oder einer Komponente'
+  ],
+  e: 'Zuverlässigkeit beschreibt die ausfallfreie Betriebsdauer.',
+  m: 'ITIL – Service Design'
+},
+
+/* Frage 36 */
+{
+  q: 'Welche Aktivitäten erfolgen in der Phase „Wo möchten wir stehen?“ beim Continual Service Improvement Ansatz (CSI-Ansatz)?',
+  t: 'single',
+  a: ['Definition messbarer Ziele'],
+  o: [
+    'Review der Messungen und Messgrößen',
+    'Erstellung einer Baseline',
+    'Definition messbarer Ziele',
+    'Implementierung von Service- und Prozessverbesserungen'
+  ],
+  e: 'In dieser CSI-Phase werden klare und messbare Zielzustände definiert.',
+  m: 'ITIL – Continual Service Improvement'
+},
+
+/* Frage 37 */
+{
+  q: 'Welche Gebiete im Service Management ziehen Nutzen aus der Automatisierung?',
+  t: 'single',
+  a: ['Alle genannten'],
+  o: [
+    'Nur 2, 3 und 4',
+    'Alle genannten',
+    'Nur 1, 2 und 3',
+    'Nur 1, 3 und 4'
+  ],
+  e: 'Automatisierung unterstützt Design, Reporting, Analyse sowie Überwachung.',
+  m: 'ITIL – Automatisierung'
+},
+
+/* Frage 38 */
+{
+  q: 'In welcher Phase des Servicelebenszyklus werden die für den Betrieb neuer Services erforderlichen Prozesse definiert?',
+  t: 'single',
+  a: ['Service Design: Prozesse designen'],
+  o: [
+    'Service Transition: Deployment planen und vorbereiten',
+    'Service Operation: IT Operations Management',
+    'Service Strategy: Angebote entwickeln',
+    'Service Design: Prozesse designen'
+  ],
+  e: 'Service Design definiert alle Prozesse für den späteren Betrieb.',
+  m: 'ITIL – Service Lifecycle'
+},
+
+/* Frage 39 */
+{
+  q: 'Welche der folgenden Punkte sind im Allgemeinen in einem Underpinning Contract für einen IT Service zu finden?',
+  t: 'single',
+  a: ['Alle oben genannten'],
+  o: [
+    'Alle oben genannten',
+    'Nur 2 und 3',
+    'Nur 1 und 2',
+    'Nur 1 und 3'
+  ],
+  e: 'Underpinning Contracts regeln Leistungen, Verantwortung und finanzielle Aspekte.',
+  m: 'ITIL – Supplier Management'
+},
+
+/* Frage 40 */
+{
+  q: 'Was wird anhand von Service-Messgrößen gemessen?',
+  t: 'single',
+  a: ['End-to-End Service'],
+  o: [
+    'Verfügbarkeit der Infrastruktur',
+    'Reife und Kosten',
+    'End-to-End Service',
+    'Funktionen'
+  ],
+  e: 'Service-Messgrößen betrachten den Service ganzheitlich.',
+  m: 'ITIL – Service Measurement'
+},
+
+/* Frage 41 */
+{
+  q: 'Was sollte ein Kunde immer durch einen Service erhalten?',
+  t: 'single',
+  a: ['Wertschöpfung'],
+  o: [
+    'Ressourcen',
+    'Anwendungen',
+    'Infrastruktur',
+    'Wertschöpfung'
+  ],
+  e: 'Der zentrale Zweck eines Services ist die Wertschöpfung für den Kunden.',
+  m: 'ITIL – Service Value'
+},
+
+/* Frage 42 */
+{
+  q: 'Welcher Prozess ist dafür zuständig, mit dem Kunden die Berichte über die Zielerreichung von Services zu besprechen?',
+  t: 'single',
+  a: ['Service Level Management'],
+  o: [
+    'Continual Service Improvement',
+    'Change Management',
+    'Availability Management',
+    'Service Level Management'
+  ],
+  e: 'Service Level Management verantwortet Reporting und Zielabstimmung mit Kunden.',
+  m: 'ITIL – Service Level Management'
+},
+
+/* Frage 43 */
+{
+  q: 'Welche Aussage trifft auf den Begriff „Major Incident Team“ (MIT) zu?',
+  t: 'single',
+  a: ['Es handelt sich um ein temporär eingerichtetes Team zur Bewältigung von Incidents mit besonders hoher Auswirkung'],
+  o: [
+    'Es ist ein dauerhaft bestehendes Expertenteam für Sicherheitsvorfälle',
+    'Es handelt sich um ein temporär eingerichtetes Team zur Bewältigung von Incidents mit besonders hoher Auswirkung',
+    'Es ist ein Gremium zur Genehmigung von Changes',
+    'Es ist eine Organisationseinheit zur Planung von Notfallmaßnahmen'
+  ],
+  e: 'Ein Major Incident Team wird temporär gebildet, um schwerwiegende Incidents koordiniert zu bewältigen.',
+  m: 'ITIL – Incident Management'
+},
+
+/* Frage 44 */
+{
+  q: 'Welche Aussage beschreibt das Ziel des Incident Managements am BESTEN?',
+  t: 'single',
+  a: ['Den normalen Servicebetrieb schnellstmöglich wiederherzustellen'],
+  o: [
+    'Problems und daraus resultierende Incidents zu vermeiden',
+    'Wiederkehrende Incidents zu vermeiden',
+    'Den normalen Servicebetrieb schnellstmöglich wiederherzustellen',
+    'Die Auswirkungen von Incidents zu minimieren, die nicht verhindert werden können'
+  ],
+  e: 'Incident Management fokussiert sich auf die schnelle Wiederherstellung des Servicebetriebs.',
+  m: 'ITIL – Incident Management'
+},
+
+/* Frage 45 */
+{
+  q: 'Welche Aussage über die Betriebsführungsorganisation trifft NICHT zu?',
+  t: 'single',
+  a: ['Für jedes Einsatzgebiet außerhalb DEU gibt es eine, ggf. mehrere betrieblich verantwortliche BtrbFüEinr i. E.'],
+  o: [
+    'Für Einsatzaufgaben (insbesondere Dauereinsatzaufgaben), die aus DEU heraus wahrgenommen werden, nimmt die BtrbFüEinr IT-SysBw auch die Aufgaben der BtrbFüEinr i. E. wahr',
+    'Für jedes Einsatzgebiet außerhalb DEU gibt es eine, ggf. mehrere betrieblich verantwortliche BtrbFüEinr i. E.',
+    'BtrbFüEinr IT-SysBw nimmt die Verantwortung für die Community of Interest (COI) Services im Anteil BtrbFü/Btrb wahr',
+    'Das IT-FKZ Marine (Anteil BtrbFü/Btrb) ist für die ständige Verantwortung für die Anbindung segehender Einheiten verantwortlich'
+  ],
+  e: 'Die Aussage zur betrieblichen Verantwortung außerhalb DEU ist in dieser Form nicht korrekt.',
+  m: 'IT-SysBw – Betriebsführung'
+},
+
+/* Frage 46 */
+{
+  q: 'Wer trägt die Gesamtverantwortung für die Betriebsführung und den operationellen Betrieb der IT im IT-SysBw?',
+  t: 'single',
+  a: ['Die BtrbFüEinr IT-SysBw'],
+  o: [
+    'Das Führungs- und Kontrollzentrum IT (FüKZ-IT)',
+    'Die BtrbFüEinr i. E.',
+    'Die BtrbFüEinr IT-SysBw',
+    'Das IT-Fach- und Kompetenzzentrum CIR'
+  ],
+  e: 'Die Gesamtverantwortung liegt bei der Betriebsführungseinrichtung IT-SysBw.',
+  m: 'IT-SysBw – Betriebsführung'
+},
+
+/* Frage 47 */
+{
+  q: 'Welche der folgend aufgeführten Prozessziele treffen für den Change Management Prozess (ChM) zu?',
+  t: 'multiple',
+  a: [
+    'Das ChM hat das Ziel, auf geänderte oder neue operative Forderungen effektiv und effizient reagieren zu können',
+    'Die wesentlichen Aktivitäten des ChM sind Erfassen, Bewerten, Kategorisierung, Genehmigung, Planung, Testen, Freigabe und Ausführung, sowie das erneute Testen und Freigeben in der betrieblichen Produktiv-Umgebung',
+    'Bei der Umsetzung berücksichtigt der ChM Prozess die durch die Changes ggf. verursachten Leistungseinbußen betroffener IT-Services'
+  ],
+  o: [
+    'Das ChM hat das Ziel, auf geänderte oder neue operative Forderungen effektiv und effizient reagieren zu können',
+    'Die wesentlichen Aktivitäten des ChM sind Erfassen, Bewerten, Kategorisierung, Genehmigung, Planung, Testen, Freigabe und Ausführung, sowie das erneute Testen und Freigeben in der betrieblichen Produktiv-Umgebung',
+    'Changes werden nach folgender Einteilung kategorisiert: Standard Change, Normal Change, Crisis Change',
+    'Bei der Umsetzung berücksichtigt der ChM Prozess die durch die Changes ggf. verursachten Leistungseinbußen betroffener IT-Services'
+  ],
+  e: 'Change Management verfolgt mehrere strategische und operative Prozessziele.',
+  m: 'ITIL – Change Management'
+},
+
+/* Frage 48 */
+{
+  q: 'Bringen Sie die u.g. Entitäten, mit der niedrigsten Entität beginnend, von links nach rechts in eine hierarchisch aufsteigende Reihenfolge!',
+  t: 'single',
+  a: ['Betriebselement → Betriebseinrichtung → Betriebsführungselement → Betriebsführungseinrichtung'],
+  o: [
+    'Betriebselement → Betriebseinrichtung → Betriebsführungselement → Betriebsführungseinrichtung',
+    'Betriebseinrichtung → Betriebselement → Betriebsführungseinrichtung → Betriebsführungselement',
+    'Betriebsführungselement → Betriebselement → Betriebseinrichtung → Betriebsführungseinrichtung',
+    'Betriebsführungseinrichtung → Betriebsführungselement → Betriebseinrichtung → Betriebselement'
+  ],
+  e: 'Die Reihenfolge spiegelt die hierarchische Struktur der Betriebsführungsentitäten wider.',
+  m: 'IT-SysBw – Betriebsführung'
+},
+
+/* Frage 49 */
+{
+  q: 'Welche Aspekte muss ein SLA, welches im IT-SM Bereich „Einsatz und Betrieb“ verantwortet wird, u.a. berücksichtigen?',
+  t: 'multiple',
+  a: [
+    'IT-Service Beschreibung und Definition',
+    'IT-Servicelevel als Qualitätsausprägung',
+    'Change Prozeduren mit Beschreibung der Verfahren',
+    'Regelungen zu Vertraulichkeit und Geheimhaltung'
+  ],
+  o: [
+    'IT-Servicelevel als Qualitätsausprägung',
+    'Change Prozeduren mit Beschreibung der Verfahren',
+    'IT-Service Beschreibung und Definition',
+    'Regelungen zu Vertraulichkeit und Geheimhaltung'
+  ],
+  e: 'Ein SLA umfasst technische, organisatorische und sicherheitsrelevante Aspekte.',
+  m: 'ITIL – Service Level Management'
+},
+
+/* Frage 50 */
+{
+  q: 'Welche der folgend aufgeführten Aussagen treffen für das Incident Management (InM) zu?',
+  t: 'multiple',
+  a: [
+    'Der InM Prozess dient im Wesentlichen der Erfüllung schnellstmöglicher Wiederherstellung der vereinbarten Service Qualität',
+    'Der Prozess InM umfasst die Bearbeitung von nicht geplanten Unterbrechungen oder Qualitätsminderungen eines IT-Services'
+  ],
+  o: [
+    'Ein Incident entspricht im Wesentlichen einem Security Event',
+    'Der InM Prozess dient im Wesentlichen der Erfüllung schnellstmöglicher Wiederherstellung der vereinbarten Service Qualität',
+    'Der Prozess InM umfasst die Bearbeitung von nicht geplanten Unterbrechungen oder Qualitätsminderungen eines IT-Services',
+    'Zugriffsrechte innerhalb IT-Services werden nachvollziehbar und zielgerichtet verwaltet'
+  ],
+  e: 'Incident Management fokussiert sich auf ungeplante Serviceunterbrechungen und deren schnelle Behebung.',
+  m: 'ITIL – Incident Management'
+},
+
+/* Frage 51 */
+{
+  q: 'Welche Rolle ist im Incident Management für die Gesamtkoordination bei schwerwiegenden Incidents verantwortlich?',
+  t: 'single',
+  a: ['Incident Manager'],
+  o: [
+    'Service Owner',
+    'Incident Manager',
+    'Change Manager',
+    'Problem Manager'
+  ],
+  e: 'Der Incident Manager koordiniert die Bearbeitung schwerwiegender Incidents.',
+  m: 'ITIL – Incident Management'
+},
+
+/* Frage 52 */
+{
+  q: 'Welche Aufgabe gehört NICHT zum Problem Management?',
+  t: 'single',
+  a: ['Den normalen Servicebetrieb schnellstmöglich wiederherzustellen'],
+  o: [
+    'Problems und daraus resultierende Incidents zu vermeiden',
+    'Wiederkehrende Incidents zu vermeiden',
+    'Den normalen Servicebetrieb schnellstmöglich wiederherzustellen',
+    'Die Auswirkungen von Incidents zu minimieren, die nicht verhindert werden können'
+  ],
+  e: 'Die Wiederherstellung des Servicebetriebs ist Aufgabe des Incident Managements.',
+  m: 'ITIL – Problem Management'
+},
+
+/* Frage 53 */
+{
+  q: 'Welche Aussage beschreibt den Zweck des Problem Managements am BESTEN?',
+  t: 'single',
+  a: ['Die Ursachen von Incidents zu identifizieren und nachhaltige Lösungen zu entwickeln'],
+  o: [
+    'Den normalen Servicebetrieb schnellstmöglich wiederherzustellen',
+    'Die Ursachen von Incidents zu identifizieren und nachhaltige Lösungen zu entwickeln',
+    'Änderungen an IT-Services kontrolliert umzusetzen',
+    'Service Level mit Kunden zu vereinbaren'
+  ],
+  e: 'Problem Management zielt auf Ursachenanalyse und dauerhafte Problemlösungen ab.',
+  m: 'ITIL – Problem Management'
+},
+
+/* Frage 54 */
+{
+  q: 'Welche der folgenden Aussagen treffen auf Known Errors zu?',
+  t: 'multiple',
+  a: [
+    'Known Errors haben eine bekannte Ursache',
+    'Known Errors besitzen einen dokumentierten Workaround'
+  ],
+  o: [
+    'Known Errors haben eine bekannte Ursache',
+    'Known Errors sind vollständig gelöste Probleme',
+    'Known Errors besitzen einen dokumentierten Workaround',
+    'Known Errors treten ausschließlich einmalig auf'
+  ],
+  e: 'Known Errors sind analysierte Probleme mit bekannter Ursache und Workaround.',
+  m: 'ITIL – Problem Management'
+},
+
+/* Frage 55 */
+{
+  q: 'Welche Rolle ist im Problem Management für die Koordination verantwortlich?',
+  t: 'single',
+  a: ['Problem Manager'],
+  o: [
+    'Incident Manager',
+    'Problem Manager',
+    'Service Owner',
+    'Change Manager'
+  ],
+  e: 'Der Problem Manager koordiniert die Aktivitäten im Problem Management.',
+  m: 'ITIL – Problem Management'
+},
+
+/* Frage 56 */
+{
+  q: 'Welche Aussage beschreibt einen Workaround am BESTEN?',
+  t: 'single',
+  a: ['Eine vorübergehende Lösung zur Reduzierung der Auswirkungen eines Incidents oder Problems'],
+  o: [
+    'Eine endgültige Lösung für ein bekanntes Problem',
+    'Eine vorübergehende Lösung zur Reduzierung der Auswirkungen eines Incidents oder Problems',
+    'Eine Maßnahme zur Vermeidung zukünftiger Incidents',
+    'Eine Änderung an der IT-Infrastruktur'
+  ],
+  e: 'Workarounds sind temporäre Maßnahmen zur Schadensbegrenzung.',
+  m: 'ITIL – Problem Management'
+},
+
+/* Frage 57 */
+{
+  q: 'Welche Aktivität gehört NICHT zum Event Management?',
+  t: 'single',
+  a: ['Ursachenanalyse von wiederkehrenden Incidents'],
+  o: [
+    'Überwachung von IT-Services',
+    'Erkennen von Ereignissen',
+    'Filtern und Kategorisieren von Events',
+    'Ursachenanalyse von wiederkehrenden Incidents'
+  ],
+  e: 'Die Ursachenanalyse ist Aufgabe des Problem Managements.',
+  m: 'ITIL – Event Management'
+},
+
+/* Frage 58 */
+{
+  q: 'Welche Aussage beschreibt den Unterschied zwischen Incident und Problem?',
+  t: 'single',
+  a: ['Ein Incident ist eine Serviceunterbrechung, ein Problem ist die zugrunde liegende Ursache'],
+  o: [
+    'Ein Incident ist eine geplante Änderung',
+    'Ein Problem ist immer sicherheitsrelevant',
+    'Ein Incident ist eine Serviceunterbrechung, ein Problem ist die zugrunde liegende Ursache',
+    'Incident und Problem sind identisch'
+  ],
+  e: 'Incidents sind Symptome, Problems deren Ursachen.',
+  m: 'ITIL – Incident & Problem Management'
+},
+
+/* Frage 59 */
+{
+  q: 'Welche Ziele verfolgt das Service Level Management?',
+  t: 'multiple',
+  a: [
+    'Vereinbarung klarer Service Level mit Kunden',
+    'Überwachung und Berichterstattung über die Serviceleistung'
+  ],
+  o: [
+    'Vereinbarung klarer Service Level mit Kunden',
+    'Durchführung von Changes',
+    'Überwachung und Berichterstattung über die Serviceleistung',
+    'Entwicklung neuer IT-Services'
+  ],
+  e: 'Service Level Management sorgt für Transparenz und Steuerung der Servicequalität.',
+  m: 'ITIL – Service Level Management'
+},
+
+/* Frage 60 */
+{
+  q: 'Welche Dokumente werden typischerweise im Service Level Management verwendet?',
+  t: 'multiple',
+  a: [
+    'Service Level Agreements (SLAs)',
+    'Operational Level Agreements (OLAs)',
+    'Underpinning Contracts (UCs)'
+  ],
+  o: [
+    'Service Level Agreements (SLAs)',
+    'Operational Level Agreements (OLAs)',
+    'Underpinning Contracts (UCs)',
+    'Change Requests'
+  ],
+  e: 'SLM nutzt SLAs, OLAs und Underpinning Contracts.',
+  m: 'ITIL – Service Level Management'
+},
+
+/* Frage 61 */
+{
+  q: 'Welche Aussage beschreibt Capacity Management am BESTEN?',
+  t: 'single',
+  a: ['Sicherstellen, dass IT-Ressourcen die vereinbarten Leistungsanforderungen erfüllen'],
+  o: [
+    'Überwachung der Sicherheit von IT-Systemen',
+    'Sicherstellen, dass IT-Ressourcen die vereinbarten Leistungsanforderungen erfüllen',
+    'Wiederherstellung von Services nach Ausfällen',
+    'Verwaltung von Lieferanten'
+  ],
+  e: 'Capacity Management stellt ausreichende Leistungsfähigkeit der IT sicher.',
+  m: 'ITIL – Capacity Management'
+},
+
+/* Frage 62 */
+{
+  q: 'Welche Bereiche umfasst das Capacity Management?',
+  t: 'multiple',
+  a: [
+    'Business Capacity Management',
+    'Service Capacity Management',
+    'Component Capacity Management'
+  ],
+  o: [
+    'Business Capacity Management',
+    'Service Capacity Management',
+    'Component Capacity Management',
+    'Supplier Capacity Management'
+  ],
+  e: 'Capacity Management gliedert sich in Business-, Service- und Component-Ebene.',
+  m: 'ITIL – Capacity Management'
+},
+
+/* Frage 63 */
+{
+  q: 'Welche Aussage beschreibt das Ziel des Availability Managements am BESTEN?',
+  t: 'single',
+  a: ['Sicherzustellen, dass IT-Services die vereinbarten Verfügbarkeitsanforderungen erfüllen'],
+  o: [
+    'Sicherzustellen, dass IT-Services jederzeit verfügbar sind',
+    'Sicherzustellen, dass IT-Services die vereinbarten Verfügbarkeitsanforderungen erfüllen',
+    'Wiederherstellung von Services nach Ausfällen',
+    'Überwachung von Sicherheitsereignissen'
+  ],
+  e: 'Availability Management stellt sicher, dass vereinbarte Verfügbarkeitsziele erreicht werden.',
+  m: 'ITIL – Availability Management'
+},
+
+/* Frage 64 */
+{
+  q: 'Welche Aspekte gehören zum Availability Management?',
+  t: 'multiple',
+  a: [
+    'Zuverlässigkeit',
+    'Wartbarkeit',
+    'Serviceability'
+  ],
+  o: [
+    'Zuverlässigkeit',
+    'Wartbarkeit',
+    'Serviceability',
+    'Change Management'
+  ],
+  e: 'Availability Management betrachtet Zuverlässigkeit, Wartbarkeit und Serviceability.',
+  m: 'ITIL – Availability Management'
+},
+
+/* Frage 65 */
+{
+  q: 'Welche Aussage beschreibt IT Service Continuity Management (ITSCM) am BESTEN?',
+  t: 'single',
+  a: ['Unterstützung des Business Continuity Managements durch Sicherstellung der Wiederherstellung von IT-Services'],
+  o: [
+    'Sicherstellung der täglichen Verfügbarkeit von IT-Services',
+    'Unterstützung des Business Continuity Managements durch Sicherstellung der Wiederherstellung von IT-Services',
+    'Management von Lieferantenverträgen',
+    'Überwachung von IT-Events'
+  ],
+  e: 'ITSCM unterstützt das BCM durch Wiederherstellungsstrategien für IT-Services.',
+  m: 'ITIL – IT Service Continuity Management'
+},
+
+/* Frage 66 */
+{
+  q: 'Welche Phasen umfasst der IT Service Continuity Management Lifecycle?',
+  t: 'multiple',
+  a: [
+    'Initiation',
+    'Requirements & Strategy',
+    'Implementation',
+    'Ongoing Operation'
+  ],
+  o: [
+    'Initiation',
+    'Requirements & Strategy',
+    'Implementation',
+    'Ongoing Operation',
+    'Service Transition'
+  ],
+  e: 'Der ITSCM-Lifecycle besteht aus vier klar definierten Phasen.',
+  m: 'ITIL – IT Service Continuity Management'
+},
+
+/* Frage 67 */
+{
+  q: 'Welche Aussage beschreibt Security Management im IT Service Management?',
+  t: 'single',
+  a: ['Schutz der Vertraulichkeit, Integrität und Verfügbarkeit von Informationen'],
+  o: [
+    'Verwaltung von Benutzerkonten',
+    'Schutz der Vertraulichkeit, Integrität und Verfügbarkeit von Informationen',
+    'Überwachung von IT-Ressourcen',
+    'Durchführung von Changes'
+  ],
+  e: 'Security Management fokussiert sich auf die klassischen Schutzziele der Informationssicherheit.',
+  m: 'ITIL – Information Security Management'
+},
+
+/* Frage 68 */
+{
+  q: 'Welche Dokumente werden typischerweise im Information Security Management verwendet?',
+  t: 'multiple',
+  a: [
+    'Security Policy',
+    'Richtlinien und Standards',
+    'Risk Assessments'
+  ],
+  o: [
+    'Security Policy',
+    'Richtlinien und Standards',
+    'Risk Assessments',
+    'Service Catalogue'
+  ],
+  e: 'ISM nutzt Policies, Richtlinien und Risikoanalysen.',
+  m: 'ITIL – Information Security Management'
+},
+
+/* Frage 69 */
+{
+  q: 'Welche Aussage beschreibt den Zweck des Financial Management for IT Services?',
+  t: 'single',
+  a: ['Steuerung und Kontrolle der Kosten von IT-Services'],
+  o: [
+    'Budgetierung von Projekten',
+    'Steuerung und Kontrolle der Kosten von IT-Services',
+    'Verhandlung von Lieferantenverträgen',
+    'Überwachung der Serviceverfügbarkeit'
+  ],
+  e: 'Financial Management sorgt für Kostentransparenz und Wirtschaftlichkeit von IT-Services.',
+  m: 'ITIL – Financial Management'
+},
+
+/* Frage 70 */
+{
+  q: 'Welche Kernaktivitäten gehören zum Financial Management for IT Services?',
+  t: 'multiple',
+  a: [
+    'Budgeting',
+    'Accounting',
+    'Charging'
+  ],
+  o: [
+    'Budgeting',
+    'Accounting',
+    'Charging',
+    'Change Approval'
+  ],
+  e: 'Financial Management umfasst Budgetierung, Kostenrechnung und Leistungsverrechnung.',
+  m: 'ITIL – Financial Management'
+},
+
+/* Frage 71 */
+{
+  q: 'Welche Aussage beschreibt Demand Management am BESTEN?',
+  t: 'single',
+  a: ['Steuerung der Kundennachfrage nach IT-Services'],
+  o: [
+    'Überwachung von Service Levels',
+    'Steuerung der Kundennachfrage nach IT-Services',
+    'Verwaltung von Lieferanten',
+    'Durchführung von Kapazitätsanalysen'
+  ],
+  e: 'Demand Management steuert und beeinflusst die Nachfrage nach IT-Services.',
+  m: 'ITIL – Demand Management'
+},
+
+/* Frage 72 */
+{
+  q: 'Welche Konzepte werden im Demand Management verwendet?',
+  t: 'multiple',
+  a: [
+    'Patterns of Business Activity (PBA)',
+    'User Profiles'
+  ],
+  o: [
+    'Patterns of Business Activity (PBA)',
+    'User Profiles',
+    'Service Level Agreements',
+    'Incident Records'
+  ],
+  e: 'Demand Management nutzt PBAs und User Profiles zur Nachfrageanalyse.',
+  m: 'ITIL – Demand Management'
+},
+
+/* Frage 73 */
+{
+  q: 'Welche Aussage beschreibt den Zweck des Release and Deployment Managements am BESTEN?',
+  t: 'single',
+  a: ['Planung, Terminierung und Steuerung der Bereitstellung von Releases in die Produktivumgebung'],
+  o: [
+    'Überwachung von Changes während des Betriebs',
+    'Planung, Terminierung und Steuerung der Bereitstellung von Releases in die Produktivumgebung',
+    'Wiederherstellung von Services nach fehlgeschlagenen Changes',
+    'Verwaltung von Service Levels'
+  ],
+  e: 'Release and Deployment Management stellt sicher, dass Releases kontrolliert und planmäßig in den Betrieb überführt werden.',
+  m: 'ITIL – Release & Deployment Management'
+},
+
+/* Frage 74 */
+{
+  q: 'Welche Ziele verfolgt das Knowledge Management im IT Service Management?',
+  t: 'multiple',
+  a: [
+    'Sicherstellen, dass relevante Informationen zur richtigen Zeit verfügbar sind',
+    'Unterstützung fundierter Entscheidungen',
+    'Verbesserung der Effizienz durch Wiederverwendung von Wissen'
+  ],
+  o: [
+    'Sicherstellen, dass relevante Informationen zur richtigen Zeit verfügbar sind',
+    'Unterstützung fundierter Entscheidungen',
+    'Verbesserung der Effizienz durch Wiederverwendung von Wissen',
+    'Durchführung von Changes'
+  ],
+  e: 'Knowledge Management stellt Wissen strukturiert bereit, um Effizienz und Entscheidungsqualität zu erhöhen.',
+  m: 'ITIL – Knowledge Management'
+}
+
+];

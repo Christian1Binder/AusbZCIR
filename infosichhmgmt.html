@@ -1,0 +1,968 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"/>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0f172a">
+<title>CyberOffz: Informationssicherheit</title>
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
+
+<style>
+:root { --bg: #0f172a; --panel: #1e293b; --text: #f1f5f9; --muted: #94a3b8; --accent: #3b82f6; --success: #22c55e; --error: #ef4444; --border: rgba(255,255,255,0.1); --warning: #f59e0b; }
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+body { margin:0; font-family:-apple-system, system-ui, sans-serif; background:var(--bg); color:var(--text); height:100vh; display:flex; flex-direction:column; overflow:hidden; }
+.wrap { width:100%; max-width:850px; margin:0 auto; padding:20px; padding-bottom:100px; flex:1; display:flex; flex-direction:column; position:relative; }
+.scroll-wrap { overflow-y:auto; flex:1; -webkit-overflow-scrolling: touch; }
+.hidden { display:none !important; }
+.btn { border:none; padding:16px 24px; border-radius:12px; font-weight:bold; cursor:pointer; font-size:1.1rem; color:white; transition:0.2s; display:inline-flex; align-items:center; justify-content:center; gap:8px; touch-action: manipulation; }
+.btn-primary { background:var(--accent); box-shadow:0 4px 12px rgba(59,130,246,0.3); }
+.btn-outline { background:transparent; border:1px solid var(--border); color:var(--muted); font-size:0.9rem; padding:10px 16px; }
+.btn-block { width:100%; }
+#start-screen { text-align:center; }
+.mode-card { background:var(--panel); border:1px solid var(--border); padding:12px 16px; border-radius:16px; margin-bottom:15px; text-align:left; cursor:pointer; transition:0.2s; display:flex; justify-content:space-between; align-items:center; }
+.mode-card:active { background:rgba(255,255,255,0.05); }
+.tag { font-size:0.75rem; padding:4px 8px; border-radius:6px; background:rgba(255,255,255,0.1); font-weight:bold; }
+.top-bar { display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; font-size:0.9rem; color:var(--muted); }
+.streak-box { color:var(--accent); font-weight:bold; font-size:1.1rem; }
+.progress-track { height:8px; background:rgba(255,255,255,0.1); border-radius:4px; overflow:hidden; margin-bottom:20px; }
+.progress-fill { height:100%; background:var(--accent); width:0%; transition:width 0.3s; }
+.card { background:var(--panel); border:1px solid var(--border); border-radius:20px; padding:25px; display:flex; flex-direction:column; gap:20px; box-shadow:0 10px 30px rgba(0,0,0,0.3); margin-bottom:20px; }
+.q-meta { font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--muted); font-weight:bold; }
+.q-text { font-size:1.35rem; line-height:1.45; font-weight:700; }
+.opt-grid { display:grid; gap:12px; }
+.opt-btn { background:rgba(255,255,255,0.05); border:1px solid var(--border); padding:18px; border-radius:12px; color:var(--text); text-align:left; cursor:pointer; transition:0.1s; display:flex; align-items:center; min-height:60px; }
+.opt-btn.selected { outline:2px solid var(--accent); background:rgba(59,130,246,0.12); }
+.opt-grid.locked .opt-btn { pointer-events:none; }
+.opt-btn.correct { background:rgba(34,197,94,0.15); border-color:var(--success); color:var(--success); }
+.opt-btn.wrong { background:rgba(239,68,68,0.15); border-color:var(--error); color:var(--error); opacity:0.6; }
+.expl-box { padding:15px; border-radius:12px; display:none; animation:fadeIn 0.3s; font-size:0.95rem; line-height:1.5; border-left:4px solid transparent; background:rgba(0,0,0,0.2); }
+.expl-box.is-correct { border-left-color:var(--success); display:block; }
+.exam-item { background:var(--panel); padding:20px; border-radius:12px; border:1px solid var(--border); margin-bottom:15px; }
+.exam-q { font-size:1.1rem; font-weight:600; margin-bottom:10px; }
+.learn-a { color:var(--success); font-weight:bold; margin-bottom:5px; }
+@keyframes fadeIn { from { opacity:0; transform:translateY(5px); } to { opacity:1; transform:translateY(0); } }
+html, body{
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar{
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+</style>
+</head>
+<body>
+
+<div id="start-screen" class="wrap scroll-wrap">
+    <div style="margin:40px 0; text-align:center;">
+        <div style="font-size:3rem; margin-bottom:10px;">🛡️</div>
+        <h1>Informationssicherheit</h1>
+        <p style="color:var(--muted)">Datenschutz, Krypto & Abstrahlsicherheit</p>
+    </div>
+    <div class="mode-card" onclick="initLearnMode()">
+        <div><h3>📖 Lernmodus</h3><div style="color:var(--muted); font-size:0.85rem; margin-top:5px;">Alle 96 Fragen & Lösungen studieren</div></div>
+        <div class="tag" style="background:var(--success)">LERNEN</div>
+    </div>
+    <div class="mode-card" onclick="initTrainer('ALL')">
+        <div><h3>🚀 Speed-Trainer</h3><div style="color:var(--muted); font-size:0.85rem; margin-top:5px;">Training • Sofort-Feedback</div></div>
+        <div class="tag" style="background:var(--accent)">ÜBEN</div>
+    </div>
+    <div class="mode-card" onclick="initExam()">
+        <div><h3>📝 Prüfungssimulation</h3><div style="color:var(--muted); font-size:0.85rem; margin-top:5px;">Alle Themen • 45 Fragen</div></div>
+        <div class="tag" style="background:var(--warning); color:#000;">TEST</div>
+    </div>
+    <h3 style="margin-top:30px; border-bottom:1px solid var(--border); padding-bottom:10px;">Themen-Filter</h3>
+    <div id="module-list" style="display:grid; grid-template-columns:1fr 1fr; gap:10px;"></div>
+</div>
+
+<div id="trainer-screen" class="wrap scroll-wrap hidden">
+    <div class="top-bar">
+        <button class="btn btn-outline" onclick="window.location.href='index.html'">Beenden</button>
+        <div class="streak-box">🔥 <span id="t-streak">0</span></div>
+    </div>
+    <div class="progress-track"><div id="t-progress" class="progress-fill"></div></div>
+    <div class="card">
+        <div class="q-meta"><span id="t-mod">MODUL</span> • <span id="t-idx">1/10</span></div>
+        <div class="q-text" id="t-question"></div>
+        <div class="q-meta" id="t-type" style="margin-top:-8px;">AUSWAHL</div>
+        <div class="opt-grid" id="t-options"></div>
+        <button id="t-check-btn" class="btn btn-primary btn-block" style="display:none;">Antwort prüfen</button>
+        <div id="t-expl" class="expl-box">
+            <span style="font-weight:bold; display:block; margin-bottom:5px;" id="t-expl-title"></span>
+            <span id="t-expl-text"></span>
+        </div>
+    </div>
+    <button id="next-btn" class="btn btn-primary btn-block" style="display:none; margin-bottom:30px;" onclick="nextCard()">Nächste Frage ➔</button>
+</div>
+
+<div id="learn-screen" class="wrap scroll-wrap hidden">
+    <div class="top-bar">
+        <button class="btn btn-outline" onclick="window.location.href='index.html'">Zurück</button>
+        <div>Lernmodus InfoSi</div>
+    </div>
+    <div id="learn-list"></div>
+</div>
+
+<div id="exam-screen" class="wrap scroll-wrap hidden">
+    <div class="top-bar">
+        <button class="btn btn-outline" onclick="if(confirm('Abbrechen?')) window.location.href='index.html'">Abbrechen</button>
+        <div>Prüfungssimulation</div>
+    </div>
+    <div id="exam-result-header" class="hidden"></div>
+    <div id="exam-list"></div>
+    <button id="btn-submit-exam" class="btn btn-primary btn-block" onclick="submitExam()">Prüfung abgeben</button>
+</div>
+
+<script>
+/* --- 96 FRAGEN DATENBANK --- */
+const BANK = [
+
+/* =========================
+   FRAGE 1
+   ========================= */
+{
+  q: 'Geben Sie an, durch wen das InfoSichhK einer Dst erstellt wird.',
+  t: 'single',
+  a: ['ISB'],
+  o: ['ISB', 'SiBe', 'ADSB', 'DstLtr'],
+  e: 'Das Informationssicherheitskonzept wird durch den Informationssicherheitsbeauftragten erstellt.',
+  m: 'INFOSICHK'
+},
+
+/* =========================
+   FRAGE 2
+   ========================= */
+{
+  q: 'Welche Modelle liegen dem im BSI-Standard 200-1 beschriebenen Sicherheitsprozess zugrunde?',
+  t: 'multiple',
+  a: [
+    'Ein Zyklus aus den Schritten Plan, Do, Check und Act',
+    'Ein auf stetige Verbesserung angelegtes Modell'
+  ],
+  o: [
+    'Ein Verfahren zur Definition eines State-of-the-Art-Informationssicherheitsniveaus',
+    'Ein Modell aus technischen Sicherheitsmaßnahmen',
+    'Ein auf stetige Verbesserung angelegtes Modell',
+    'Ein Zyklus aus den Schritten Plan, Do, Check und Act'
+  ],
+  e: 'Der Sicherheitsprozess basiert auf dem PDCA-Zyklus und dem Prinzip der kontinuierlichen Verbesserung.',
+  m: 'BSI GRUNDSCHUTZ'
+},
+
+/* =========================
+   FRAGE 3
+   ========================= */
+{
+  q: 'Geben Sie an, aus welchen Gründen es gerechtfertigt sein kann, auch ein hohes Risiko zu akzeptieren.',
+  t: 'multiple',
+  a: [
+    'Es gibt keine wirksamen Schutzmaßnahmen gegen das Risiko',
+    'Der Aufwand für mögliche Schutzmaßnahmen ist unangemessen hoch'
+  ],
+  o: [
+    'Es gibt keine wirksamen Schutzmaßnahmen gegen das Risiko',
+    'Es ist bislang noch zu keinem nennenswerten Sicherheitsvorfall gekommen',
+    'Vergleichbare Dienststellen akzeptieren das Risiko ebenfalls',
+    'Der Aufwand für mögliche Schutzmaßnahmen ist unangemessen hoch'
+  ],
+  e: 'Ein Risiko kann akzeptiert werden, wenn es nicht wirksam behandelbar oder wirtschaftlich nicht vertretbar ist.',
+  m: 'RISIKOMANAGEMENT'
+},
+
+/* =========================
+   FRAGE 4
+   ========================= */
+{
+  q: 'Ordnen Sie die Phasen, die beim Prozess eines InfoSichhVork durchlaufen werden, im Uhrzeigersinn an die richtige Position.',
+  t: 'single',
+  a: ['Erkennen und Erfassen → Qualifizieren und Bewerten → Sofortmeldung → Sofortmaßnahmen zur Eindämmung → Weitere Maßnahmen zur Eindämmung → Wiederherstellung der Betriebsumgebung → Nachbereitung'],
+  o: [
+    'Erkennen und Erfassen',
+    'Qualifizieren und Bewerten',
+    'Sofortmeldung',
+    'Sofortmaßnahmen zur Eindämmung',
+    'Weitere Maßnahmen zur Eindämmung',
+    'Wiederherstellung der Betriebsumgebung',
+    'Nachbereitung'
+  ],
+  e: 'Ein Informationssicherheitsvorfall folgt einem klar definierten Phasenmodell.',
+  m: 'INCIDENT MANAGEMENT'
+},
+
+/* =========================
+   FRAGE 5
+   ========================= */
+{
+  q: 'Welche Informationen sollten Netzpläne enthalten, die für die Strukturanalyse im Rahmen von IT-Grundschutz benötigt werden?',
+  t: 'multiple',
+  a: [
+    'Die Art der Vernetzung der IT-Systeme eines Informationsverbundes',
+    'Die Außenverbindungen des Netzes eines Informationsverbundes'
+  ],
+  o: [
+    'Die Art der Vernetzung der IT-Systeme eines Informationsverbundes',
+    'Den ermittelten Schutzbedarf der IT-Systeme eines Informationsverbundes',
+    'Die Art der IT-Systeme eines Informationsverbundes',
+    'Die Außenverbindungen des Netzes eines Informationsverbundes'
+  ],
+  e: 'Netzpläne beschreiben Struktur und externe Anbindungen, nicht den Schutzbedarf.',
+  m: 'STRUKTURANALYSE'
+},
+
+/* =========================
+   FRAGE 6
+   ========================= */
+{
+  q: 'USB-Stick gefunden → Wurm breitet sich aus. Was hat der ISB präventiv erstellt und hilft nun zur Schadensbehebung?',
+  t: 'multiple',
+  a: [
+    'Eine Liste von Erstmaßnahmen',
+    'Eine Liste mit Verantwortlichkeiten',
+    'Einen Netzplan ihrer Dienststelle'
+  ],
+  o: [
+    'Eine Liste von Erstmaßnahmen',
+    'Eine Liste mit Verantwortlichkeiten',
+    'Eine Risikomatrix',
+    'Einen Netzplan ihrer Dienststelle'
+  ],
+  e: 'Erstmaßnahmen, Zuständigkeiten und Netzkenntnisse sind entscheidend für die Reaktion.',
+  m: 'INCIDENT MANAGEMENT'
+},
+
+/* =========================
+   FRAGE 7
+   ========================= */
+{
+  q: 'Welche Aussage beschreibt die Risikovermeidung am besten?',
+  t: 'single',
+  a: ['Keinerlei riskante Aktivitäten oder Entscheidungen treffen'],
+  o: [
+    'Keinerlei riskante Aktivitäten oder Entscheidungen treffen',
+    'Risiken durch Versicherungen absichern',
+    'Risiken durch Risikomanagement minimieren',
+    'Risiken akzeptieren und die möglichen Folgen tragen'
+  ],
+  e: 'Risikovermeidung bedeutet, Risiken gar nicht erst einzugehen.',
+  m: 'RISIKOMANAGEMENT'
+},
+
+/* =========================
+   FRAGE 8
+   ========================= */
+{
+  q: 'Welche Informationen sollte ein InfoSichhK enthalten?',
+  t: 'multiple',
+  a: [
+    'Gebäude, die IT-Systeme enthalten',
+    'Grundlegende Regelungen zur Dst der Informationssicherheit',
+    'Aussagen zur Bedeutung der Informationssicherheit für die betroffene Dst'
+  ],
+  o: [
+    'Reinigungspläne kritischer Infrastruktur',
+    'Gebäude, die IT-Systeme enthalten',
+    'Beschreibung für die Durchführung von InfoSichh-Kontrollen',
+    'Einzuhaltende Notwege bei Brand',
+    'Grundlegende Regelungen zur Dst der Informationssicherheit',
+    'Aussagen zur Bedeutung der Informationssicherheit für die betroffene Dst',
+    'Detaillierte technische Konfigurationsvorgaben',
+    'Konkrete Verhaltensregeln für vertrauliche Informationen'
+  ],
+  e: 'Das InfoSichhK ist konzeptionell, nicht operativ-technisch.',
+  m: 'INFOSICHK'
+},
+
+/* =========================
+   FRAGE 9
+   ========================= */
+{
+  q: 'Was ist besonders wichtig bei der Risikoanalyse?',
+  t: 'single',
+  a: ['Die Kenntnis über alle Systeme im eigenen Verantwortungsbereich'],
+  o: [
+    'Die Kosten für Sicherheitssysteme',
+    'Der Aufbau des InfoSichhK',
+    'Die Notfallnummern für den IT-Support',
+    'Die Kenntnis über alle Systeme im eigenen Verantwortungsbereich'
+  ],
+  e: 'Nur bekannte Systeme können sinnvoll bewertet werden.',
+  m: 'RISIKOANALYSE'
+},
+
+/* =========================
+   FRAGE 10
+   ========================= */
+{
+  q: 'Womit beschäftigt sich das Business Continuity Management (BCM)?',
+  t: 'single',
+  a: ['Dem Schutz vor dem Ausfall von zeitkritischen Geschäftsprozessen'],
+  o: [
+    'Dem Schutz vor dem Ausfall von zeitintensiven Geschäftsprozessen',
+    'Der Wiederherstellung von zeitintensiven Geschäftsprozessen',
+    'Dem Schutz vor dem Ausfall von rechenintensiven IT-Systemen',
+    'Dem Schutz vor dem Ausfall von zeitkritischen Geschäftsprozessen'
+  ],
+  e: 'BCM fokussiert sich auf zeitkritische Geschäftsprozesse.',
+  m: 'BCM'
+},
+
+/* =========================
+   FRAGE 11
+   ========================= */
+{
+  q: 'Was wird bei der Risikoeinschätzung bewertet?',
+  t: 'multiple',
+  a: [
+    'Die Häufigkeit des Eintretens einer Gefährdung',
+    'Das mit einer Gefährdung verbundene Schadensausmaß'
+  ],
+  o: [
+    'Die Schutzziele, die betroffen sind',
+    'Die Wirksamkeit umgesetzter Maßnahmen',
+    'Das mit einer Gefährdung verbundene Schadensausmaß',
+    'Die Häufigkeit des Eintretens einer Gefährdung'
+  ],
+  e: 'Risiken ergeben sich aus Eintrittswahrscheinlichkeit und Schadenshöhe.',
+  m: 'RISIKOANALYSE'
+},
+
+/* =========================
+   FRAGE 12
+   ========================= */
+{
+  q: 'Welche Formel dient zur Berechnung der Risikohöhe?',
+  t: 'single',
+  a: ['Risiko = Wahrscheinlichkeit × Auswirkung'],
+  o: [
+    'Risiko = Wahrscheinlichkeit × Auswirkung',
+    'Risiko = Auswirkung / Wahrscheinlichkeit',
+    'Risiko = Wahrscheinlichkeit / Auswirkung',
+    'Risiko = (Wahrscheinlichkeit + Auswirkung) / 2'
+  ],
+  e: 'Die klassische Risikoberechnung ist das Produkt aus Eintritt und Schaden.',
+  m: 'RISIKOMANAGEMENT'
+},
+
+/* =========================
+   FRAGE 13
+   ========================= */
+{
+  q: 'Welche Aufgaben hat das ZCSBw als zentrale Stelle für InfoSichh?',
+  t: 'multiple',
+  a: [
+    'Zentrale Konfigurationsvorgaben für Produkte erstellen',
+    'Sensibilisierungsangebote bereitstellen',
+    'Durchführung von Kryptoinpektionen',
+    'Produkte auf Schwachstellen prüfen',
+    'ISBs beraten',
+    'Mitprüfung von InfoSichhK'
+  ],
+  o: [
+    'Mitprüfung von InfoSichhK',
+    'Sensibilisierungsangebote bereitstellen',
+    'Produkte auf Schwachstellen prüfen',
+    'Durchführung von Kryptoinpektionen',
+    'Zentrale Konfigurationsvorgaben für Produkte erstellen',
+    'ISBs beraten'
+  ],
+  e: 'Das ZCSBw übernimmt zentrale, beratende und prüfende Aufgaben.',
+  m: 'ORGANISATION'
+},
+
+/* =========================
+   FRAGE 14
+   ========================= */
+{
+  q: 'Wer ist für die Freigabe des InfoSichhK verantwortlich?',
+  t: 'single',
+  a: ['DstLtr'],
+  o: ['ISB', 'DstLtr', 'ADSB', 'SiBe'],
+  e: 'Die Freigabe liegt bei der Leitung der Dienststelle.',
+  m: 'INFOSICHK'
+},
+
+/* =========================
+   FRAGE 15
+   ========================= */
+{
+  q: 'Welche Rolle hat ein Incident Response Team?',
+  t: 'single',
+  a: ['Identifiziert, bewertet und reagiert auf Sicherheitsvorfälle'],
+  o: [
+    'Erstellt Marketingberichte',
+    'Identifiziert, bewertet und reagiert auf Sicherheitsvorfälle',
+    'Überwacht ausschließlich Netzwerkverbindungen',
+    'Entwickelt neue Softwarefunktionen'
+  ],
+  e: 'Das IRT ist operativ für Sicherheitsvorfälle zuständig.',
+  m: 'INCIDENT MANAGEMENT'
+},
+
+/* =========================
+   FRAGE 16
+   ========================= */
+{
+  q: 'Was macht ein ISB nach Vorschrift nach einer vollständigen Vorfallmeldung?',
+  t: 'single',
+  a: ['Er bewertet den Vorfall'],
+  o: [
+    'Er beruhigt Sie und informiert den SiBe',
+    'Er informiert den DstLtr umgehend',
+    'Er führt eine Sofortmeldung durch',
+    'Er bewertet den Vorfall'
+  ],
+  e: 'Die Bewertung ist Kernaufgabe des ISB.',
+  m: 'INCIDENT MANAGEMENT'
+},
+
+/* =========================
+   FRAGE 17
+   ========================= */
+{
+  q: 'Was bedeutet die Berücksichtigung von Kumulationseffekten bei der Schutzbedarfsfeststellung?',
+  t: 'single',
+  a: ['Der Schutzbedarf erhöht sich, weil sich Einzelschäden addieren'],
+  o: [
+    'Der Schutzbedarf wirkt sich auf andere Systeme aus',
+    'Der Schutzbedarf verringert sich durch Maßnahmen',
+    'Der Schutzbedarf kann erst später festgestellt werden',
+    'Der Schutzbedarf erhöht sich, weil sich Einzelschäden addieren'
+  ],
+  e: 'Kumulation bedeutet Aufsummierung von Einzelschäden.',
+  m: 'SCHUTZBEDARF'
+},
+
+/* =========================
+   FRAGE 18
+   ========================= */
+{
+  q: 'Welche Rollen/Organisationen unterstehen dem ZCSBw?',
+  t: 'multiple',
+  a: [
+    'CSOCBw / LUZ',
+    'DEU mil SAA',
+    'Abt Schutz / Prävention'
+  ],
+  o: [
+    'KompZ InfoSec',
+    'CSOCBw / LUZ',
+    'Red Team',
+    'DEU mil SAA',
+    'Abt Schutz / Prävention'
+  ],
+  e: 'Nicht alle sicherheitsnahen Stellen unterstehen dem ZCSBw.',
+  m: 'ORGANISATION'
+},
+
+/* =========================
+   FRAGE 19
+   ========================= */
+{
+  q: 'Welche Schutzziele müssen bei der Schutzbedarfsfeststellung betrachtet werden?',
+  t: 'multiple',
+  a: ['Verfügbarkeit', 'Vertraulichkeit', 'Integrität'],
+  o: ['Intervenierbarkeit', 'Verfügbarkeit', 'Vertraulichkeit', 'Integrität'],
+  e: 'Die klassischen Schutzziele sind V, V, I.',
+  m: 'SCHUTZZIELE'
+},
+
+/* =========================
+   FRAGE 20
+   ========================= */
+{
+  q: 'Welche Punkte sind bei der Schutzbedarfsfeststellung einer Anwendung zu berücksichtigen?',
+  t: 'multiple',
+  a: [
+    'Die Bedeutung der Anwendung für die Geschäftsprozesse',
+    'Die Informationen, die im Zusammenhang mit der Anwendung verwendet werden'
+  ],
+  o: [
+    'Die Bedeutung der Anwendung für die Geschäftsprozesse',
+    'Die Informationen, die im Zusammenhang mit der Anwendung verwendet werden',
+    'Die relevanten Gefährdungen',
+    'Die räumliche Umgebung des IT-Systems'
+  ],
+  e: 'Schutzbedarf richtet sich nach Prozess- und Informationsbedeutung.',
+  m: 'SCHUTZBEDARF'
+},
+
+/* =========================
+   FRAGE 21
+   ========================= */
+{
+  q: 'Welche Ziele verfolgt die Strukturanalyse im IT-Grundschutz?',
+  t: 'multiple',
+  a: [
+    'Die Ermittlung der Objekte, die in einem InfoSichhK zu berücksichtigen sind',
+    'Die angemessene Zusammenfassung von Objekten für gleiche Sicherheitsmaßnahmen'
+  ],
+  o: [
+    'Die Ermittlung der Objekte, die in einem InfoSichhK zu berücksichtigen sind',
+    'Die Identifizierung besonders gefährdeter Objekte',
+    'Die angemessene Zusammenfassung von Objekten für gleiche Sicherheitsmaßnahmen',
+    'Die Ermittlung passender IT-Grundschutz-Bausteine'
+  ],
+  e: 'Ziel ist Übersicht und sinnvolle Objektbündelung.',
+  m: 'STRUKTURANALYSE'
+},
+
+/* =========================
+   FRAGE 22
+   ========================= */
+{
+  q: 'Nach welchen Kriterien werden Informationen bei der Schutzbedarfsfeststellung bewertet?',
+  t: 'multiple',
+  a: ['Vertraulichkeit', 'Verfügbarkeit', 'Integrität'],
+  o: [
+    'Verfügbarkeit',
+    'Vertraulichkeit',
+    'Authentizität',
+    'Integrität',
+    'Veränderbarkeit'
+  ],
+  e: 'Auch hier gelten die klassischen Schutzziele.',
+  m: 'SCHUTZZIELE'
+},
+
+/* =========================
+   FRAGE 23
+   ========================= */
+{
+  q: 'Welche Aussagen zur Wahl der Absicherung im Sicherheitskonzept sind richtig?',
+  t: 'multiple',
+  a: [
+    'Die Standard-Absicherung entspricht der empfohlenen IT-Grundschutz-Vorgehensweise',
+    'Die Basis-Absicherung bietet einen leichten Einstieg in den IT-Grundschutz',
+    'Mittelfristig kann das Sicherheitskonzept nach der Standard-Absicherung ausgebaut werden'
+  ],
+  o: [
+    'Hochwertige Informationen müssen immer mit Basis-Absicherung geschützt werden',
+    'Mittelfristig kann das Sicherheitskonzept nach der Standard-Absicherung ausgebaut werden',
+    'Die Standard-Absicherung entspricht der empfohlenen IT-Grundschutz-Vorgehensweise',
+    'Die Basis-Absicherung bietet einen leichten Einstieg in den IT-Grundschutz'
+  ],
+  e: 'Basis und Standard dienen unterschiedlichen Reifegraden.',
+  m: 'IT-GRUNDSCHUTZ'
+},
+
+/* =========================
+   FRAGE 24
+   ========================= */
+{
+  q: 'Welche Vorschrift beschreibt den Prozess während eines Informationssicherheitsvorkommnisses?',
+  t: 'single',
+  a: ['A-960/5'],
+  o: ['A-960/5', 'A-1160/3', 'A-961/1', 'A-960/1'],
+  e: 'Der Prozess ist in der A-960/5 geregelt.',
+  m: 'VORSCHRIFTEN'
+},
+
+/* =========================
+   FRAGE 25
+   ========================= */
+{
+  q: 'Mit welchen Maßnahmen kann ein Risiko verlagert werden?',
+  t: 'multiple',
+  a: [
+    'Durch den Abschluss einer Versicherung',
+    'Durch Outsourcing des risikobehafteten Geschäftsprozesses'
+  ],
+  o: [
+    'Durch Umstrukturierung des Geschäftsprozesses',
+    'Durch den Abschluss einer Versicherung',
+    'Durch Outsourcing des risikobehafteten Geschäftsprozesses',
+    'Durch zusätzliche Sicherheitsmaßnahmen'
+  ],
+  e: 'Risikoverlagerung bedeutet Übertragung an Dritte.',
+  m: 'RISIKOMANAGEMENT'
+},
+
+/* =========================
+   FRAGE 26
+   ========================= */
+{
+  q: 'Welcher Schritt folgt nach Wiederherstellung eines Netzwerks nach einem Sicherheitsvorfall?',
+  t: 'single',
+  a: ['Die Erkenntnisse werden dokumentiert, um die Sicherheit zukünftig zu verbessern'],
+  o: [
+    'Netzwerk 10 Tage beobachten',
+    'Systeme mehrfach neu starten',
+    'Erkenntnisse dokumentieren',
+    'Infizierte Systeme erneut einbinden'
+  ],
+  e: 'Nachbereitung dient der nachhaltigen Verbesserung.',
+  m: 'INCIDENT MANAGEMENT'
+},
+
+/* =========================
+   FRAGE 27
+   ========================= */
+{
+  q: 'Welche Aussage beschreibt eine „Störung“ im BCM-Kontext am besten?',
+  t: 'single',
+  a: ['Ein Ereignis mit nur kleinen Anpassungen und ohne langfristige Auswirkungen'],
+  o: [
+    'Langfristige Unterbrechung des Betriebs',
+    'Nur kleine Anpassungen ohne langfristige Auswirkungen',
+    'Nicht tolerierbare Unterbrechung',
+    'Mehrere Abteilungen langfristig betroffen'
+  ],
+  e: 'Eine Störung ist nicht gleich ein Notfall.',
+  m: 'BCM'
+},
+
+/* =========================
+   FRAGE 28
+   ========================= */
+{
+  q: 'Welches Risiko kann toleriert werden?',
+  t: 'single',
+  a: ['Risiko-Index gering (2–10)'],
+  o: [
+    'Risiko-Index mittel (max. 18)',
+    'Risiko-Index gering (2–10)',
+    'Risiko-Index sehr hoch (49)'
+  ],
+  e: 'Nur geringe Risiken sind tolerierbar.',
+  m: 'RISIKOMANAGEMENT'
+},
+
+/* =========================
+   FRAGE 29
+   ========================= */
+{
+  q: 'Wo findet man die Vorgabe zur Erstellung eines InfoSichhK?',
+  t: 'single',
+  a: ['In der Arbeitshilfe „InfoSichhK Dienststelle“ Teil 1 und Teil 2'],
+  o: [
+    'In der Sicherheitsanweisung C-1200/1',
+    'Im Informationsblatt „ISB und das InfoSichhK“',
+    'In der Arbeitshilfe „InfoSichhK Dienststelle“ Teil 1 und Teil 2',
+    'In der Anordnung für Informationsdokumente'
+  ],
+  e: 'Die Arbeitshilfe ist maßgeblich.',
+  m: 'INFOSICHK'
+},
+
+/* =========================
+   FRAGE 30
+   ========================= */
+{
+  q: 'Welche Aufgaben haben üblicherweise Informationssicherheitsbeauftragte?',
+  t: 'multiple',
+  a: [
+    'Der Führungsebene über den Stand der Informationssicherheit zu berichten',
+    'Die Entwicklung von Sicherheitskonzepten zu koordinieren'
+  ],
+  o: [
+    'Der Führungsebene über den Stand der Informationssicherheit zu berichten',
+    'Die eingesetzte Sicherheitstechnik zu konfigurieren',
+    'Externe Anfragen zum Stand der Informationssicherheit zu beantworten',
+    'Die Entwicklung von Sicherheitskonzepten zu koordinieren'
+  ],
+  e: 'ISB sind koordinierend und berichtend tätig.',
+  m: 'ORGANISATION'
+},
+
+/* =========================
+   FRAGE 31
+   ========================= */
+{
+  q: 'Was sind die Aufgaben des CISOBw?',
+  t: 'multiple',
+  a: [
+    'Steuerung aller operativen Aufgaben der InfoSichh',
+    'Herausgeben eines Jahresberichts zur InfoSichh',
+    'Steuerung des Incidentmanagements bei besonders bedeutenden Vorfällen'
+  ],
+  o: [
+    'Durchführung von Computerforensik',
+    'Herausgeben eines Jahresberichts zur InfoSichh',
+    'Steuerung des Incidentmanagements bei besonders bedeutenden Vorfällen',
+    'Steuerung aller operativen Aufgaben der InfoSichh'
+  ],
+  e: 'Der CISOBw übernimmt strategisch-operative Steuerung.',
+  m: 'ORGANISATION'
+},
+
+/* =========================
+   FRAGE 32
+   ========================= */
+{
+  q: 'Nach welchem Ablauf wird die Risikoanalyse durchgeführt?',
+  t: 'single',
+  a: ['Identifikation, Analyse, Bewertung und Behandlung von Risiken'],
+  o: [
+    'Identifikation, Analyse, Bewertung und Behandlung von Risiken',
+    'Identifikation, Maßnahmenplanung, Review',
+    'Nutzerbefragung und Anpassung',
+    'Schwachstellen beheben'
+  ],
+  e: 'Die Risikoanalyse folgt einem klaren Vier-Schritte-Modell.',
+  m: 'RISIKOANALYSE'
+}
+
+];
+
+
+/* =========================
+   GLOBALS
+   ========================= */
+let activeSet = [];
+let retryStack = [];
+let currentIndex = 0;
+let streak = 0;
+let isExam = false;
+let examAnswers = {};
+
+/* =========================
+   HELPERS
+   ========================= */
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+/* =========================
+   TRAINER
+   ========================= */
+function initTrainer(filter) {
+  isExam = false;
+  document.getElementById('start-screen').classList.add('hidden');
+  document.getElementById('trainer-screen').classList.remove('hidden');
+
+  activeSet = filter === "ALL" ? [...BANK] : BANK.filter(q => q.m === filter);
+  shuffle(activeSet);
+
+  currentIndex = 0;
+  retryStack = [];
+  streak = 0;
+  updateStreak();
+  loadTrainerCard();
+}
+
+function loadTrainerCard() {
+  document.getElementById('next-btn').style.display = 'none';
+
+  if (currentIndex >= activeSet.length) {
+    if (retryStack.length) {
+      activeSet = [...retryStack];
+      retryStack = [];
+      currentIndex = 0;
+      shuffle(activeSet);
+    } else {
+      window.location.href = "index.html";
+      return;
+    }
+  }
+
+  const item = activeSet[currentIndex];
+
+  // Meta / progress
+  document.getElementById('t-mod').innerText = item.m;
+  document.getElementById('t-idx').innerText = `${currentIndex + 1}/${activeSet.length}`;
+  document.getElementById('t-question').innerText = item.q;
+  document.getElementById('t-progress').style.width = `${(currentIndex / activeSet.length) * 100}%`;
+
+  // Show the correct selection type to the user
+  const tType = document.getElementById('t-type');
+  tType.innerText = item.t === 'multiple'
+    ? 'MEHRFACHAUSWAHL (mehrere Antworten möglich)'
+    : 'EINFACHAUSWAHL (eine Antwort)';
+
+  // Reset UI
+  const optBox = document.getElementById('t-options');
+  optBox.innerHTML = '';
+  optBox.classList.remove('locked');
+  document.getElementById('t-expl').style.display = 'none';
+
+  // Multiple-choice check button
+  const checkBtn = document.getElementById('t-check-btn');
+  checkBtn.style.display = item.t === 'multiple' ? 'block' : 'none';
+  checkBtn.disabled = false;
+  checkBtn.onclick = () => {
+    const selected = [...document.querySelectorAll('#t-options .opt-btn.selected')]
+      .map(b => b.getAttribute('data-value'));
+    evaluateTrainer(selected, item);
+  };
+
+  // Render options (store raw value to avoid text parsing issues)
+  shuffle([...item.o]).forEach((txt, i) => {
+    const btn = document.createElement('div');
+    btn.className = 'opt-btn';
+    btn.setAttribute('data-value', txt);
+    btn.innerHTML = `<strong>${i + 1}</strong>&nbsp;${txt}`;
+    btn.onclick = () => trainerSelect(btn, txt, item);
+    optBox.appendChild(btn);
+  });
+}
+
+function trainerSelect(btn, value, item) {
+  const optBox = document.getElementById('t-options');
+  if (optBox.classList.contains('locked')) return;
+
+  if (item.t === "single") {
+    evaluateTrainer([value], item);
+  } else {
+    btn.classList.toggle("selected");
+  }
+}
+
+function evaluateTrainer(selected, item) {
+  const optBox = document.getElementById('t-options');
+  optBox.classList.add('locked');
+
+  const correct = item.a;
+
+  const ok =
+    selected.length === correct.length &&
+    selected.every(v => correct.includes(v));
+
+  // Mark options
+  document.querySelectorAll("#t-options .opt-btn").forEach(b => {
+    const txt = b.getAttribute('data-value');
+    if (correct.includes(txt)) b.classList.add("correct");
+    else if (selected.includes(txt)) b.classList.add("wrong");
+  });
+
+  // Explanation
+  const expl = document.getElementById('t-expl');
+  expl.style.display = 'block';
+  document.getElementById('t-expl-title').innerText = ok ? "✓ Korrekt" : "✗ Falsch";
+  document.getElementById('t-expl-text').innerText = item.e;
+
+  // Streak / retry
+  streak = ok ? streak + 1 : 0;
+  if (!ok) retryStack.push(item);
+  updateStreak();
+
+  // In multiple mode, disable the check button after evaluation
+  const checkBtn = document.getElementById('t-check-btn');
+  if (item.t === 'multiple') checkBtn.disabled = true;
+
+  document.getElementById('next-btn').style.display = 'block';
+}
+
+function nextCard() {
+  currentIndex++;
+  loadTrainerCard();
+}
+
+function updateStreak() {
+  document.getElementById('t-streak').innerText = streak;
+}
+
+/* =========================
+   LEARN MODE
+   ========================= */
+function initLearnMode() {
+  document.getElementById('start-screen').classList.add('hidden');
+  document.getElementById('learn-screen').classList.remove('hidden');
+
+  const c = document.getElementById('learn-list');
+  c.innerHTML = '';
+
+  BANK.forEach((q, i) => {
+    const d = document.createElement('div');
+    d.className = 'exam-item';
+    d.innerHTML = `
+      <div class="q-meta">${q.m}</div>
+      <div class="exam-q">${i + 1}. ${q.q}</div>
+      <div class="learn-a">Antwort: ${q.a.join(", ")}</div>
+      <div>${q.e}</div>
+    `;
+    c.appendChild(d);
+  });
+}
+
+/* =========================
+   EXAM MODE
+   ========================= */
+function initExam() {
+  isExam = true;
+  examAnswers = {};
+
+  document.getElementById('start-screen').classList.add('hidden');
+  document.getElementById('exam-screen').classList.remove('hidden');
+
+  activeSet = shuffle([...BANK]).slice(0, 45);
+  const c = document.getElementById('exam-list');
+  c.innerHTML = '';
+
+  activeSet.forEach((item, idx) => {
+    const d = document.createElement('div');
+    d.className = 'exam-item';
+    const typeLabel = item.t === 'multiple' ? 'Mehrfachauswahl' : 'Einfachauswahl';
+    d.innerHTML = `<div class="q-meta">${typeLabel} • ${item.m}</div><div class="exam-q">${idx + 1}. ${item.q}</div>`;
+
+    shuffle([...item.o]).forEach(o => {
+      const type = item.t === "single" ? "radio" : "checkbox";
+      d.innerHTML += `
+        <label>
+          <input type="${type}" name="q${idx}" value="${o}"
+            onchange="handleExamSelect(${idx}, '${o}', '${item.t}')">
+          ${o}
+        </label><br>
+      `;
+    });
+
+    c.appendChild(d);
+  });
+}
+
+function handleExamSelect(idx, value, type) {
+  if (!examAnswers[idx]) examAnswers[idx] = [];
+
+  if (type === "multiple") {
+    if (examAnswers[idx].includes(value))
+      examAnswers[idx] = examAnswers[idx].filter(v => v !== value);
+    else
+      examAnswers[idx].push(value);
+  } else {
+    examAnswers[idx] = [value];
+  }
+}
+
+function submitExam() {
+  let score = 0;
+
+  activeSet.forEach((q, i) => {
+    const given = examAnswers[i] || [];
+    const correct = q.a;
+
+    if (
+      given.length === correct.length &&
+      given.every(v => correct.includes(v))
+    ) score++;
+  });
+
+  alert(`Ergebnis: ${score} / ${activeSet.length}`);
+}
+
+/* =========================
+   MODULE FILTER
+   ========================= */
+const mods = [...new Set(BANK.map(q => q.m))];
+const mBox = document.getElementById('module-list');
+
+mods.forEach(m => {
+  const b = document.createElement('div');
+  b.className = 'mode-card';
+  b.innerText = m;
+  b.onclick = () => initTrainer(m);
+  mBox.appendChild(b);
+});
+
+</script>
+<a href="index.html" class="btn btn-outline" style="position:fixed; right:16px; bottom:16px; z-index:999; background: var(--bg);">Zurück</a>
+</body>
+</html>
