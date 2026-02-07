@@ -1311,6 +1311,7 @@ let currentIndex = 0;
 let streak = 0;
 let isExam = false;
 let examAnswers = {};
+let examSubmitted = false; // verhindert mehrfache Prüfungsabgabe
 
 /* =========================
    HELPERS
@@ -1515,7 +1516,15 @@ function handleExamSelect(idx, value, type) {
 }
 
 function submitExam() {
+  // Falls Prüfung bereits abgegeben wurde, erneute Auswertung verhindern
+  if (examSubmitted) return;
+  examSubmitted = true;
+
+  // Abgabe-Button deaktivieren, damit keine zweite Auswertung erfolgt
+  document.getElementById('btn-submit-exam').disabled = true;
+
   let score = 0;
+  let maxTotal = 0; // maximal erreichbare Gesamtpunkte
 
   activeSet.forEach((q, i) => {
     const given = examAnswers[i] || [];
@@ -1524,29 +1533,37 @@ function submitExam() {
     // Referenz auf die dargestellte Frage im DOM
     const examItem = document.querySelectorAll('#exam-list .exam-item')[i];
 
+    // Maximalpunkte pro Frage bestimmen
+    const maxPoints = q.t === "single" ? 1 : correct.length;
+    maxTotal += maxPoints;
+
+    let qScore = 0;
+
     // SINGLE-CHOICE
     if (q.t === "single") {
       const isCorrect = given.length === 1 && correct.includes(given[0]);
-      if (isCorrect) score += 1;
-
-      examItem.style.borderColor = isCorrect ? "var(--success)" : "var(--error)";
+      if (isCorrect) qScore = 1;
     }
 
     // MULTIPLE-CHOICE
     else if (q.t === "multiple") {
-      let qScore = 0;
       given.forEach(v => {
         if (correct.includes(v)) qScore += 1;
         else qScore -= 1;
       });
-
-      if (qScore < 0) qScore = 0;
-      score += qScore;
-
-      examItem.style.borderColor = qScore > 0 ? "var(--success)" : "var(--error)";
+      if (qScore < 0) qScore = 0; // Frage kann nicht negativ werden
     }
 
-    // Richtige Antworten optisch markieren
+    score += qScore;
+
+    // Randfarbe je nach Ergebnis
+    examItem.style.borderColor = qScore > 0 ? "var(--success)" : "var(--error)";
+
+    // ----------------------------
+    // Richtige und falsche Antworten visuell kennzeichnen
+    // - richtige Antworten grün
+    // - falsch gewählte Antworten rot
+    // ----------------------------
     const inputs = examItem.querySelectorAll('input');
     inputs.forEach(input => {
       if (correct.includes(input.value)) {
@@ -1557,7 +1574,21 @@ function submitExam() {
       }
     });
 
-    // Erklärungstext anzeigen
+    // ----------------------------
+    // Punktanzeige pro Frage erstellen
+    // Zeigt erreichte Punkte sowie maximal mögliche Punkte an
+    // ----------------------------
+    const pts = document.createElement('div');
+    pts.style.marginTop = '8px';
+    pts.style.fontWeight = 'bold';
+    pts.innerHTML = `Punkte bei dieser Frage: ${qScore} / ${maxPoints}`;
+    examItem.appendChild(pts);
+
+    // ----------------------------
+    // Erklärung zur Frage anzeigen
+    // Diese hilft dem Teilnehmer sofort zu verstehen,
+    // warum eine Antwort richtig oder falsch war
+    // ----------------------------
     const expl = document.createElement('div');
     expl.style.marginTop = '10px';
     expl.style.padding = '10px';
@@ -1567,8 +1598,10 @@ function submitExam() {
     examItem.appendChild(expl);
   });
 
-  document.getElementById('exam-result-header').classList.remove('hidden');
-  document.getElementById('exam-result-header').innerHTML = `<h2>Ergebnis: ${score} Punkte</h2>`;
+  const percent = Math.round((score / maxTotal) * 100);
+  const header = document.getElementById('exam-result-header');
+  header.classList.remove('hidden');
+  header.innerHTML = `<h2>Gesamt: ${score} / ${maxTotal} Punkte (${percent}%)</h2>`;
 }
 
 /* =========================
