@@ -938,14 +938,47 @@ function submitExam() {
   activeSet.forEach((q, i) => {
     const given = examAnswers[i] || [];
     const correct = q.a;
+    const qDiv = document.getElementById('exam-list').children[i];
 
-    if (
-      given.length === correct.length &&
-      given.every(v => correct.includes(v))
-    ) score++;
+    let qPoints = 0;
+
+    if (q.t === 'single') {
+      if (given.length && correct.includes(given[0])) qPoints = 1;
+    } else {
+      given.forEach(v => {
+        if (correct.includes(v)) qPoints += 1;
+        else qPoints -= 1;
+      });
+      if (qPoints < 0) qPoints = 0;
+    }
+
+    score += qPoints;
+
+    // Visuelle Markierung
+    const inputs = qDiv.querySelectorAll('input');
+    inputs.forEach(inp => {
+      const label = inp.parentElement;
+      if (correct.includes(inp.value)) {
+        label.style.background = 'rgba(34,197,94,0.15)';
+        label.style.border = '1px solid #22c55e';
+      }
+      if (given.includes(inp.value) && !correct.includes(inp.value)) {
+        label.style.background = 'rgba(239,68,68,0.15)';
+        label.style.border = '1px solid #ef4444';
+      }
+    });
+
+    // Erklärung anzeigen
+    const expl = document.createElement('div');
+    expl.style.marginTop = '10px';
+    expl.style.padding = '10px';
+    expl.style.borderLeft = '4px solid #3b82f6';
+    expl.style.background = 'rgba(0,0,0,0.2)';
+    expl.innerHTML = `<strong>Erklärung:</strong> ${q.e}`;
+    qDiv.appendChild(expl);
   });
 
-  alert(`Ergebnis: ${score} / ${activeSet.length}`);
+  alert(`Ergebnis: ${score} Punkte`);
 }
 
 /* =========================
