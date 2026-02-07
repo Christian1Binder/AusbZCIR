@@ -1521,30 +1521,54 @@ function submitExam() {
     const given = examAnswers[i] || [];
     const correct = q.a;
 
-    // SINGLE-CHOICE: +1 Punkt bei korrekter Antwort
+    // Referenz auf die dargestellte Frage im DOM
+    const examItem = document.querySelectorAll('#exam-list .exam-item')[i];
+
+    // SINGLE-CHOICE
     if (q.t === "single") {
-      if (given.length === 1 && correct.includes(given[0])) {
-        score += 1;
-      }
+      const isCorrect = given.length === 1 && correct.includes(given[0]);
+      if (isCorrect) score += 1;
+
+      examItem.style.borderColor = isCorrect ? "var(--success)" : "var(--error)";
     }
 
-    // MULTIPLE-CHOICE: +1 pro richtige Auswahl, -1 pro falsche Auswahl
+    // MULTIPLE-CHOICE
     else if (q.t === "multiple") {
       let qScore = 0;
-
       given.forEach(v => {
         if (correct.includes(v)) qScore += 1;
         else qScore -= 1;
       });
 
-      // Frage kann nicht weniger als 0 Punkte geben
       if (qScore < 0) qScore = 0;
-
       score += qScore;
+
+      examItem.style.borderColor = qScore > 0 ? "var(--success)" : "var(--error)";
     }
+
+    // Richtige Antworten optisch markieren
+    const inputs = examItem.querySelectorAll('input');
+    inputs.forEach(input => {
+      if (correct.includes(input.value)) {
+        input.parentElement.style.color = "var(--success)";
+        input.parentElement.style.fontWeight = "bold";
+      } else if (given.includes(input.value)) {
+        input.parentElement.style.color = "var(--error)";
+      }
+    });
+
+    // Erklärungstext anzeigen
+    const expl = document.createElement('div');
+    expl.style.marginTop = '10px';
+    expl.style.padding = '10px';
+    expl.style.borderLeft = '4px solid var(--accent)';
+    expl.style.background = 'rgba(0,0,0,0.2)';
+    expl.innerHTML = `<strong>Erklärung:</strong> ${q.e}`;
+    examItem.appendChild(expl);
   });
 
-  alert(`Ergebnis: ${score} Punkte`);
+  document.getElementById('exam-result-header').classList.remove('hidden');
+  document.getElementById('exam-result-header').innerHTML = `<h2>Ergebnis: ${score} Punkte</h2>`;
 }
 
 /* =========================
