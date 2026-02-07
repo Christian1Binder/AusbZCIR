@@ -120,6 +120,15 @@ body::-webkit-scrollbar{
 </div>
 
 <script>
+/* ======================================================
+   HAUPTLOGIK DER LERNPLATTFORM
+   ------------------------------------------------------
+   - BANK enthält alle Fragen (Frage, Typ, Antworten, Erklärung, Modul)
+   - Trainer-Modus: Sofortfeedback pro Frage
+   - Lernmodus: Anzeige aller Lösungen
+   - Prüfungsmodus: Punkteberechnung + visuelle Auswertung
+   - submitExam(): zentrale Bewertungsfunktion für Prüfungen
+   ====================================================== */
 /* --- 96 FRAGEN DATENBANK --- */
 const BANK = [
 
@@ -884,9 +893,12 @@ function initLearnMode() {
   });
 }
 
-/* =========================
-   EXAM MODE
-   ========================= */
+/* ------------------------------------------------------
+   PRÜFUNGSMODUS INITIALISIEREN
+   - wählt zufällig 45 Fragen
+   - erzeugt dynamisch Radio- oder Checkbox-Felder
+   - speichert Antworten in examAnswers
+   ------------------------------------------------------ */
 function initExam() {
   isExam = true;
   examAnswers = {};
@@ -919,6 +931,11 @@ function initExam() {
   });
 }
 
+/* ------------------------------------------------------
+   SPEICHERT AUSGEWÄHLTE ANTWORTEN
+   - Single Choice: überschreibt Auswahl
+   - Multiple Choice: fügt hinzu oder entfernt Auswahl
+   ------------------------------------------------------ */
 function handleExamSelect(idx, value, type) {
   if (!examAnswers[idx]) examAnswers[idx] = [];
 
@@ -932,6 +949,14 @@ function handleExamSelect(idx, value, type) {
   }
 }
 
+/* ------------------------------------------------------
+   PRÜFUNG AUSWERTEN
+   - Single Choice: +1 Punkt bei korrekter Antwort
+   - Multiple Choice: +1 pro richtig, -1 pro falsch
+   - Mindestpunktzahl pro Frage = 0
+   - Markiert Antworten farblich (grün/rot)
+   - Zeigt Erklärung direkt unter der Frage
+   ------------------------------------------------------ */
 function submitExam() {
   let score = 0;
 
@@ -942,6 +967,12 @@ function submitExam() {
 
     let qPoints = 0;
 
+    // ----------------------------
+    // Punkteberechnung pro Frage
+    // ----------------------------
+    // Single: exakt eine richtige Antwort = 1 Punkt
+    // Multiple: jede richtige Antwort +1, jede falsche -1
+    // Eine Frage kann jedoch niemals negativ bewertet werden
     if (q.t === 'single') {
       if (given.length && correct.includes(given[0])) qPoints = 1;
     } else {
@@ -949,12 +980,16 @@ function submitExam() {
         if (correct.includes(v)) qPoints += 1;
         else qPoints -= 1;
       });
-      if (qPoints < 0) qPoints = 0;
+      if (qPoints < 0) qPoints = 0; // Frage kann nicht negativ werden
     }
 
     score += qPoints;
 
-    // Visuelle Markierung
+    // ----------------------------
+    // Visuelle Auswertung anzeigen
+    // ----------------------------
+    // Richtige Antworten werden grün markiert
+    // Falsch gewählte Antworten werden rot markiert
     const inputs = qDiv.querySelectorAll('input');
     inputs.forEach(inp => {
       const label = inp.parentElement;
@@ -968,7 +1003,11 @@ function submitExam() {
       }
     });
 
-    // Erklärung anzeigen
+    // ----------------------------
+    // Erklärung unter der Frage anzeigen
+    // ----------------------------
+    // Dadurch kann der Nutzer sofort nachvollziehen,
+    // warum eine Antwort korrekt oder falsch war
     const expl = document.createElement('div');
     expl.style.marginTop = '10px';
     expl.style.padding = '10px';
