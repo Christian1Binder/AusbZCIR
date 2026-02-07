@@ -1521,13 +1521,30 @@ function submitExam() {
     const given = examAnswers[i] || [];
     const correct = q.a;
 
-    if (
-      given.length === correct.length &&
-      given.every(v => correct.includes(v))
-    ) score++;
+    // SINGLE-CHOICE: +1 Punkt bei korrekter Antwort
+    if (q.t === "single") {
+      if (given.length === 1 && correct.includes(given[0])) {
+        score += 1;
+      }
+    }
+
+    // MULTIPLE-CHOICE: +1 pro richtige Auswahl, -1 pro falsche Auswahl
+    else if (q.t === "multiple") {
+      let qScore = 0;
+
+      given.forEach(v => {
+        if (correct.includes(v)) qScore += 1;
+        else qScore -= 1;
+      });
+
+      // Frage kann nicht weniger als 0 Punkte geben
+      if (qScore < 0) qScore = 0;
+
+      score += qScore;
+    }
   });
 
-  alert(`Ergebnis: ${score} / ${activeSet.length}`);
+  alert(`Ergebnis: ${score} Punkte`);
 }
 
 /* =========================
