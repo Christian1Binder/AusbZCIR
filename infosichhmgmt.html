@@ -959,6 +959,7 @@ function handleExamSelect(idx, value, type) {
    ------------------------------------------------------ */
 function submitExam() {
   let score = 0;
+  let maxTotal = 0; // maximal erreichbare Gesamtpunkte
 
   activeSet.forEach((q, i) => {
     const given = examAnswers[i] || [];
@@ -984,6 +985,20 @@ function submitExam() {
     }
 
     score += qPoints;
+
+    // ----------------------------
+    // Punktanzeige pro Frage anzeigen
+    // ----------------------------
+    // Zeigt z.B. "3 Punkte" oder "0 Punkte" direkt unter der Frage
+    const maxPoints = q.t === 'single' ? 1 : correct.length;
+    maxTotal += maxPoints; // Gesamtmaximalpunkte aufsummieren
+
+    const pointsInfo = document.createElement('div');
+    pointsInfo.style.marginTop = '6px';
+    pointsInfo.style.fontWeight = 'bold';
+    pointsInfo.style.color = qPoints > 0 ? 'var(--success)' : 'var(--error)';
+    pointsInfo.innerText = `Punkte für diese Frage: ${qPoints} / ${maxPoints}`;
+    qDiv.appendChild(pointsInfo);
 
     // ----------------------------
     // Visuelle Auswertung anzeigen
@@ -1017,7 +1032,11 @@ function submitExam() {
     qDiv.appendChild(expl);
   });
 
-  alert(`Ergebnis: ${score} Punkte`);
+  const percent = Math.round((score / maxTotal) * 100);
+
+  const header = document.getElementById('exam-result-header');
+  header.classList.remove('hidden');
+  header.innerHTML = `<h2>Gesamt: ${score} / ${maxTotal} Punkte (${percent}%)</h2>`;
 }
 
 /* =========================
