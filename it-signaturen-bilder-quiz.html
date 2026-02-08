@@ -344,15 +344,10 @@ select {
     </p>
   </div>
 
-  <div class="card">
-    <div class="kicker">Kurzinfo</div>
-    <div style="color:var(--muted); line-height:1.5; font-weight:800;">
-      Enthält <b id="count-img">0</b> Base64‑Bilder aus deiner Sammlung.
-      <br>Fragen werden dynamisch erzeugt: <b>Single‑Choice</b>, <b>Multiple‑Choice</b>, <b>Zuordnen</b> (Drag/Select) und <b>Sortieren</b>.
-      <br><span style="color:var(--warning); font-weight:900;">Wichtig:</span> Sortieraufgaben nutzen die Reihenfolge, wie sie in der TXT steht (damit nichts erfunden wird).
-    </div>
-  </div>
-
+<!--   Ab hier das Hauptmenü mit den verschiedenen Modi und der Bildliste. 
+   Alle Modi greifen auf denselben Fragenpool zu, aber mit unterschiedlicher 
+   Auswahl und Feedback‑Mechanik.
+ -->
   <div class="mode-card" onclick="startMode('trainer')">
     <div>
       <h3 style="margin:0;">🚀 Mix‑Trainer</h3>
